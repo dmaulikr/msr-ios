@@ -40,12 +40,12 @@
     self.userInteractionEnabled = YES;
     
     // Create a colored background (Dark Grey)
-    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
+    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f]];
     [self addChild:background];
     
     // Add a sprite
-    _sprite = [CCSprite spriteWithImageNamed:@"Icon-72.png"];
-    _sprite.position  = ccp(self.contentSize.width/2,self.contentSize.height/2);
+    _sprite = [CCSprite spriteWithImageNamed:@"martian.png"];
+    _sprite.position  = ccp(self.contentSize.width/2,4*self.contentSize.height/5);
     [self addChild:_sprite];
     
     // Animate sprite with action
