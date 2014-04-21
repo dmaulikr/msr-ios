@@ -43,7 +43,7 @@
     
     //add image as background
     _background = [CCSprite spriteWithImageNamed:@"background.png"];
-    [self addChild:_background z:-2];
+    [self addChild:_background z:-3];
     
     //set up the physics world
     _physicsWorld = [CCPhysicsNode node];
@@ -112,7 +112,7 @@
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
     
     cloud.position = CGPointMake(randomX, 0);
-    [self addChild:cloud z:-1];
+    [self addChild:cloud z:-2];
     
     CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + cloud.contentSize.height)];
     CCAction *actionRemove = [CCActionRemove action];
