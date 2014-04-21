@@ -1,5 +1,5 @@
 //
-//  HelloWorldScene.m
+//  GameScene.m
 //  msr-ios
 //
 //  Created by barari on 4/19/14.
@@ -7,14 +7,14 @@
 //
 // -----------------------------------------------------------------------
 
-#import "HelloWorldScene.h"
+#import "GameScene.h"
 #import "IntroScene.h"
 
 // -----------------------------------------------------------------------
-#pragma mark - HelloWorldScene
+#pragma mark - GameScene
 // -----------------------------------------------------------------------
 
-@implementation HelloWorldScene
+@implementation GameScene
 {
     CCSprite *_sprite;
 }
@@ -23,7 +23,7 @@
 #pragma mark - Create & Destroy
 // -----------------------------------------------------------------------
 
-+ (HelloWorldScene *)scene
++ (GameScene *)scene
 {
     return [[self alloc] init];
 }
@@ -38,11 +38,7 @@
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
-    
-    // Create a colored background (Dark Grey)
-    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f]];
-    [self addChild:background];
-    
+
     // Add a sprite
     _sprite = [CCSprite spriteWithImageNamed:@"martian.png"];
     _sprite.position  = ccp(self.contentSize.width/2,4*self.contentSize.height/5);
@@ -93,13 +89,13 @@
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
     int randomX = (arc4random() % maxX);
-    int minDuration = 2.0;
-    int maxDuration = 7.0;
+    int minDuration = 1.0;
+    int maxDuration = 3.0;
     int rangeDuration = maxDuration - minDuration;
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
     
     cloud.position = CGPointMake(randomX, 0);
-    [self addChild:cloud];
+    [self addChild:cloud z:-1];
     
     CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + cloud.contentSize.height)];
     CCAction *actionRemove = [CCActionRemove action];

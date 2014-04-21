@@ -210,7 +210,7 @@
 		43759E111902B46400717DF5 /* LICENSE_Chipmunk.txt in Resources */ = {isa = PBXBuildFile; fileRef = 43759E101902B46400717DF5 /* LICENSE_Chipmunk.txt */; };
 		43759E151902B46400717DF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E141902B46400717DF5 /* main.m */; };
 		43759E191902B46400717DF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E181902B46400717DF5 /* AppDelegate.m */; };
-		43759E1C1902B46400717DF5 /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E1B1902B46400717DF5 /* HelloWorldScene.m */; };
+		43759E1C1902B46400717DF5 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E1B1902B46400717DF5 /* GameScene.m */; };
 		43759E1F1902B46400717DF5 /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E1E1902B46400717DF5 /* IntroScene.m */; };
 		43D933521902C51D006704B8 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334C1902C51D006704B8 /* bird.png */; };
 		43D933531902C51D006704B8 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334D1902C51D006704B8 /* cloud.png */; };
@@ -655,8 +655,8 @@
 		43759E141902B46400717DF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		43759E171902B46400717DF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		43759E181902B46400717DF5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		43759E1A1902B46400717DF5 /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
-		43759E1B1902B46400717DF5 /* HelloWorldScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HelloWorldScene.m; path = Classes/HelloWorldScene.m; sourceTree = "<group>"; };
+		43759E1A1902B46400717DF5 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Classes/GameScene.h; sourceTree = "<group>"; };
+		43759E1B1902B46400717DF5 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Classes/GameScene.m; sourceTree = "<group>"; };
 		43759E1D1902B46400717DF5 /* IntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroScene.h; path = Classes/IntroScene.h; sourceTree = "<group>"; };
 		43759E1E1902B46400717DF5 /* IntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IntroScene.m; path = Classes/IntroScene.m; sourceTree = "<group>"; };
 		43D9334C1902C51D006704B8 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
@@ -1555,8 +1555,8 @@
 			children = (
 				43759E171902B46400717DF5 /* AppDelegate.h */,
 				43759E181902B46400717DF5 /* AppDelegate.m */,
-				43759E1A1902B46400717DF5 /* HelloWorldScene.h */,
-				43759E1B1902B46400717DF5 /* HelloWorldScene.m */,
+				43759E1A1902B46400717DF5 /* GameScene.h */,
+				43759E1B1902B46400717DF5 /* GameScene.m */,
 				43759E1D1902B46400717DF5 /* IntroScene.h */,
 				43759E1E1902B46400717DF5 /* IntroScene.m */,
 			);
@@ -1779,7 +1779,7 @@
 				43759C621902B46200717DF5 /* ccShaders.m in Sources */,
 				43759D761902B46300717DF5 /* matrix.c in Sources */,
 				43759C881902B46300717DF5 /* CCTiledMapLayer.m in Sources */,
-				43759E1C1902B46400717DF5 /* HelloWorldScene.m in Sources */,
+				43759E1C1902B46400717DF5 /* GameScene.m in Sources */,
 				43759D7C1902B46300717DF5 /* neon_matrix_impl.c in Sources */,
 				43759C011902B46200717DF5 /* CCLabelTTF.m in Sources */,
 				43759CB61902B46300717DF5 /* NSEvent+CC.m in Sources */,
