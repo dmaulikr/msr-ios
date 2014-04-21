@@ -81,6 +81,8 @@
     [super onEnter];
     
     [self schedule:@selector(moveBackground:) interval:0.03];
+    [self schedule:@selector(addCloud:) interval:1.5];
+    [self schedule:@selector(addMissile:) interval:2];
     
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
@@ -157,4 +159,22 @@
     CCLOG(@"background x,y is @ %@", NSStringFromCGPoint(bgPos));
 
 }
+// -----------------------------------------------------------------------
+#pragma mark - Add Missile
+// -----------------------------------------------------------------------
+-(void)addMissile:(CCTime)delta
+{
+    CCSprite *missile = [CCSprite spriteWithImageNamed:@"missile.png"];
+    
+    // Make appear at a random X coordinate
+    int minX = missile.contentSize.width / 2;
+    int maxX = self.contentSize.width - missile.contentSize.width / 2;
+    int rangeX = maxX - minX;
+    int randomX = (arc4random() % rangeX) + minX;
+    
+    missile.position = CGPointMake(randomX, -(self.contentSize.height + missile.contentSize.height));
+    
+
+}
+
 @end
