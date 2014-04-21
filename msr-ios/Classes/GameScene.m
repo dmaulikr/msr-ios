@@ -48,14 +48,16 @@
     //set up the physics world
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
-    _physicsWorld.debugDraw = NO; //for debug put yes
+    _physicsWorld.debugDraw = YES; //for debug put yes
     _physicsWorld.collisionDelegate = self;
-    [self addChild:_physicsWorld];
+    [self addChild:_physicsWorld z:-1];
     
     // Add martian
     _martian = [CCSprite spriteWithImageNamed:@"martian.png"];
     _martian.position  = ccp(self.contentSize.width/2,4*self.contentSize.height/5);
-    [self addChild:_martian];
+    _martian.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _martian.contentSize} cornerRadius:0]; // 1
+    _martian.physicsBody.collisionGroup = @"playerGroup"; // 2
+    [_physicsWorld addChild:_martian];
     
     // Animate sprite with action
     CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:2.5f angle:360];
@@ -164,7 +166,7 @@
         bgPos.y = 0;
     }
     _background.position = bgPos;
-    CCLOG(@"background x,y is @ %@", NSStringFromCGPoint(bgPos));
+    //CCLOG(@"background x,y is @ %@", NSStringFromCGPoint(bgPos));
 
 }
 // -----------------------------------------------------------------------
@@ -186,7 +188,10 @@
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
     
     missile.position = CGPointMake(randomX, 0);//-(self.contentSize.height + missile.contentSize.height));
-    [self addChild:missile];
+    missile.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, missile.contentSize} cornerRadius:0];
+    missile.physicsBody.collisionGroup = @"missileGroup";
+    missile.physicsBody.collisionType  = @"missileCollision";
+    [_physicsWorld addChild:missile z:-1];
 
     CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + missile.contentSize.height)];
     CCAction *actionRemove = [CCActionRemove action];
