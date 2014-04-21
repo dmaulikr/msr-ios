@@ -218,6 +218,7 @@
 		43D933551902C51D006704B8 /* martian.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334F1902C51D006704B8 /* martian.png */; };
 		43D933561902C51D006704B8 /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D933501902C51D006704B8 /* missile.png */; };
 		43D933571902C51D006704B8 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D933511902C51D006704B8 /* ship.png */; };
+		535FF5D219058C240094C98C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5D119058C240094C98C /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -665,6 +666,7 @@
 		43D9334F1902C51D006704B8 /* martian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martian.png; sourceTree = "<group>"; };
 		43D933501902C51D006704B8 /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		43D933511902C51D006704B8 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		535FF5D119058C240094C98C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1566,6 +1568,7 @@
 		43D9334B1902C51D006704B8 /* scratch-assets */ = {
 			isa = PBXGroup;
 			children = (
+				535FF5D119058C240094C98C /* background.png */,
 				43D9334C1902C51D006704B8 /* bird.png */,
 				43D9334D1902C51D006704B8 /* cloud.png */,
 				43D9334E1902C51D006704B8 /* fire.png */,
@@ -1659,6 +1662,7 @@
 				43759B901902B46200717DF5 /* Default-Landscape~ipad.png in Resources */,
 				43759BA51902B46200717DF5 /* Icon-Small.png in Resources */,
 				43D933521902C51D006704B8 /* bird.png in Resources */,
+				535FF5D219058C240094C98C /* background.png in Resources */,
 				43759BA31902B46200717DF5 /* Icon-Small-50.png in Resources */,
 				43D933561902C51D006704B8 /* missile.png in Resources */,
 				43759D8C1902B46300717DF5 /* LICENSE_Kazmath.txt in Resources */,

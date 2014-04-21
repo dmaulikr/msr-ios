@@ -17,6 +17,7 @@
 @implementation HelloWorldScene
 {
     CCSprite *_sprite;
+    CCSprite *_background;
 }
 
 // -----------------------------------------------------------------------
@@ -39,9 +40,9 @@
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
-    // Create a colored background (Dark Grey)
-    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f]];
-    [self addChild:background];
+    //add image as background
+    _background = [CCSprite spriteWithImageNamed:@"background.png"];
+    [self addChild:_background];
     
     // Add a sprite
     _sprite = [CCSprite spriteWithImageNamed:@"martian.png"];
@@ -78,6 +79,8 @@
 {
     // always call super onEnter first
     [super onEnter];
+    
+    [self schedule:@selector(moveBackground:) interval:0.03];
     
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
@@ -120,4 +123,20 @@
 }
 
 // -----------------------------------------------------------------------
+#pragma mark - Move Scrolling Background
+// -----------------------------------------------------------------------
+
+-(void)moveBackground:(CCTime)delta
+{
+    CGPoint bgPos = _background.position;
+    bgPos.y = bgPos.y + 4.0;
+    
+    if (bgPos.y > _background.contentSize.height - self.contentSize.height) {
+        bgPos.y = 0;
+    }
+    _background.position = bgPos;
+    CCLOG(@"background x,y is @ %@", NSStringFromCGPoint(bgPos));
+    
+
+}
 @end
