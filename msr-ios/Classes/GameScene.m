@@ -42,7 +42,7 @@
     
     //add image as background
     _background = [CCSprite spriteWithImageNamed:@"background.png"];
-    [self addChild:_background];
+    [self addChild:_background z:-2];
     
     // Add a sprite
     _sprite = [CCSprite spriteWithImageNamed:@"martian.png"];
@@ -178,13 +178,11 @@
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
     
     missile.position = CGPointMake(randomX, 0);//-(self.contentSize.height + missile.contentSize.height));
-    [self addChild:cloud];
+    [self addChild:missile];
 
     CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + missile.contentSize.height)];
     CCAction *actionRemove = [CCActionRemove action];
     [missile runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-    
-
 }
 
 @end
