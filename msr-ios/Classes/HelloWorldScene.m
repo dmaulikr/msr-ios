@@ -49,7 +49,7 @@
     [self addChild:_sprite];
     
     // Animate sprite with action
-    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:1.5f angle:360];
+    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:2.5f angle:360];
     [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
     
     // Create a back button
