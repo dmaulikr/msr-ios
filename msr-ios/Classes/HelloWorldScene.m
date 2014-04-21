@@ -172,7 +172,17 @@
     int rangeX = maxX - minX;
     int randomX = (arc4random() % rangeX) + minX;
     
-    missile.position = CGPointMake(randomX, -(self.contentSize.height + missile.contentSize.height));
+    int minDuration = 2.0;
+    int maxDuration = 7.0;
+    int rangeDuration = maxDuration - minDuration;
+    int randomDuration = (arc4random() % rangeDuration) + minDuration;
+    
+    missile.position = CGPointMake(randomX, 0);//-(self.contentSize.height + missile.contentSize.height));
+    [self addChild:cloud];
+
+    CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + missile.contentSize.height)];
+    CCAction *actionRemove = [CCActionRemove action];
+    [missile runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     
 
 }
