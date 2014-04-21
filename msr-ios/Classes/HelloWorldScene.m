@@ -136,7 +136,6 @@
     }
     _background.position = bgPos;
     CCLOG(@"background x,y is @ %@", NSStringFromCGPoint(bgPos));
-    
 
 }
 @end
