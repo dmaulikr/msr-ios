@@ -79,10 +79,31 @@
     // always call super onEnter first
     [super onEnter];
     
+    [self schedule:@selector(addCloud:) interval:1.5];
+    
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
     // Per frame update is automatically enabled, if update is overridden
     
+}
+
+- (void)addCloud:(CCTime)dt {
+    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud.png"];
+    
+    // Set time and space bounds for cloud generation
+    int maxX = self.contentSize.width;
+    int randomX = (arc4random() % maxX);
+    int minDuration = 2.0;
+    int maxDuration = 7.0;
+    int rangeDuration = maxDuration - minDuration;
+    int randomDuration = (arc4random() % rangeDuration) + minDuration;
+    
+    cloud.position = CGPointMake(randomX, 0);
+    [self addChild:cloud];
+    
+    CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + cloud.contentSize.height)];
+    CCAction *actionRemove = [CCActionRemove action];
+    [cloud runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
 }
 
 // -----------------------------------------------------------------------
@@ -104,7 +125,7 @@
     CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
     
     // Move our sprite to touch location
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
+    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
     [_sprite runAction:actionMove];
 }
 
