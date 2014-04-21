@@ -16,8 +16,9 @@
 
 @implementation GameScene
 {
-    CCSprite *_sprite;
+    CCSprite *_martian;
     CCSprite *_background;
+    CCPhysicsNode *_physicsWorld;    
 }
 
 // -----------------------------------------------------------------------
@@ -44,14 +45,21 @@
     _background = [CCSprite spriteWithImageNamed:@"background.png"];
     [self addChild:_background z:-2];
     
-    // Add a sprite
-    _sprite = [CCSprite spriteWithImageNamed:@"martian.png"];
-    _sprite.position  = ccp(self.contentSize.width/2,4*self.contentSize.height/5);
-    [self addChild:_sprite];
+    //set up the physics world
+    _physicsWorld = [CCPhysicsNode node];
+    _physicsWorld.gravity = ccp(0,0);
+    _physicsWorld.debugDraw = NO; //for debug put yes
+    _physicsWorld.collisionDelegate = self;
+    [self addChild:_physicsWorld];
+    
+    // Add martian
+    _martian = [CCSprite spriteWithImageNamed:@"martian.png"];
+    _martian.position  = ccp(self.contentSize.width/2,4*self.contentSize.height/5);
+    [self addChild:_martian];
     
     // Animate sprite with action
     CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:2.5f angle:360];
-    [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
+    [_martian runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
     
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -129,7 +137,7 @@
     
     // Move our sprite to touch location
     CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-    [_sprite runAction:actionMove];
+    [_martian runAction:actionMove];
 }
 
 // -----------------------------------------------------------------------
