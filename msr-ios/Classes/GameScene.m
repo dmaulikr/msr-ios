@@ -189,7 +189,6 @@
     if ((playerPos.x >= missilePos.x) && (playerPos.y > missilePos.y)) {
         missilePos.x = missilePos.x + .75;
         _missile.missile.position = missilePos;
-        CCLOG(@"HERE");
     } else if ((playerPos.x <= missilePos.x) && (playerPos.y > missilePos.y)) {
         missilePos.x = missilePos.x - .75;
         _missile.missile.position = missilePos;
