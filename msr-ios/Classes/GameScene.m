@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "IntroScene.h"
 #import "Player.h"
+#import "Missile.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
@@ -20,6 +21,7 @@
     CCSprite *_background;
     CCPhysicsNode *_physicsWorld;
     Player *_martian;
+    Missile *_missile;
 }
 
 // -----------------------------------------------------------------------
@@ -56,9 +58,6 @@
     
     _martian = [[Player alloc] initWorld:_physicsWorld andScene:self];
     
-    // Animate sprite with action
-    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:2.5f angle:360];
-    [_martian._sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
     
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -173,28 +172,7 @@
 // -----------------------------------------------------------------------
 -(void)addMissile:(CCTime)delta
 {
-    CCSprite *missile = [CCSprite spriteWithImageNamed:@"missile.png"];
-    
-    // Make appear at a random X coordinate
-    int minX = missile.contentSize.width / 2;
-    int maxX = self.contentSize.width - missile.contentSize.width / 2;
-    int rangeX = maxX - minX;
-    int randomX = (arc4random() % rangeX) + minX;
-    
-    int minDuration = 2.0;
-    int maxDuration = 7.0;
-    int rangeDuration = maxDuration - minDuration;
-    int randomDuration = (arc4random() % rangeDuration) + minDuration;
-    
-    missile.position = CGPointMake(randomX, 0);//-(self.contentSize.height + missile.contentSize.height));
-    missile.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, missile.contentSize} cornerRadius:0];
-    missile.physicsBody.collisionGroup = @"missileGroup";
-    missile.physicsBody.collisionType  = @"missileCollision";
-    [_physicsWorld addChild:missile z:-1];
-
-    CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + missile.contentSize.height)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [missile runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+    _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self];    
 }
 
 @end
