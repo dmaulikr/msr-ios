@@ -39,6 +39,7 @@
     self = [super init];
     if (!self) return(nil);
     
+    
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
@@ -65,6 +66,8 @@
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
+    
+
 
     // done
 	return self;
