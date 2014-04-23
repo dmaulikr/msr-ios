@@ -42,11 +42,12 @@
     if (!self) return(nil);
     
     
-    // Enable touch handling on scene node
+    // Enable touch handling on scene node + accelerometer
     self.userInteractionEnabled = YES;
     
+    
     //add image as background
-    _background = [CCSprite spriteWithImageNamed:@"background.png"];
+    _background = [CCSprite spriteWithImageNamed:@"Default.png"];
     [self addChild:_background z:-3];
     
     //set up the physics world

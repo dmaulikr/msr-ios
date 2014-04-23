@@ -212,6 +212,7 @@
 		43759E191902B46400717DF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E181902B46400717DF5 /* AppDelegate.m */; };
 		43759E1C1902B46400717DF5 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E1B1902B46400717DF5 /* GameScene.m */; };
 		43759E1F1902B46400717DF5 /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 43759E1E1902B46400717DF5 /* IntroScene.m */; };
+		439526DB190779D2001A81DC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439526DA190779D2001A81DC /* CoreMotion.framework */; };
 		43D933521902C51D006704B8 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334C1902C51D006704B8 /* bird.png */; };
 		43D933531902C51D006704B8 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334D1902C51D006704B8 /* cloud.png */; };
 		43D933541902C51D006704B8 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334E1902C51D006704B8 /* fire.png */; };
@@ -662,6 +663,7 @@
 		43759E1B1902B46400717DF5 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = Classes/GameScene.m; sourceTree = "<group>"; };
 		43759E1D1902B46400717DF5 /* IntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroScene.h; path = Classes/IntroScene.h; sourceTree = "<group>"; };
 		43759E1E1902B46400717DF5 /* IntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IntroScene.m; path = Classes/IntroScene.m; sourceTree = "<group>"; };
+		439526DA190779D2001A81DC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		43D9334C1902C51D006704B8 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
 		43D9334D1902C51D006704B8 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
 		43D9334E1902C51D006704B8 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439526DB190779D2001A81DC /* CoreMotion.framework in Frameworks */,
 				43759B861902B46100717DF5 /* libObjectiveChipmunk.a in Frameworks */,
 				43759B741902B46100717DF5 /* OpenAL.framework in Frameworks */,
 				43759B7A1902B46100717DF5 /* UIKit.framework in Frameworks */,
@@ -717,6 +720,7 @@
 		43759B6E1902B46100717DF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				439526DA190779D2001A81DC /* CoreMotion.framework */,
 				43759B6F1902B46100717DF5 /* QuartzCore.framework */,
 				43759B711902B46100717DF5 /* OpenGLES.framework */,
 				43759B731902B46100717DF5 /* OpenAL.framework */,
@@ -1635,7 +1639,7 @@
 				ORGANIZATIONNAME = o2bt;
 				TargetAttributes = {
 					43759B6B1902B46100717DF5 = {
-						DevelopmentTeam = WC8GK6LE4R;
+						DevelopmentTeam = U6MKAK47DY;
 					};
 				};
 			};
@@ -1990,6 +1994,7 @@
 					"\"$(SRCROOT)/$(PROJECT_NAME)/Libraries/Chipmunk/objectivec/include\"",
 				);
 				INFOPLIST_FILE = "msr-ios/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1997,6 +2002,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2017,6 +2023,7 @@
 					"\"$(SRCROOT)/$(PROJECT_NAME)/Libraries/Chipmunk/objectivec/include\"",
 				);
 				INFOPLIST_FILE = "msr-ios/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -2024,6 +2031,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
