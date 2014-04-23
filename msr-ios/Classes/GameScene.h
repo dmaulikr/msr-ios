@@ -16,7 +16,7 @@
 /**
  *  The main scene
  */
-@interface GameScene : CCScene <CCPhysicsCollisionDelegate>
+@interface GameScene : CCScene <CCPhysicsCollisionDelegate, UIAccelerometerDelegate>
 
 // -----------------------------------------------------------------------
 
