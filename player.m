@@ -23,6 +23,10 @@
     _sprite.physicsBody.collisionGroup = @"playerGroup"; // 2
     [_physicsWorld addChild:_sprite];
     
+    // Animate sprite with action
+    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:2.5f angle:360];
+    [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];    
+    
     return self;
 }
 
