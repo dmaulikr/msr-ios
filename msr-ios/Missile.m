@@ -43,9 +43,36 @@
     CCAction *actionRemove = [CCActionRemove action];
     [missile runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     
-    
+    //CCLOG(@"well we about to crash");
+    //schedule the tracking function to be called
+    //[self schedule:(@selector(trackPlayer)) interval:0.03];
+
     return self;
 }
 
+
+
+
+/*
+-(void)trackPlayer:(Player *)_martian {
+    CGPoint playerPos = _martian.position;
+    CGPoint missilePos = missile.position;
+    
+    CCLOG(@"Players position is @ %@", NSStringFromCGPoint(playerPos));
+    
+    //move the missile towards the player
+    if ((playerPos.x >= missilePos.x) && (playerPos.y < missilePos.y)) {
+        missilePos.x = missilePos.x + 5;
+        missile.position = missilePos;
+        CCLOG(@"HERE");
+    } else if ((playerPos.x < missilePos.x) && (playerPos.y < missilePos.y)) {
+        missilePos.x = missilePos.x - 5;
+        missile.position = missilePos;
+    }
+    CCLOG(@"Trackplayer called");
+
+    
+}
+ */
 
 @end

@@ -92,7 +92,6 @@
     [self schedule:@selector(moveBackground:) interval:0.03];
     [self schedule:@selector(addCloud:) interval:1.5];
     [self schedule:@selector(addMissile:) interval:2];
-    
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
     // Per frame update is automatically enabled, if update is overridden
@@ -173,7 +172,35 @@
 // -----------------------------------------------------------------------
 -(void)addMissile:(CCTime)delta
 {
-    _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self];    
+    _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self];
+    [self schedule:(@selector(trackPlayerwithMissile)) interval:0.01];
 }
+
+// -----------------------------------------------------------------------
+#pragma mark - For missiles to track players
+// -----------------------------------------------------------------------
+
+-(void)trackPlayerwithMissile{
+    CGPoint playerPos = _martian._sprite.position;
+    CGPoint missilePos = _missile.missile.position;
+    
+    //ONLY WORKS ON ONE MISSILE AT A TIME
+    
+    //CCLOG(@"Players position is @ %@", NSStringFromCGPoint(playerPos));
+    //CCLOG(@"Missile position is @ %@", NSStringFromCGPoint(missilePos));
+    
+    //move the missile towards the player
+    if ((playerPos.x >= missilePos.x) && (playerPos.y > missilePos.y)) {
+        missilePos.x = missilePos.x + .75;
+        _missile.missile.position = missilePos;
+    } else if ((playerPos.x <= missilePos.x) && (playerPos.y > missilePos.y)) {
+        missilePos.x = missilePos.x - .75;
+        _missile.missile.position = missilePos;
+    }
+    //CCLOG(@"Trackplayer called");
+    
+    
+}
+
 
 @end
