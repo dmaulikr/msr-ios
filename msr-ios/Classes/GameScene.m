@@ -24,6 +24,8 @@
     Missile *_missile;
 }
 
+@synthesize manager;
+
 // -----------------------------------------------------------------------
 #pragma mark - Create & Destroy
 // -----------------------------------------------------------------------
@@ -37,20 +39,21 @@
 
 - (id)init
 {
-    // Apple recommend assigning self with supers return value
     self = [super init];
     if (!self) return(nil);
     
-    
-    // Enable touch handling on scene node + accelerometer
+    // Enable touch handling on scene node + set up motion manager
     self.userInteractionEnabled = YES;
+    self.manager = [[CMMotionManager alloc] init];
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(getValues:) userInfo:nil repeats:YES];
+    self.manager.accelerometerUpdateInterval = 0.05;
+    [self.manager startAccelerometerUpdates];
     
-    
-    //add image as background
+    // Add image as background
     _background = [CCSprite spriteWithImageNamed:@"Default.png"];
     [self addChild:_background z:-3];
     
-    //set up the physics world
+    // Set up the physics world
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
     _physicsWorld.debugDraw = YES; //for debug put yes
@@ -67,9 +70,7 @@
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
     
-
-
-    // done
+    
 	return self;
 }
 
@@ -138,6 +139,11 @@
     // Move our sprite to touch location
     CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
     [_martian._sprite runAction:actionMove];
+}
+
+
+-(void) getValues:(NSTimer *) timer {
+    NSLog([NSString stringWithFormat:@"%.2f",self.manager.accelerometerData.acceleration.x]);
 }
 
 // -----------------------------------------------------------------------
