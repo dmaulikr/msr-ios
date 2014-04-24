@@ -65,7 +65,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     _background2.position = CGPointMake(10,0);
     [self addChild:_background2 z:-3];
     
-    // Set up the physics world
+    //set up the physics world
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
     _physicsWorld.debugDraw = NO; //for debug put yes
