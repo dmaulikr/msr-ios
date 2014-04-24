@@ -141,6 +141,9 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     CCAction *actionRemove = [CCActionRemove action];
     [cloud runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
 }
+// -----------------------------------------------------------------------
+#pragma mark - Scoring
+// -----------------------------------------------------------------------
 
 - (void)incrementScore
 {
