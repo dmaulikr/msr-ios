@@ -25,8 +25,10 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     CCSprite *_background1;
     CCSprite *_background2;
     CCPhysicsNode *_physicsWorld;
+    CCLabelTTF *_scoreLabel;
     Player *_martian;
     Missile *_missile;
+    int _score;
     NSMutableArray * _missilesArray;//create an array of missiles,
 }
 
@@ -84,9 +86,16 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
     
-    
+    // Initialize the score & its label
+    _score = 0;
+    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
+    _scoreLabel.positionType = CCPositionTypeNormalized;
+    _scoreLabel.color = [CCColor blackColor];
+    _scoreLabel.position = ccp(0.1f, 0.95f); // Top right corner
+    [self addChild:_scoreLabel];
 	return self;
 }
+
 
 // -----------------------------------------------------------------------
 
@@ -107,6 +116,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     [self schedule:@selector(moveBackground:) interval:0.03];
     [self schedule:@selector(addCloud:) interval:1.5];
     [self schedule:@selector(addMissile:) interval:2];
+    [self schedule:@selector(incrementScore) interval:0.1];
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
     // Per frame update is automatically enabled, if update is overridden
@@ -130,6 +140,12 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(randomX, self.contentSize.height + cloud.contentSize.height)];
     CCAction *actionRemove = [CCActionRemove action];
     [cloud runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+}
+
+- (void)incrementScore
+{
+    _score++;
+    [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d", _score]];
 }
 
 // -----------------------------------------------------------------------
