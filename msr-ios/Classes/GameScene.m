@@ -285,12 +285,17 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair missileCollision:(CCNode *)missile playerCollision:(CCNode *)player {
     
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
-    
     boomer.position  = missile.position;
     [self addChild:boomer z:-1];
 
     [missile removeFromParent];
     [player removeFromParent];
+    
+    // start spinning scene with transition
+    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
+                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
+
+    
     return YES;
 }
 
