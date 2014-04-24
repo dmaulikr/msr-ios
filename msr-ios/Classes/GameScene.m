@@ -141,6 +141,9 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     CCAction *actionRemove = [CCActionRemove action];
     [cloud runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
 }
+// -----------------------------------------------------------------------
+#pragma mark - Scoring
+// -----------------------------------------------------------------------
 
 - (void)incrementScore
 {
@@ -301,7 +304,9 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair missileCollision:(CCNode *)missile playerCollision:(CCNode *)player {
         
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
-    boomer.position  = missile.position;
+    CGPoint new_pos = missile.position;
+    new_pos.y = new_pos.y + 10;
+    boomer.position  = new_pos;
     [self addChild:boomer z:-1];
 
     [missile removeFromParent];
@@ -309,7 +314,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
+                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
 
     
     return YES;
