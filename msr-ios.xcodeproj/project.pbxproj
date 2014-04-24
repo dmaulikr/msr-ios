@@ -220,7 +220,7 @@
 		43D933561902C51D006704B8 /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D933501902C51D006704B8 /* missile.png */; };
 		43D933571902C51D006704B8 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D933511902C51D006704B8 /* ship.png */; };
 		535FF5D219058C240094C98C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5D119058C240094C98C /* background.png */; };
-		537658B01907610A00DA1EB4 /* Player2.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658AF1907610A00DA1EB4 /* Player2.m */; };
+		537658B01907610A00DA1EB4 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658AF1907610A00DA1EB4 /* Player.m */; };
 		537658B319076A9A00DA1EB4 /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658B219076A9A00DA1EB4 /* Missile.m */; };
 		539FF7FB1909D0A100549B3B /* boomer.png in Resources */ = {isa = PBXBuildFile; fileRef = 539FF7FA1909D0A100549B3B /* boomer.png */; };
 		53CE0530190981BF003454B2 /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE052F190981BF003454B2 /* rocket.png */; };
@@ -676,7 +676,7 @@
 		43D933511902C51D006704B8 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
 		535FF5D119058C240094C98C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../background.png; sourceTree = "<group>"; };
 		537658AE1907610A00DA1EB4 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Player.h; sourceTree = "<group>"; };
-		537658AF1907610A00DA1EB4 /* Player2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player2.m; path = ../Player2.m; sourceTree = "<group>"; };
+		537658AF1907610A00DA1EB4 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ../Player.m; sourceTree = "<group>"; };
 		537658B119076A9A00DA1EB4 /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
 		537658B219076A9A00DA1EB4 /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
 		539FF7FA1909D0A100549B3B /* boomer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boomer.png; path = ../boomer.png; sourceTree = "<group>"; };
@@ -1580,7 +1580,7 @@
 				537658B119076A9A00DA1EB4 /* Missile.h */,
 				537658B219076A9A00DA1EB4 /* Missile.m */,
 				537658AE1907610A00DA1EB4 /* Player.h */,
-				537658AF1907610A00DA1EB4 /* Player2.m */,
+				537658AF1907610A00DA1EB4 /* Player.m */,
 				43759E1D1902B46400717DF5 /* IntroScene.h */,
 				43759E1E1902B46400717DF5 /* IntroScene.m */,
 			);
@@ -1799,7 +1799,7 @@
 				43759D9F1902B46400717DF5 /* CCBLocalizationManager.m in Sources */,
 				43759C8B1902B46300717DF5 /* CCTiledMapObjectGroup.m in Sources */,
 				43759D881902B46300717DF5 /* vec3.c in Sources */,
-				537658B01907610A00DA1EB4 /* Player2.m in Sources */,
+				537658B01907610A00DA1EB4 /* Player.m in Sources */,
 				43759C0B1902B46200717DF5 /* CCLayoutBox.m in Sources */,
 				43759C081902B46200717DF5 /* CCLayout.m in Sources */,
 				43759D2B1902B46300717DF5 /* OALSuspendHandler.m in Sources */,
