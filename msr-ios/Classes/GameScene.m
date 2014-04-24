@@ -30,6 +30,8 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     NSMutableArray * _missilesArray;//create an array of missiles,
 }
 
+@synthesize manager;
+
 // -----------------------------------------------------------------------
 #pragma mark - Create & Destroy
 // -----------------------------------------------------------------------
@@ -43,12 +45,15 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 
 - (id)init
 {
-    // Apple recommend assigning self with supers return value
     self = [super init];
     if (!self) return(nil);
     
-    // Enable touch handling on scene node
+    // Enable touch handling on scene node + set up motion manager
     self.userInteractionEnabled = YES;
+    self.manager = [[CMMotionManager alloc] init];
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(getValues:) userInfo:nil repeats:YES];
+    self.manager.accelerometerUpdateInterval = 0.05;
+    [self.manager startAccelerometerUpdates];
     
     //add images as backgrounds
     _background1 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
@@ -60,7 +65,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     _background2.position = CGPointMake(10,0);
     [self addChild:_background2 z:-3];
     
-    //set up the physics world
+    // Set up the physics world
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
     _physicsWorld.debugDraw = NO; //for debug put yes
@@ -78,8 +83,8 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
-
-    // done
+    
+    
 	return self;
 }
 
@@ -148,6 +153,11 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     // Move our sprite to touch location
     CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
     [_martian._sprite runAction:actionMove];
+}
+
+
+-(void) getValues:(NSTimer *) timer {
+    NSLog([NSString stringWithFormat:@"%.2f",self.manager.accelerometerData.acceleration.x]);
 }
 
 // -----------------------------------------------------------------------
