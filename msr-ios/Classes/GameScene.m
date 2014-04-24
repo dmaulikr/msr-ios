@@ -312,7 +312,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
+                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.5f]];
 
     
     return YES;
