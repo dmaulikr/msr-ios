@@ -312,10 +312,11 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     [missile removeFromParent];
     [player removeFromParent];
     
+    
+    //[[CCDirector sharedDirector] pause];
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
                                withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
-
     
     return YES;
 }
