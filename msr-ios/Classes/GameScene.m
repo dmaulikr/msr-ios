@@ -225,7 +225,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self];
     //add missile to array
     [_missilesArray addObject: _missile];
-    [self schedule:(@selector(trackPlayerwithMissile)) interval:0.05];
+    [self schedule:(@selector(trackPlayerwithMissile)) interval:0.07];
 }
 
 // -----------------------------------------------------------------------
@@ -234,6 +234,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 
 -(void)trackPlayerwithMissile{
 
+    //remove all missiles that have passed end of screen
     [self cleanUpArray];
     
     int num_missiles = (int)[_missilesArray count];
@@ -277,7 +278,6 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     }
     //CCLOG(@"Trackplayer called");*/
     
-    
 }
 
 // -----------------------------------------------------------------------
@@ -292,6 +292,27 @@ const int BACKGROUND_SCROLL_SPEED = 4;
             i--; //decrement i becuase we just removed one index
         }
     }
+}
+
+// -----------------------------------------------------------------------
+#pragma mark - Collision Detection
+// -----------------------------------------------------------------------
+
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair missileCollision:(CCNode *)missile playerCollision:(CCNode *)player {
+    
+    CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
+    boomer.position  = missile.position;
+    [self addChild:boomer z:-1];
+
+    [missile removeFromParent];
+    [player removeFromParent];
+    
+    // start spinning scene with transition
+    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
+                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
+
+    
+    return YES;
 }
 
 
