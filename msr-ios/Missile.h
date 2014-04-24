@@ -17,6 +17,5 @@
 
 -(id)initPlayer: (Player *)_martian andWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene;
 
--(void)trackPlayer;
 
 @end

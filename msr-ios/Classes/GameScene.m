@@ -15,13 +15,19 @@
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
 // -----------------------------------------------------------------------
+const int MAX_MISSILES = 4;
+bool DEBUGbool = false;
+const int BACKGROUND_SCROLL_SPEED = 4;
+
 
 @implementation GameScene
 {
-    CCSprite *_background;
+    CCSprite *_background1;
+    CCSprite *_background2;
     CCPhysicsNode *_physicsWorld;
     Player *_martian;
     Missile *_missile;
+    NSMutableArray * _missilesArray;//create an array of missiles,
 }
 
 // -----------------------------------------------------------------------
@@ -44,19 +50,27 @@
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
-    //add image as background
-    _background = [CCSprite spriteWithImageNamed:@"background.png"];
-    [self addChild:_background z:-3];
+    //add images as backgrounds
+    _background1 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
+    _background1.position = CGPointMake(10,0);
+    [self addChild:_background1 z:-3];
+    
+    
+    _background2 = [CCSprite spriteWithImageNamed:@"skybackground2.png"];
+    _background2.position = CGPointMake(10,0);
+    [self addChild:_background2 z:-3];
     
     //set up the physics world
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
-    _physicsWorld.debugDraw = YES; //for debug put yes
+    _physicsWorld.debugDraw = NO; //for debug put yes
     _physicsWorld.collisionDelegate = self;
     [self addChild:_physicsWorld z:-1];
     
     _martian = [[Player alloc] initWorld:_physicsWorld andScene:self];
     
+    //init and alloc mutable missile array
+    _missilesArray = [[NSMutableArray alloc] init];
     
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -153,15 +167,29 @@
 
 -(void)moveBackground:(CCTime)delta
 {
-    CGPoint bgPos = _background.position;
-    bgPos.y = bgPos.y + 4.0;
+    CGPoint bgPos1 = _background1.position;
+    CGPoint bgPos2 = _background2.position;
+    bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
+    bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
     
-    if (bgPos.y > _background.contentSize.height - self.contentSize.height) {
-        bgPos.y = 0;
-    }
-    _background.position = bgPos;
-    //CCLOG(@"background x,y is @ %@", NSStringFromCGPoint(bgPos));
+    /*int backgroundH = _background1.contentSize.height - (2 * self.contentSize.width);
+    CCLOG(@"background1 height - contentsize height is %d", backgroundH);
+    int otherbackground = bgPos1.y;
+    CCLOG(@"bspos1.y is %d", otherbackground);*/
+    int other = bgPos1.y  - _background1.contentSize.height/2;
+    CCLOG(@"bgPos2.y is %d", other);
 
+    
+    if (bgPos1.y > (_background1.contentSize.height - (2 * self.contentSize.width))) {
+        bgPos1.y = 0;
+    }
+    bgPos2.y = bgPos1.y - _background1.contentSize.height/2;
+    
+
+    bgPos1.y = (int)bgPos1.y;
+    bgPos2.y = (int)bgPos2.y;
+    _background1.position = bgPos1;
+    _background2.position = bgPos2;
 }
 // -----------------------------------------------------------------------
 #pragma mark - Add Missile
@@ -169,7 +197,9 @@
 -(void)addMissile:(CCTime)delta
 {
     _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self];
-    [self schedule:(@selector(trackPlayerwithMissile)) interval:0.01];
+    //add missile to array
+    [_missilesArray addObject: _missile];
+    [self schedule:(@selector(trackPlayerwithMissile)) interval:0.05];
 }
 
 // -----------------------------------------------------------------------
@@ -177,6 +207,32 @@
 // -----------------------------------------------------------------------
 
 -(void)trackPlayerwithMissile{
+
+    [self cleanUpArray];
+    
+    int num_missiles = (int)[_missilesArray count];
+    CGPoint playerPos = _martian._sprite.position;
+    
+    if(DEBUGbool == true) {
+        CCLOG(@"number of missiles in num_missiles %d", num_missiles);
+    }
+    
+    for (int i= 0; i < num_missiles; i++) {
+        Missile *cur_miss = [_missilesArray objectAtIndex:(i)];
+        CGPoint missilePos = cur_miss.missile.position;
+        
+        if ((playerPos.x >= missilePos.x) && (playerPos.y > missilePos.y)) {
+            missilePos.x = missilePos.x + 1;
+            cur_miss.missile.position = missilePos;
+        } else if ((playerPos.x <= missilePos.x) && (playerPos.y > missilePos.y)) {
+            missilePos.x = missilePos.x - 1;
+            cur_miss.missile.position = missilePos;
+        }
+
+
+    }
+    
+    /*
     CGPoint playerPos = _martian._sprite.position;
     CGPoint missilePos = _missile.missile.position;
     
@@ -193,9 +249,23 @@
         missilePos.x = missilePos.x - .75;
         _missile.missile.position = missilePos;
     }
-    //CCLOG(@"Trackplayer called");
+    //CCLOG(@"Trackplayer called");*/
     
     
+}
+
+// -----------------------------------------------------------------------
+#pragma mark - Remove missiles that have passed off the screen
+// -----------------------------------------------------------------------
+
+-(void)cleanUpArray {
+    for (int i= 0; i < (int)[_missilesArray count]; i++) {
+        Missile *cur_miss = [_missilesArray objectAtIndex:(i)];
+        if (cur_miss.missile.position.y > (self.contentSize.height + cur_miss.missile.contentSize.height)) {
+            [_missilesArray removeObjectAtIndex:(i)];
+            i--; //decrement i becuase we just removed one index
+        }
+    }
 }
 
 

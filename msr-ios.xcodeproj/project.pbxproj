@@ -221,6 +221,9 @@
 		535FF5D219058C240094C98C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5D119058C240094C98C /* background.png */; };
 		537658B01907610A00DA1EB4 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658AF1907610A00DA1EB4 /* Player.m */; };
 		537658B319076A9A00DA1EB4 /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658B219076A9A00DA1EB4 /* Missile.m */; };
+		53CE0530190981BF003454B2 /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE052F190981BF003454B2 /* rocket.png */; };
+		53CE05381909A6EE003454B2 /* skybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05371909A6EE003454B2 /* skybackground.png */; };
+		53CE053A1909A945003454B2 /* skybackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05391909A945003454B2 /* skybackground2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -673,6 +676,9 @@
 		537658AF1907610A00DA1EB4 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ../Player.m; sourceTree = "<group>"; };
 		537658B119076A9A00DA1EB4 /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
 		537658B219076A9A00DA1EB4 /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
+		53CE052F190981BF003454B2 /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rocket.png; path = ../rocket.png; sourceTree = "<group>"; };
+		53CE05371909A6EE003454B2 /* skybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground.png; sourceTree = "<group>"; };
+		53CE05391909A945003454B2 /* skybackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1578,10 +1584,13 @@
 		43D9334B1902C51D006704B8 /* scratch-assets */ = {
 			isa = PBXGroup;
 			children = (
+				53CE052F190981BF003454B2 /* rocket.png */,
 				535FF5D119058C240094C98C /* background.png */,
 				43D9334C1902C51D006704B8 /* bird.png */,
+				53CE05371909A6EE003454B2 /* skybackground.png */,
 				43D9334D1902C51D006704B8 /* cloud.png */,
 				43D9334E1902C51D006704B8 /* fire.png */,
+				53CE05391909A945003454B2 /* skybackground2.png */,
 				43D9334F1902C51D006704B8 /* martian.png */,
 				43D933501902C51D006704B8 /* missile.png */,
 				43D933511902C51D006704B8 /* ship.png */,
@@ -1635,7 +1644,7 @@
 				ORGANIZATIONNAME = o2bt;
 				TargetAttributes = {
 					43759B6B1902B46100717DF5 = {
-						DevelopmentTeam = WC8GK6LE4R;
+						DevelopmentTeam = MEY4AVA7K7;
 					};
 				};
 			};
@@ -1662,8 +1671,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53CE053A1909A945003454B2 /* skybackground2.png in Resources */,
 				43759B8C1902B46100717DF5 /* Default@2x.png in Resources */,
 				43759B9F1902B46200717DF5 /* Icon-120.png in Resources */,
+				53CE0530190981BF003454B2 /* rocket.png in Resources */,
 				43D933541902C51D006704B8 /* fire.png in Resources */,
 				43759DA31902B46400717DF5 /* LICENSE_CCBReader.txt in Resources */,
 				43759B951902B46200717DF5 /* Icon@2x.png in Resources */,
@@ -1691,6 +1702,7 @@
 				43759BAB1902B46200717DF5 /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				43759B9B1902B46200717DF5 /* Icon-76.png in Resources */,
 				43D933531902C51D006704B8 /* cloud.png in Resources */,
+				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,
 			);
