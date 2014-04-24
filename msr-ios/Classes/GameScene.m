@@ -175,9 +175,9 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     /*int backgroundH = _background1.contentSize.height - (2 * self.contentSize.width);
     CCLOG(@"background1 height - contentsize height is %d", backgroundH);
     int otherbackground = bgPos1.y;
-    CCLOG(@"bspos1.y is %d", otherbackground);*/
+    CCLOG(@"bspos1.y is %d", otherbackground);
     int other = bgPos1.y  - _background1.contentSize.height/2;
-    CCLOG(@"bgPos2.y is %d", other);
+    CCLOG(@"bgPos2.y is %d", other);*/
 
     
     if (bgPos1.y > (_background1.contentSize.height - (2 * self.contentSize.width))) {
