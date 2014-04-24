@@ -299,7 +299,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 // -----------------------------------------------------------------------
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair missileCollision:(CCNode *)missile playerCollision:(CCNode *)player {
-    
+        
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
     boomer.position  = missile.position;
     [self addChild:boomer z:-1];
