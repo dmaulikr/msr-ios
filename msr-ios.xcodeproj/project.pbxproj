@@ -222,6 +222,7 @@
 		535FF5D219058C240094C98C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5D119058C240094C98C /* background.png */; };
 		537658B01907610A00DA1EB4 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658AF1907610A00DA1EB4 /* Player.m */; };
 		537658B319076A9A00DA1EB4 /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658B219076A9A00DA1EB4 /* Missile.m */; };
+		539FF7FB1909D0A100549B3B /* boomer.png in Resources */ = {isa = PBXBuildFile; fileRef = 539FF7FA1909D0A100549B3B /* boomer.png */; };
 		53CE0530190981BF003454B2 /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE052F190981BF003454B2 /* rocket.png */; };
 		53CE05381909A6EE003454B2 /* skybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05371909A6EE003454B2 /* skybackground.png */; };
 		53CE053A1909A945003454B2 /* skybackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05391909A945003454B2 /* skybackground2.png */; };
@@ -678,6 +679,7 @@
 		537658AF1907610A00DA1EB4 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ../Player.m; sourceTree = "<group>"; };
 		537658B119076A9A00DA1EB4 /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
 		537658B219076A9A00DA1EB4 /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
+		539FF7FA1909D0A100549B3B /* boomer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boomer.png; path = ../boomer.png; sourceTree = "<group>"; };
 		53CE052F190981BF003454B2 /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rocket.png; path = ../rocket.png; sourceTree = "<group>"; };
 		53CE05371909A6EE003454B2 /* skybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground.png; sourceTree = "<group>"; };
 		53CE05391909A945003454B2 /* skybackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground2.png; sourceTree = "<group>"; };
@@ -1588,6 +1590,7 @@
 		43D9334B1902C51D006704B8 /* scratch-assets */ = {
 			isa = PBXGroup;
 			children = (
+				539FF7FA1909D0A100549B3B /* boomer.png */,
 				53CE052F190981BF003454B2 /* rocket.png */,
 				535FF5D119058C240094C98C /* background.png */,
 				43D9334C1902C51D006704B8 /* bird.png */,
@@ -1695,6 +1698,7 @@
 				535FF5D219058C240094C98C /* background.png in Resources */,
 				43759BA31902B46200717DF5 /* Icon-Small-50.png in Resources */,
 				43D933561902C51D006704B8 /* missile.png in Resources */,
+				539FF7FB1909D0A100549B3B /* boomer.png in Resources */,
 				43759D8C1902B46300717DF5 /* LICENSE_Kazmath.txt in Resources */,
 				43759B971902B46200717DF5 /* Icon-72.png in Resources */,
 				43759CE51902B46300717DF5 /* LICENSE_cocos2d.txt in Resources */,
@@ -2006,7 +2010,7 @@
 					"\"$(SRCROOT)/$(PROJECT_NAME)/Libraries/Chipmunk/objectivec/include\"",
 				);
 				INFOPLIST_FILE = "msr-ios/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -2035,7 +2039,7 @@
 					"\"$(SRCROOT)/$(PROJECT_NAME)/Libraries/Chipmunk/objectivec/include\"",
 				);
 				INFOPLIST_FILE = "msr-ios/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
