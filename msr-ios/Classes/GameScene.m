@@ -19,6 +19,7 @@
 const int MAX_MISSILES = 4;
 bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
+bool playAccel = false;
 
 
 @implementation GameScene
@@ -83,12 +84,19 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     _missilesArray = [[NSMutableArray alloc] init];
     
     // Create a back button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:16.0f];
     backButton.positionType = CCPositionTypeNormalized;
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
-    
+
+    // Create a accelorometer button for testing
+    CCButton *accelButton = [CCButton buttonWithTitle:@"[ Accelerometer ]" fontName:@"Verdana-Bold" fontSize:14.0f];
+    accelButton.positionType = CCPositionTypeNormalized;
+    accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
+    [accelButton setTarget:self selector:@selector(turnOnAccel:)];
+    [self addChild:accelButton];
+
     // Initialize the score & its label
     _score = 0;
     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
@@ -174,28 +182,32 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 // -----------------------------------------------------------------------
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    CGPoint touchLoc = [touch locationInNode:self];
+    if (playAccel == false) {
+        CGPoint touchLoc = [touch locationInNode:self];
     
-    // Log touch location
-    CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
+        // Log touch location
+        CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
     
-    // Move our sprite to touch location
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-    [_martian._sprite runAction:actionMove];
+        // Move our sprite to touch location
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+        [_martian._sprite runAction:actionMove];
+    }
 }
 
 
 -(void) getValues:(NSTimer *) timer {
     //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
     //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.x * 20), 20)]);
+    if (playAccel == true) {
 
-    /*CGPoint touchLoc = _martian._sprite.position;
-    touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
-    touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
+        CGPoint touchLoc = _martian._sprite.position;
+        touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
+        touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
     
-    // Move our sprite to touch location
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-    [_martian._sprite runAction:actionMove];*/
+        // Move our sprite to touch location
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+        [_martian._sprite runAction:actionMove];
+    }
 }
 
 // -----------------------------------------------------------------------
@@ -207,6 +219,10 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+}
+
+- (void)turnOnAccel:(id)sender {
+    playAccel = !playAccel;
 }
 
 // -----------------------------------------------------------------------
@@ -395,7 +411,6 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     CCAction *actionRemove = [CCActionRemove action];
     
     [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
-
     
     return YES;
 }
