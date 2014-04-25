@@ -28,6 +28,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     CCLabelTTF *_scoreLabel;
     Player *_martian;
     Missile *_missile;
+    NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray;//create an array of missiles,
 }
@@ -93,6 +94,12 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     _scoreLabel.color = [CCColor blackColor];
     _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
     [self addChild:_scoreLabel];
+    
+
+    // Initialize the highscore table
+    _defaults = [NSUserDefaults standardUserDefaults];
+
+    
 	return self;
 }
 
@@ -312,12 +319,31 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     [missile removeFromParent];
     [player removeFromParent];
     
-    
     //[[CCDirector sharedDirector] pause];
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
                                withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
     
+    /* HIGHSCORE MANAGEMENT */
+    int highScore;
+    
+    // If the app is running for the first time, set the high score
+    if (![_defaults objectForKey:@"firstRun"]) {
+        [_defaults setObject:[NSDate date] forKey:@"firstRun"];
+        [_defaults setFloat:_score forKey:@"SavedHighScore"];
+        NSLog(@"Highscore updated bro");
+    }
+    // Otherwise, check if the highscore needs to be updated
+    else {
+        highScore = [[_defaults valueForKey:@"SavedHighScore"] intValue];
+        if (_score > highScore) {
+            [_defaults setFloat:_score forKey:@"SavedHighScore"];
+            NSLog(@"Highscore updated");
+        }
+    }
+    
+    [_defaults synchronize];
+
     return YES;
 }
 
