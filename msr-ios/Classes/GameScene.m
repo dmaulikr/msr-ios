@@ -136,8 +136,8 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
     int randomX = (arc4random() % maxX);
-    int minDuration = 1.0;
-    int maxDuration = 3.0;
+    int minDuration = 3.0;
+    int maxDuration = 5.0;
     int rangeDuration = maxDuration - minDuration;
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -184,13 +184,13 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 
 -(void) getValues:(NSTimer *) timer {
     NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
-    CGPoint touchLoc = _martian._sprite.position;
+   /* CGPoint touchLoc = _martian._sprite.position;
     touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
     touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
     
     // Move our sprite to touch location
     CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-    [_martian._sprite runAction:actionMove];
+    [_martian._sprite runAction:actionMove]; */
 }
 
 // -----------------------------------------------------------------------
