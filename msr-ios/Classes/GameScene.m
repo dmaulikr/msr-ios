@@ -91,7 +91,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
     _scoreLabel.positionType = CCPositionTypeNormalized;
     _scoreLabel.color = [CCColor blackColor];
-    _scoreLabel.position = ccp(0.1f, 0.95f); // Top right corner
+    _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
     [self addChild:_scoreLabel];
 	return self;
 }
@@ -148,7 +148,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 - (void)incrementScore
 {
     _score++;
-    [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d", _score]];
+    [_scoreLabel setString:[NSString stringWithFormat:@"Score: %03d", _score]];
 }
 
 // -----------------------------------------------------------------------
