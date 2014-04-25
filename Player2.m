@@ -13,6 +13,7 @@
 
 @synthesize _sprite;
 
+/* Delete this comment */
 
 -(id)initWorld: (CCPhysicsNode *)_physicsWorld andScene:(GameScene *)_scene{
     self = [super init];
