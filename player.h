@@ -12,7 +12,7 @@
 
 @interface Player : CCNode
 
-@property CCSprite * _sprite;
+@property CCSprite *_sprite;
 
 -(id)initWorld: (CCPhysicsNode *)_phyicsWorld andScene:(GameScene *) _scene;
 

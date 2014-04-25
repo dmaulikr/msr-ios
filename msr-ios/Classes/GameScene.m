@@ -185,11 +185,19 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 -(void) getValues:(NSTimer *) timer {
     NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
     CGPoint touchLoc = _martian._sprite.position;
-    touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
+    
+    // Update the acceleration based on how steeply the device is rotated
+    //CGVector acceleration = [CGVectorMake(self.manager.accelerometerData.acceleration.x,
+    //                                      self.manager.accelerometerData.acceleration.y)];
+    
+    //self.manager.accelerometerData.acceleration.x * 80.0;
+    touchLoc.x += self.manager.accelerometerData.acceleration.x * 30 + 20.0;
     touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
     
     // Move our sprite to touch location
     CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+    
+    
     [_martian._sprite runAction:actionMove];
 }
 
