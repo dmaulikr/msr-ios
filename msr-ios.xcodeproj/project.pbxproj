@@ -1651,7 +1651,7 @@
 				ORGANIZATIONNAME = o2bt;
 				TargetAttributes = {
 					43759B6B1902B46100717DF5 = {
-						DevelopmentTeam = U6MKAK47DY;
+						DevelopmentTeam = MEY4AVA7K7;
 					};
 				};
 			};

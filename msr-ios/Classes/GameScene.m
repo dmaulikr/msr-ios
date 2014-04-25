@@ -183,7 +183,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 
 
 -(void) getValues:(NSTimer *) timer {
-    NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
+    //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
    /* CGPoint touchLoc = _martian._sprite.position;
     touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
     touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
@@ -330,10 +330,19 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
                                withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+
+    [self calculateHighScore];
     
+    return YES;
+}
+// -----------------------------------------------------------------------
+#pragma mark - High Score Calculation and Storing
+// -----------------------------------------------------------------------
+
+-(void) calculateHighScore {
     /* HIGHSCORE MANAGEMENT */
     int highScore;
-    
+        
     // If the app is running for the first time, set the high score
     if (![_defaults objectForKey:@"firstRun"]) {
         [_defaults setObject:[NSDate date] forKey:@"firstRun"];
@@ -351,7 +360,6 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     
     [_defaults synchronize];
 
-    return YES;
 }
 
 
