@@ -12,6 +12,8 @@
 #import "Player.h"
 #import "Missile.h"
 #import "Powerup.h"
+#import <Twitter/Twitter.h>
+
 
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
@@ -34,6 +36,7 @@ bool playAccel = false;
     Player *_martian;
     Missile *_missile;
     Powerup *_powerup;
+    CCLayoutBox *endMenu;
     NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray; //create an array of missiles,
@@ -276,6 +279,37 @@ bool playAccel = false;
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
 }
 
+- (void)onPlayAgainClick:(id)sender
+{
+    //transition to begin of this scene again
+    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
+     withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+
+
+}
+
+- (void)onShareClick:(id)sender
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetSheet = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
+        [tweetSheet setInitialText: shareMessage];
+        
+        [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
+    } else {
+        NSLog(@"User does not have twitter configured");
+        
+    }
+    
+    //NEED TO IMPLEMENT SHARE VIA TWITTER
+    //[[CCDirector sharedDirector] replaceScene:[GameScene scene]
+    //                           withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+}
+
+
+
 - (void)turnOnAccel:(id)sender {
     playAccel = !playAccel;
 }
@@ -348,11 +382,7 @@ bool playAccel = false;
             missilePos.x = missilePos.x - 1;
             cur_miss.missile.position = missilePos;
         }
-
-
     }
-    
-    
 }
 
 // -----------------------------------------------------------------------
@@ -391,8 +421,20 @@ bool playAccel = false;
 
     [self calculateHighScore];
     
+    //create end menu
+    [self endMenu];
+    
     return YES;
 }
+
+// -----------------------------------------------------------------------
+#pragma mark - Make end menu
+// -----------------------------------------------------------------------
+-(void)endMenu {
+    [self addChild:endMenu];
+}
+
+
 // -----------------------------------------------------------------------
 #pragma mark - High Score Calculation and Storing
 // -----------------------------------------------------------------------
