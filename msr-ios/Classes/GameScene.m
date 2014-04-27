@@ -329,7 +329,6 @@ bool gameRunning = false;
     } else {
         CCLabelTTF *twitterMessage = [CCLabelTTF labelWithString:@"No Twitter account found." fontName:@"Verdana-Bold" fontSize:18.0f];
         twitterMessage.positionType = CCPositionTypeNormalized;
-        twitterMessage.color = [CCColor redColor];
         twitterMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: twitterMessage];
         CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
@@ -350,7 +349,6 @@ bool gameRunning = false;
     } else {
         CCLabelTTF *fbMessage = [CCLabelTTF labelWithString:@"No Facebook account found." fontName:@"Verdana-Bold" fontSize:18.0f];
         fbMessage.positionType = CCPositionTypeNormalized;
-        fbMessage.color = [CCColor redColor];
         fbMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: fbMessage];
         CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
