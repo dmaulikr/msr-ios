@@ -11,6 +11,7 @@
 #import "IntroScene.h"
 #import "Player.h"
 #import "Missile.h"
+#import "Powerup.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
@@ -18,6 +19,7 @@
 const int MAX_MISSILES = 4;
 bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
+bool playAccel = false;
 
 
 @implementation GameScene
@@ -28,6 +30,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     CCLabelTTF *_scoreLabel;
     Player *_martian;
     Missile *_missile;
+    Powerup *_powerup;
     NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray; //create an array of missiles,
@@ -81,12 +84,19 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     _missilesArray = [[NSMutableArray alloc] init];
     
     // Create a back button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:16.0f];
     backButton.positionType = CCPositionTypeNormalized;
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
-    
+
+    // Create a accelorometer button for testing
+    CCButton *accelButton = [CCButton buttonWithTitle:@"[ Accelerometer ]" fontName:@"Verdana-Bold" fontSize:14.0f];
+    accelButton.positionType = CCPositionTypeNormalized;
+    accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
+    [accelButton setTarget:self selector:@selector(turnOnAccel:)];
+    [self addChild:accelButton];
+
     // Initialize the score & its label
     _score = 0;
     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
@@ -124,6 +134,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     [self schedule:@selector(addCloud:) interval:1.5];
     [self schedule:@selector(addMissile:) interval:2];
     [self schedule:@selector(incrementScore) interval:0.1];
+    [self schedule:@selector(addPowerup:) interval:4.5];
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
     // Per frame update is automatically enabled, if update is overridden
@@ -136,8 +147,8 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
     int randomX = (arc4random() % maxX);
-    int minDuration = 1.0;
-    int maxDuration = 3.0;
+    int minDuration = 3.0;
+    int maxDuration = 5.0;
     int rangeDuration = maxDuration - minDuration;
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -171,14 +182,16 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 // -----------------------------------------------------------------------
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    CGPoint touchLoc = [touch locationInNode:self];
+    if (playAccel == false) {
+        CGPoint touchLoc = [touch locationInNode:self];
     
-    // Log touch location
-    CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
+        // Log touch location
+        CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
     
-    // Move our sprite to touch location
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-    [_martian._sprite runAction:actionMove];
+        // Move our sprite to touch location
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+        [_martian._sprite runAction:actionMove];
+    }
 }
 
 
@@ -210,6 +223,10 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+}
+
+- (void)turnOnAccel:(id)sender {
+    playAccel = !playAccel;
 }
 
 // -----------------------------------------------------------------------
@@ -284,24 +301,6 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 
     }
     
-    /*
-    CGPoint playerPos = _martian._sprite.position;
-    CGPoint missilePos = _missile.missile.position;
-    
-    //ONLY WORKS ON ONE MISSILE AT A TIME
-    
-    //CCLOG(@"Players position is @ %@", NSStringFromCGPoint(playerPos));
-    //CCLOG(@"Missile position is @ %@", NSStringFromCGPoint(missilePos));
-    
-    //move the missile towards the player
-    if ((playerPos.x >= missilePos.x) && (playerPos.y > missilePos.y)) {
-        missilePos.x = missilePos.x + .75;
-        _missile.missile.position = missilePos;
-    } else if ((playerPos.x <= missilePos.x) && (playerPos.y > missilePos.y)) {
-        missilePos.x = missilePos.x - .75;
-        _missile.missile.position = missilePos;
-    }
-    //CCLOG(@"Trackplayer called");*/
     
 }
 
@@ -320,7 +319,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 }
 
 // -----------------------------------------------------------------------
-#pragma mark - Collision Detection
+#pragma mark - Collision Detection for Missiles
 // -----------------------------------------------------------------------
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair missileCollision:(CCNode *)missile playerCollision:(CCNode *)player {
@@ -338,7 +337,16 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
                                withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+
+    [self calculateHighScore];
     
+    return YES;
+}
+// -----------------------------------------------------------------------
+#pragma mark - High Score Calculation and Storing
+// -----------------------------------------------------------------------
+
+-(void) calculateHighScore {
     /* HIGHSCORE MANAGEMENT */
     int highScore;
     
@@ -359,8 +367,60 @@ const int BACKGROUND_SCROLL_SPEED = 4;
     
     [_defaults synchronize];
 
+}
+// -----------------------------------------------------------------------
+#pragma mark - Add Powerup
+// -----------------------------------------------------------------------
+-(void)addPowerup:(CCTime)delta
+{
+    _powerup = [[Powerup alloc] initWithPhysicsWorld: _physicsWorld andGameScene:self];
+}
+// -----------------------------------------------------------------------
+#pragma mark - Collision Detection for Powerups and player
+// -----------------------------------------------------------------------
+
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair powerupCollision:(CCNode *)powerup playerCollision:(CCNode *)player {
+    
+    CCSprite *pUp = [CCSprite spriteWithImageNamed:(@"fireworks.png")];
+    CGPoint new_pos = powerup.position;
+    new_pos.y = new_pos.y + 10;
+    pUp.position  = new_pos;
+    [self addChild:pUp z:-2];
+    
+    [powerup removeFromParent];
+    
+    CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:1.0];
+    CCAction *actionRemove = [CCActionRemove action];
+   
+    [pUp runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    
     return YES;
 }
+// -----------------------------------------------------------------------
+#pragma mark - Collision Detection for Powerups and missiles
+// -----------------------------------------------------------------------
+
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair missileCollision:(CCNode *)missile powerupCollision:(CCNode *)powerup {
+    
+    CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"fireworks.png")];
+    CGPoint new_pos = missile.position;
+    new_pos.y = new_pos.y + 10;
+    boomer.position  = new_pos;
+    [self addChild:boomer z:-1];
+    
+    [missile removeFromParent];
+    [powerup removeFromParent];
+    
+    CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:1.0];
+    CCAction *actionRemove = [CCActionRemove action];
+    
+    [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    
+    return YES;
+}
+
+
+
 
 
 @end
