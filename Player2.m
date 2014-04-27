@@ -13,7 +13,9 @@
 
 @synthesize _sprite;
 
--(id)initWorld: (CCPhysicsNode *)_physicsWorld andScene:(GameScene *)_scene{
+/* Delete this comment */
+
+-(id)initWorld: (CCPhysicsNode *)_physicsWorld withPosition:(CGPoint)_position andScene:(GameScene *)_scene{
     self = [super init];
     
     _sprite = [CCSprite spriteWithImageNamed:@"martianSmall.png"];
@@ -22,9 +24,6 @@
     _sprite.physicsBody.collisionGroup = @"playerGroup"; // 2
     _sprite.physicsBody.collisionType  = @"playerCollision";
     [_physicsWorld addChild:_sprite];
-    
-    self.dx = 0;
-    self.dy = 0;
     
     // Animate sprite with action
     CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:2.5f angle:360];

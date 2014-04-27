@@ -276,21 +276,28 @@ bool gameRunning = false;
 }
 
 -(void) getValues:(NSTimer *) timer {
+    //NSLog(@"Position: %f %f", _martian._sprite.position.x, _martian._sprite.position.y);
+    
     if (playAccel == true) {
 
-        CGPoint newAccel = CGPointMake(self.manager.accelerometerData.acceleration.x,
-                                       self.manager.accelerometerData.acceleration.y);
+        CGPoint newAccel = CGPointMake(self.manager.accelerometerData.acceleration.x * 15,
+                                       self.manager.accelerometerData.acceleration.y * 15);
         
-        //CGPoint velocityDelta = CGPointMake(newAccel.dx, newAccel.dy);
-        //_martian.physicsBody.velocity.x += (float) newAccel.dx;
+        //NSLog(@"Acceleration: %f %f", newAccel.x, newAccel.y);
         
-        NSLog(@"Massive Johnson");
+        CGPoint newVel = CGPointMake(_martian.physicsBody.velocity.x + newAccel.x,
+                                     _martian.physicsBody.velocity.y + newAccel.y);
+    
+        NSLog(@"Velocity: %f %f", newVel.x, newVel.y);
+    
         
-        [_martian setDx: (_martian.dx + newAccel.x)];
-        [_martian setDy: (_martian.dy + newAccel.y)];
+        [_martian.physicsBody setVelocity:CGPointMake(_martian.physicsBody.velocity.x + newAccel.x,
+                                                      _martian.physicsBody.velocity.y + newAccel.y)];
         
-        CGPoint touchLoc = CGPointMake (_martian.position.x + _martian.dx,
-                                        _martian.position.y + _martian.dy);
+        //NSLog(@"Velocity: %f %f", _martian.physicsBody.velocity.x, _martian.physicsBody.velocity.y);
+        
+        CGPoint touchLoc = CGPointMake (_martian._sprite.position.x + _martian.physicsBody.velocity.x,
+                                        _martian._sprite.position.y + _martian.physicsBody.velocity.y);
     
         CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.2f position:touchLoc];
         [_martian._sprite runAction:actionMove];

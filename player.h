@@ -13,8 +13,6 @@
 @interface Player : CCNode
 
 @property CCSprite *_sprite;
-@property float dx;
-@property float dy;
 
 -(id)initWorld: (CCPhysicsNode *)_phyicsWorld withPosition:(CGPoint)_position andScene:(GameScene *) _scene;
 
