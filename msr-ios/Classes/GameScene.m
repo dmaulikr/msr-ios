@@ -219,16 +219,21 @@ bool playAccel = false;
 -(void) getValues:(NSTimer *) timer {
     if (playAccel == true) {
 
-        CGVector newAccel = {self.manager.accelerometerData.acceleration.x,
-                             self.manager.accelerometerData.acceleration.y};
+        CGPoint newAccel = CGPointMake(self.manager.accelerometerData.acceleration.x,
+                                       self.manager.accelerometerData.acceleration.y);
         
-        [_martian setDx: (_martian.dx + newAccel.dx)];
-        [_martian setDx: (_martian.dy + newAccel.dy)];
+        //CGPoint velocityDelta = CGPointMake(newAccel.dx, newAccel.dy);
+        //_martian.physicsBody.velocity.x += (float) newAccel.dx;
+        
+        NSLog(@"Massive Johnson");
+        
+        [_martian setDx: (_martian.dx + newAccel.x)];
+        [_martian setDy: (_martian.dy + newAccel.y)];
         
         CGPoint touchLoc = CGPointMake (_martian.position.x + _martian.dx,
                                         _martian.position.y + _martian.dy);
     
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.2f position:touchLoc];
         [_martian._sprite runAction:actionMove];
     }
 }
