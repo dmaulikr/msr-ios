@@ -96,10 +96,10 @@ bool playAccel = false;
 }
 
 - (void)initGame {
-     // Fade out buttons
+    // Fade out buttons
     [_introLabel runAction:[CCActionFadeOut actionWithDuration:0.4]];
     [self removeChild:_playGame];
-
+    
     
      // Set up the physics world
      _physicsWorld = [CCPhysicsNode node];
@@ -128,7 +128,26 @@ bool playAccel = false;
      _scoreLabel.color = [CCColor blackColor];
      _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
      [self addChild:_scoreLabel];
-     
+    
+    
+    //End of game menu
+    // Create a playAgain button for end of game
+    CCButton *playAgainButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:20.0f];
+    [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
+
+    // Create a share button for end of game
+    CCButton *shareButton = [CCButton buttonWithTitle:@"[ Share ]" fontName:@"Verdana-Bold" fontSize:20.0f];
+    [shareButton setTarget:self selector:@selector(onShareClick:)];
+    
+    endMenu = [[CCLayoutBox alloc] init];
+    endMenu.direction = CCLayoutBoxDirectionVertical;
+    endMenu.spacing = 10.f;
+    endMenu.position = CGPointMake((self.contentSize.width/2 - (shareButton.contentSize.width/2)),self.contentSize.height/2);
+    //endMenu.positionType = CCPositionTypeNormalized;
+    //endMenu.position = ccp(0.85f, 0.95f);
+    [endMenu addChild:shareButton];
+    [endMenu addChild:playAgainButton];
+
      
      // Initialize the highscore table
      _defaults = [NSUserDefaults standardUserDefaults];
@@ -389,25 +408,7 @@ bool playAccel = false;
 #pragma mark - Make end menu
 // -----------------------------------------------------------------------
 -(void)endMenu {
-    // Create a menu button
-    CCButton *playAgainButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:20.0f];
-    [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
-
-    // Create a share button
-    CCButton *shareButton = [CCButton buttonWithTitle:@"[ Share ]" fontName:@"Verdana-Bold" fontSize:20.0f];
-    [shareButton setTarget:self selector:@selector(onShareClick:)];
-
-    endMenu = [[CCLayoutBox alloc] init];
-    endMenu.direction = CCLayoutBoxDirectionVertical;
-    endMenu.spacing = 10.f;
-    endMenu.position = CGPointMake((self.contentSize.width/2 - (shareButton.contentSize.width/2)),self.contentSize.height/2);
-    //endMenu.positionType = CCPositionTypeNormalized;
-    //endMenu.position = ccp(0.85f, 0.95f);
-
-    [endMenu addChild:shareButton];
-    [endMenu addChild:playAgainButton];
     [self addChild:endMenu];
-    
 }
 
 
