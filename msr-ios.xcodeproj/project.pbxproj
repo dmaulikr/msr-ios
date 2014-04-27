@@ -229,9 +229,9 @@
 		53CE053A1909A945003454B2 /* skybackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05391909A945003454B2 /* skybackground2.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
-		53F89DD3190D82EF00E7BA7E /* parachute.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD2190D82EF00E7BA7E /* parachute.jpg */; };
 		53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD4190D82FC00E7BA7E /* lightning.png */; };
 		53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD6190D831C00E7BA7E /* fireworks.png */; };
+		53F89DD9190D878400E7BA7E /* parachute.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD8190D878400E7BA7E /* parachute.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -693,9 +693,9 @@
 		53CE05391909A945003454B2 /* skybackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground2.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
-		53F89DD2190D82EF00E7BA7E /* parachute.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = parachute.jpg; sourceTree = "<group>"; };
 		53F89DD4190D82FC00E7BA7E /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
 		53F89DD6190D831C00E7BA7E /* fireworks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks.png; sourceTree = "<group>"; };
+		53F89DD8190D878400E7BA7E /* parachute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1606,8 +1606,8 @@
 			isa = PBXGroup;
 			children = (
 				539FF7FA1909D0A100549B3B /* boomer.png */,
-				53F89DD2190D82EF00E7BA7E /* parachute.jpg */,
 				53F89DD6190D831C00E7BA7E /* fireworks.png */,
+				53F89DD8190D878400E7BA7E /* parachute.png */,
 				53CE052F190981BF003454B2 /* rocket.png */,
 				53F89DCE190D82B200E7BA7E /* martianSmall.png */,
 				53F89DD4190D82FC00E7BA7E /* lightning.png */,
@@ -1715,7 +1715,6 @@
 				43D933571902C51D006704B8 /* ship.png in Resources */,
 				43759B901902B46200717DF5 /* Default-Landscape~ipad.png in Resources */,
 				43759BA51902B46200717DF5 /* Icon-Small.png in Resources */,
-				53F89DD3190D82EF00E7BA7E /* parachute.jpg in Resources */,
 				43D933521902C51D006704B8 /* bird.png in Resources */,
 				535FF5D219058C240094C98C /* background.png in Resources */,
 				43759BA31902B46200717DF5 /* Icon-Small-50.png in Resources */,
@@ -1726,6 +1725,7 @@
 				53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */,
 				43759B971902B46200717DF5 /* Icon-72.png in Resources */,
 				43759CE51902B46300717DF5 /* LICENSE_cocos2d.txt in Resources */,
+				53F89DD9190D878400E7BA7E /* parachute.png in Resources */,
 				43759B8E1902B46100717DF5 /* Default-568h@2x.png in Resources */,
 				43759BAE1902B46200717DF5 /* iTunesArtwork in Resources */,
 				43759BA91902B46200717DF5 /* Icon-Spotlight-iOS7.png in Resources */,
