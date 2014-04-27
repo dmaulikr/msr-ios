@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
             endingLineNumber = "17"
-            landmarkName = "-initWorld:andScene:"
+            landmarkName = "-initWorld:withPosition:andScene:"
             landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
