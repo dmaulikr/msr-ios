@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>77B86C33-E076-4157-8586-2DB0554325DA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>msr-ios</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0EE1039A-B3B5-4776-A136-76A7AAECB894</key>
+		<string>https://github.com/soubhikbarari/msr-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>msr-ios.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0EE1039A-B3B5-4776-A136-76A7AAECB894</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/soubhikbarari/msr-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0EE1039A-B3B5-4776-A136-76A7AAECB894</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0EE1039A-B3B5-4776-A136-76A7AAECB894</string>
+			<key>IDESourceControlWCCName</key>
+			<string>msr-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
