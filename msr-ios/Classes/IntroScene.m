@@ -48,10 +48,16 @@
     // Helloworld scene button
     CCButton *helloWorldButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:18.0f];
     helloWorldButton.positionType = CCPositionTypeNormalized;
-    helloWorldButton.position = ccp(0.5f, 0.35f);
+    helloWorldButton.position = ccp(0.4f, 0.35f);
     [helloWorldButton setTarget:self selector:@selector(onSpinningClicked:)];
     [self addChild:helloWorldButton];
 
+    // How-to-play button
+    CCButton *howToPlay = [CCButton buttonWithTitle:@"Controls" fontName:@"Verdana-Bold" fontSize:18.0f];
+    howToPlay.positionType   = CCPositionTypeNormalized;
+    howToPlay.position = ccp (0.6, .35f);
+    [self addChild: howToPlay];
+    
     // done
 	return self;
 }
