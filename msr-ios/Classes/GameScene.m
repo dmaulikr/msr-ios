@@ -34,6 +34,7 @@ bool playAccel = false;
     NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray; //create an array of missiles,
+    BOOL introMenu;
 }
 
 @synthesize manager;
@@ -61,7 +62,7 @@ bool playAccel = false;
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
-    //add images as backgrounds
+    // Add images as backgrounds
     _background1 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
     _background1.position = CGPointMake(10,0);
     [self addChild:_background1 z:-3];
@@ -71,7 +72,25 @@ bool playAccel = false;
     _background2.position = CGPointMake(10,0);
     [self addChild:_background2 z:-3];
     
-    //set up the physics world
+    
+    // Intro menu
+    introMenu = true;
+    // Hello world
+    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Martian Fall" fontName:@"Chalkduster" fontSize:36.0f];
+    label.positionType = CCPositionTypeNormalized;
+    label.color = [CCColor redColor];
+    label.position = ccp(0.5f, 0.5f); // Middle of screen
+    [self addChild:label];
+    
+    // Begin-game button
+    CCButton *playGame = [CCButton buttonWithTitle:@"Tap to begin" fontName:@"Verdana-Bold" fontSize:18.0f];
+    playGame .positionType = CCPositionTypeNormalized;
+    playGame.position = ccp(0.4f, 0.35f);
+    [playGame setTarget:self selector:@selector(onSpinningClicked:)];
+    [self addChild:playGame];
+   
+    /*
+    // Set up the physics world
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
     _physicsWorld.debugDraw = NO; //for debug put yes
@@ -108,7 +127,7 @@ bool playAccel = false;
 
     // Initialize the highscore table
     _defaults = [NSUserDefaults standardUserDefaults];
-
+*/
     
 	return self;
 }
