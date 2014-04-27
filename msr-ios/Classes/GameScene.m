@@ -100,7 +100,7 @@ bool playAccel = false;
     // Play button
     _playGame = [CCButton buttonWithTitle:@"Tap to begin" fontName:@"Verdana-Bold" fontSize:18.0f];
     _playGame.positionType = CCPositionTypeNormalized;
-    _playGame.position = ccp(0.5f, 0.4f);
+    _playGame.position = ccp(0.5f, 0.35f);
     [_playGame setTarget:self selector:@selector(initGame)];
     [self addChild:_playGame];
     
@@ -112,6 +112,7 @@ bool playAccel = false;
      // Fade out buttons
     [_introLabel runAction:[CCActionFadeOut actionWithDuration:0.4]];
     [self removeChild:_playGame];
+    
     
      // Set up the physics world
      _physicsWorld = [CCPhysicsNode node];
@@ -145,10 +146,27 @@ bool playAccel = false;
      // Schedule upwards clouds & sky
      [self unschedule:@selector(introClouds:)];
     
+    //End of game menu
+    // Create a playAgain button for end of game
+    CCButton *playAgainButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:20.0f];
+    [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
+
+    // Create a share button for end of game
+    CCButton *shareButton = [CCButton buttonWithTitle:@"[ Share ]" fontName:@"Verdana-Bold" fontSize:20.0f];
+    [shareButton setTarget:self selector:@selector(onShareClick:)];
     
      [self schedule:@selector(addCloud:) interval:1.5];
      [self schedule:@selector(moveBackground:) interval:0.03];
+    endMenu = [[CCLayoutBox alloc] init];
+    endMenu.direction = CCLayoutBoxDirectionVertical;
+    endMenu.spacing = 10.f;
+    endMenu.position = CGPointMake((self.contentSize.width/2 - (shareButton.contentSize.width/2)),self.contentSize.height/2);
+    //endMenu.positionType = CCPositionTypeNormalized;
+    //endMenu.position = ccp(0.85f, 0.95f);
+    [endMenu addChild:shareButton];
+    [endMenu addChild:playAgainButton];
 
+     
      // Initialize the highscore table
      _defaults = [NSUserDefaults standardUserDefaults];
 }
@@ -414,10 +432,9 @@ bool playAccel = false;
     [missile removeFromParent];
     [player removeFromParent];
     
-    //[[CCDirector sharedDirector] pause];
-    // start spinning scene with transition
-    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+    CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
+    CCAction *actionRemove = [CCActionRemove action];
+    [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
 
     [self calculateHighScore];
     
