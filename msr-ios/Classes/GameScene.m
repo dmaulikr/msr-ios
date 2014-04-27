@@ -329,15 +329,45 @@ bool playAccel = false;
     [missile removeFromParent];
     [player removeFromParent];
     
-    [[CCDirector sharedDirector] pause];
+    //[[CCDirector sharedDirector] pause];
+    
+    
+    [self calculateHighScore];
+    
+    [self endMenu];
+    
+    
+    
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
                                withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
 
-    [self calculateHighScore];
     
     return YES;
 }
+
+// -----------------------------------------------------------------------
+#pragma mark - Make end menu
+// -----------------------------------------------------------------------
+-(void)endMenu {
+    // Create a menu button
+    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:16.0f];
+    backButton.positionType = CCPositionTypeNormalized;
+    backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
+    [backButton setTarget:self selector:@selector(onBackClicked:)];
+
+    // Create a share button
+    CCButton *shareButtuon = [CCButton buttonWithTitle:@"[ Share ]" fontName:@"Verdana-Bold" fontSize:16.0f];
+    shareButtuon.positionType = CCPositionTypeNormalized;
+    shareButtuon.position = ccp(0.85f, 0.95f); // Top Right of screen
+    [shareButtuon setTarget:self selector:@selector(onBackClicked:)];
+
+    CCLayoutBox *endMenu;
+    [self addChild:endMenu];
+    
+}
+
+
 // -----------------------------------------------------------------------
 #pragma mark - High Score Calculation and Storing
 // -----------------------------------------------------------------------
