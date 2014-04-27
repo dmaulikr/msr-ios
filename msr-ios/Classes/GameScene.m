@@ -28,6 +28,8 @@ bool playAccel = false;
     CCSprite *_background2;
     CCPhysicsNode *_physicsWorld;
     CCLabelTTF *_scoreLabel;
+    CCLabelTTF *_introLabel;
+    CCButton *_playGame;
     Player *_martian;
     Missile *_missile;
     Powerup *_powerup;
@@ -76,60 +78,59 @@ bool playAccel = false;
     // Intro menu
     introMenu = true;
     // Hello world
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Martian Fall" fontName:@"Chalkduster" fontSize:36.0f];
-    label.positionType = CCPositionTypeNormalized;
-    label.color = [CCColor redColor];
-    label.position = ccp(0.5f, 0.5f); // Middle of screen
-    [self addChild:label];
+    _introLabel = [CCLabelTTF labelWithString:@"Martian Fall" fontName:@"Chalkduster" fontSize:36.0f];
+    _introLabel.positionType = CCPositionTypeNormalized;
+    _introLabel.color = [CCColor redColor];
+    _introLabel.position = ccp(0.5f, 0.5f); // Middle of screen
+    [self addChild: _introLabel];
     
     // Begin-game button
-    CCButton *playGame = [CCButton buttonWithTitle:@"Tap to begin" fontName:@"Verdana-Bold" fontSize:18.0f];
-    playGame .positionType = CCPositionTypeNormalized;
-    playGame.position = ccp(0.4f, 0.35f);
-    [playGame setTarget:self selector:@selector(onSpinningClicked:)];
-    [self addChild:playGame];
-   
-    /*
-    // Set up the physics world
-    _physicsWorld = [CCPhysicsNode node];
-    _physicsWorld.gravity = ccp(0,0);
-    _physicsWorld.debugDraw = NO; //for debug put yes
-    _physicsWorld.collisionDelegate = self;
-    [self addChild:_physicsWorld z:-1];
-    
-    _martian = [[Player alloc] initWorld:_physicsWorld andScene:self];
-    
-    //init and alloc mutable missile array
-    _missilesArray = [[NSMutableArray alloc] init];
-    
-    // Create a back button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:16.0f];
-    backButton.positionType = CCPositionTypeNormalized;
-    backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
-    [backButton setTarget:self selector:@selector(onBackClicked:)];
-    [self addChild:backButton];
-
-    // Create a accelorometer button for testing
-    CCButton *accelButton = [CCButton buttonWithTitle:@"[ Accelerometer ]" fontName:@"Verdana-Bold" fontSize:14.0f];
-    accelButton.positionType = CCPositionTypeNormalized;
-    accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
-    [accelButton setTarget:self selector:@selector(turnOnAccel:)];
-    [self addChild:accelButton];
-
-    // Initialize the score & its label
-    _score = 0;
-    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
-    _scoreLabel.positionType = CCPositionTypeNormalized;
-    _scoreLabel.color = [CCColor blackColor];
-    _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
-    [self addChild:_scoreLabel];
-    
-
-    // Initialize the highscore table
-    _defaults = [NSUserDefaults standardUserDefaults];
-*/
+    _playGame = [CCButton buttonWithTitle:@"Tap to begin" fontName:@"Verdana-Bold" fontSize:18.0f];
+    _playGame.positionType = CCPositionTypeNormalized;
+    _playGame.position = ccp(0.4f, 0.35f);
+    [_playGame setTarget:self selector:@selector(initGame)];
+    [self addChild:_playGame];
     
 	return self;
+}
+
+- (void)initGame {
+     // Fade out buttons
+    [_introLabel runAction:[CCActionFadeOut actionWithDuration:0.4]];
+    [self removeChild:_playGame];
+
+    
+     // Set up the physics world
+     _physicsWorld = [CCPhysicsNode node];
+     _physicsWorld.gravity = ccp(0,0);
+     _physicsWorld.debugDraw = NO; //for debug put yes
+     _physicsWorld.collisionDelegate = self;
+     [self addChild:_physicsWorld z:-1];
+     
+     _martian = [[Player alloc] initWorld:_physicsWorld andScene:self];
+     
+     //init and alloc mutable missile array
+     _missilesArray = [[NSMutableArray alloc] init];
+     
+     
+     // Create a accelorometer button for testing
+     CCButton *accelButton = [CCButton buttonWithTitle:@"[ Accelerometer ]" fontName:@"Verdana-Bold" fontSize:14.0f];
+     accelButton.positionType = CCPositionTypeNormalized;
+     accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
+     [accelButton setTarget:self selector:@selector(turnOnAccel:)];
+     [self addChild:accelButton];
+     
+     // Initialize the score & its label
+     _score = 0;
+     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
+     _scoreLabel.positionType = CCPositionTypeNormalized;
+     _scoreLabel.color = [CCColor blackColor];
+     _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
+     [self addChild:_scoreLabel];
+     
+     
+     // Initialize the highscore table
+     _defaults = [NSUserDefaults standardUserDefaults];
 }
 
 
