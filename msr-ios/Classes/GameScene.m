@@ -123,7 +123,7 @@ bool gameRunning = false;
      [self addChild:_physicsWorld z:-1];
     
      // Player
-    _martian = [[Player alloc] initWorld:_physicsWorld withPosition:_ship.positionInPoints andScene:self];
+     _martian = [[Player alloc] initWorld:_physicsWorld withPosition:_ship.positionInPoints andScene:self];
      [self removeChild:_ship];
     
      // Init and alloc mutable missile array
@@ -274,7 +274,6 @@ bool gameRunning = false;
         [_martian._sprite runAction:actionMove];
     }
 }
-
 
 -(void) getValues:(NSTimer *) timer {
     //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
