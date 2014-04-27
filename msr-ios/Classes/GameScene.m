@@ -12,7 +12,6 @@
 #import "Player.h"
 #import "Missile.h"
 #import "Powerup.h"
-#import <Twitter/Twitter.h>
 
 
 // -----------------------------------------------------------------------
@@ -145,26 +144,33 @@ bool gameRunning = false;
      [self addChild:_scoreLabel];
     
      // Schedule upwards clouds & sky
-     [self unschedule:@selector(introClouds:)];
-    
+    [self unschedule:@selector(introClouds:)];
+    [self schedule:@selector(addCloud:) interval:1.5];
+    [self schedule:@selector(moveBackground:) interval:0.03];
+
     //End of game menu
     // Create a playAgain button for end of game
     CCButton *playAgainButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:20.0f];
     [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
-
-    // Create a share button for end of game
-    CCButton *shareButton = [CCButton buttonWithTitle:@"[ Share ]" fontName:@"Verdana-Bold" fontSize:20.0f];
-    [shareButton setTarget:self selector:@selector(onShareClick:)];
     
-     [self schedule:@selector(addCloud:) interval:1.5];
-     [self schedule:@selector(moveBackground:) interval:0.03];
+    //make facebook button
+    CCSpriteFrame *facebookFrame = [CCSpriteFrame frameWithImageNamed:@"facebook.png"];
+    CCButton *facebookB = [CCButton buttonWithTitle:@" " spriteFrame:facebookFrame];
+    [facebookB setTarget:self selector:@selector(onFacebookClick:)];
+    
+    //make twitter button
+    CCSpriteFrame *twitterFrame = [CCSpriteFrame frameWithImageNamed:@"twitterSmall.png"];
+    CCButton *twitterB = [CCButton buttonWithTitle:@" " spriteFrame:twitterFrame];
+    [twitterB setTarget:self selector:@selector(onTwitterClick:)];
+     
     endMenu = [[CCLayoutBox alloc] init];
     endMenu.direction = CCLayoutBoxDirectionVertical;
     endMenu.spacing = 10.f;
-    endMenu.position = CGPointMake((self.contentSize.width/2 - (shareButton.contentSize.width/2)),self.contentSize.height/2);
+    endMenu.position = CGPointMake((self.contentSize.width/2 - (playAgainButton.contentSize.width/2)),(self.contentSize.height/2 - (playAgainButton.contentSize.height * 2)));
     //endMenu.positionType = CCPositionTypeNormalized;
     //endMenu.position = ccp(0.85f, 0.95f);
-    [endMenu addChild:shareButton];
+    [endMenu addChild:facebookB];
+    [endMenu addChild:twitterB];
     [endMenu addChild:playAgainButton];
     
     //start the gameRunning
@@ -238,6 +244,13 @@ bool gameRunning = false;
     [cloud runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     
 }
+
+- (void)onExit
+{
+    // always call super onExit last
+    [super onExit];
+}
+
 // -----------------------------------------------------------------------
 #pragma mark - Scoring
 // -----------------------------------------------------------------------
@@ -251,12 +264,6 @@ bool gameRunning = false;
 }
 
 // -----------------------------------------------------------------------
-
-- (void)onExit
-{
-    // always call super onExit last
-    [super onExit];
-}
 
 // -----------------------------------------------------------------------
 #pragma mark - Touch Handler
@@ -308,7 +315,7 @@ bool gameRunning = false;
 
 
 }
-- (void)onShareClick:(id)sender
+- (void)onTwitterClick:(id)sender
 {
     NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
     
@@ -319,18 +326,38 @@ bool gameRunning = false;
         [tweetSheet setInitialText: shareMessage];
         
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
-    } else if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+    } else {
+        CCLabelTTF *twitterMessage = [CCLabelTTF labelWithString:@"No Twitter account found." fontName:@"Verdana-Bold" fontSize:18.0f];
+        twitterMessage.positionType = CCPositionTypeNormalized;
+        twitterMessage.color = [CCColor redColor];
+        twitterMessage.position = ccp(0.5f, 0.8f); // Middle of screen
+        [self addChild: twitterMessage];
+        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
+        CCAction *actionRemove = [CCActionRemove action];
+        [twitterMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    }
+}
+- (void)onFacebookClick:(id)sender
+{
+    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
         SLComposeViewController *tweetSheet = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeFacebook];
         [tweetSheet setInitialText: shareMessage];
         
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
-        NSLog(@"User does not have twitter or Facebook configured");
+        CCLabelTTF *fbMessage = [CCLabelTTF labelWithString:@"No Facebook account found." fontName:@"Verdana-Bold" fontSize:18.0f];
+        fbMessage.positionType = CCPositionTypeNormalized;
+        fbMessage.color = [CCColor redColor];
+        fbMessage.position = ccp(0.5f, 0.8f); // Middle of screen
+        [self addChild: fbMessage];
+        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
+        CCAction *actionRemove = [CCActionRemove action];
+        [fbMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
-
-
 
 - (void)turnOnAccel:(id)sender {
     playAccel = !playAccel;
