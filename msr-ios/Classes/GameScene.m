@@ -12,6 +12,8 @@
 #import "Player.h"
 #import "Missile.h"
 #import "Powerup.h"
+#import <Twitter/Twitter.h>
+
 
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
@@ -272,9 +274,22 @@ bool playAccel = false;
 
 - (void)onShareClick:(id)sender
 {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetSheet = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
+        [tweetSheet setInitialText: shareMessage];
+        
+        [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
+    } else {
+        NSLog(@"User does not have twitter configured");
+        
+    }
+    
     //NEED TO IMPLEMENT SHARE VIA TWITTER
-    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+    //[[CCDirector sharedDirector] replaceScene:[GameScene scene]
+    //                           withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
 }
 
 
@@ -351,11 +366,7 @@ bool playAccel = false;
             missilePos.x = missilePos.x - 1;
             cur_miss.missile.position = missilePos;
         }
-
-
     }
-    
-    
 }
 
 // -----------------------------------------------------------------------
@@ -387,8 +398,10 @@ bool playAccel = false;
     [missile removeFromParent];
     [player removeFromParent];
     
-    
-    
+    CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
+    CCAction *actionRemove = [CCActionRemove action];
+    [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+
     [self calculateHighScore];
     
     //create end menu
