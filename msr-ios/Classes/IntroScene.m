@@ -45,13 +45,13 @@
     label.position = ccp(0.5f, 0.5f); // Middle of screen
     [self addChild:label];
     
-    // Helloworld scene button
-    CCButton *helloWorldButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:18.0f];
-    helloWorldButton.positionType = CCPositionTypeNormalized;
-    helloWorldButton.position = ccp(0.5f, 0.35f);
-    [helloWorldButton setTarget:self selector:@selector(onSpinningClicked:)];
-    [self addChild:helloWorldButton];
-
+    // Begin-game button
+    CCButton *playGame = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    playGame .positionType = CCPositionTypeNormalized;
+    playGame.position = ccp(0.4f, 0.35f);
+    [playGame setTarget:self selector:@selector(onSpinningClicked:)];
+    [self addChild:playGame];
+  
     // done
 	return self;
 }

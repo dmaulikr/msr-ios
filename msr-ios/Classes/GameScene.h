@@ -26,5 +26,6 @@
 + (GameScene *)scene;
 - (id)init;
 - (void) getValues:(NSTimer *) timer;
+- (void)initGame;
 // -----------------------------------------------------------------------
 @end
