@@ -17,7 +17,7 @@
     self = [super init];
     
     _sprite = [CCSprite spriteWithImageNamed:@"martianSmall.png"];
-    _sprite.position  = ccp(_scene.contentSize.width/2,4*_scene.contentSize.height/5);
+    _sprite.position  = _position;
     _sprite.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _sprite.contentSize} cornerRadius:0]; // 1
     _sprite.physicsBody.collisionGroup = @"playerGroup"; // 2
     _sprite.physicsBody.collisionType  = @"playerCollision";

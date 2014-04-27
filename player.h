@@ -16,6 +16,6 @@
 @property float dx;
 @property float dy;
 
--(id)initWorld: (CCPhysicsNode *)_phyicsWorld andScene:(GameScene *) _scene;
+-(id)initWorld: (CCPhysicsNode *)_phyicsWorld withPosition:(CGPoint)_position andScene:(GameScene *) _scene;
 
 @end

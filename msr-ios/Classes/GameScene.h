@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
 #import <CoreMotion/CoreMotion.h>
+#import <Social/Social.h>
 
 // -----------------------------------------------------------------------
 

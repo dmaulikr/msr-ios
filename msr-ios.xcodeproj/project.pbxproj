@@ -232,6 +232,8 @@
 		53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD4190D82FC00E7BA7E /* lightning.png */; };
 		53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD6190D831C00E7BA7E /* fireworks.png */; };
 		53F89DD9190D878400E7BA7E /* parachute.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD8190D878400E7BA7E /* parachute.png */; };
+		53F89DDB190D98B200E7BA7E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F89DDA190D98B200E7BA7E /* Twitter.framework */; };
+		53F89DDD190D9C5F00E7BA7E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F89DDC190D9C5F00E7BA7E /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -696,6 +698,8 @@
 		53F89DD4190D82FC00E7BA7E /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
 		53F89DD6190D831C00E7BA7E /* fireworks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks.png; sourceTree = "<group>"; };
 		53F89DD8190D878400E7BA7E /* parachute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute.png; sourceTree = "<group>"; };
+		53F89DDA190D98B200E7BA7E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		53F89DDC190D9C5F00E7BA7E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -703,6 +707,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53F89DDD190D9C5F00E7BA7E /* Social.framework in Frameworks */,
+				53F89DDB190D98B200E7BA7E /* Twitter.framework in Frameworks */,
 				439526DB190779D2001A81DC /* CoreMotion.framework in Frameworks */,
 				43759B861902B46100717DF5 /* libObjectiveChipmunk.a in Frameworks */,
 				43759B741902B46100717DF5 /* OpenAL.framework in Frameworks */,
@@ -741,6 +747,8 @@
 		43759B6E1902B46100717DF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53F89DDC190D9C5F00E7BA7E /* Social.framework */,
+				53F89DDA190D98B200E7BA7E /* Twitter.framework */,
 				439526DA190779D2001A81DC /* CoreMotion.framework */,
 				43759B6F1902B46100717DF5 /* QuartzCore.framework */,
 				43759B711902B46100717DF5 /* OpenGLES.framework */,
