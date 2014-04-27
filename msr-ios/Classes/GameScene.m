@@ -317,7 +317,7 @@ bool gameRunning = false;
 }
 - (void)onTwitterClick:(id)sender
 {
-    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
+    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at ", _score];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
@@ -338,7 +338,7 @@ bool gameRunning = false;
 }
 - (void)onFacebookClick:(id)sender
 {
-    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
+    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at ", _score];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
         SLComposeViewController *tweetSheet = [SLComposeViewController
