@@ -33,6 +33,7 @@ bool playAccel = false;
     Player *_martian;
     Missile *_missile;
     Powerup *_powerup;
+    CCLayoutBox *endMenu;
     NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray; //create an array of missiles,
@@ -87,7 +88,7 @@ bool playAccel = false;
     // Begin-game button
     _playGame = [CCButton buttonWithTitle:@"Tap to begin" fontName:@"Verdana-Bold" fontSize:18.0f];
     _playGame.positionType = CCPositionTypeNormalized;
-    _playGame.position = ccp(0.4f, 0.35f);
+    _playGame.position = ccp(0.5f, 0.35f);
     [_playGame setTarget:self selector:@selector(initGame)];
     [self addChild:_playGame];
     
@@ -241,6 +242,24 @@ bool playAccel = false;
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
 }
 
+- (void)onPlayAgainClick:(id)sender
+{
+    //transition to begin of this scene again
+    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
+     withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+
+
+}
+
+- (void)onShareClick:(id)sender
+{
+    //NEED TO IMPLEMENT SHARE VIA TWITTER
+    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
+                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+}
+
+
+
 - (void)turnOnAccel:(id)sender {
     playAccel = !playAccel;
 }
@@ -349,19 +368,12 @@ bool playAccel = false;
     [missile removeFromParent];
     [player removeFromParent];
     
-    //[[CCDirector sharedDirector] pause];
     
     
     [self calculateHighScore];
     
+    //create end menu
     [self endMenu];
-    
-    
-    
-    // start spinning scene with transition
-    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
-
     
     return YES;
 }
@@ -371,18 +383,22 @@ bool playAccel = false;
 // -----------------------------------------------------------------------
 -(void)endMenu {
     // Create a menu button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:16.0f];
-    backButton.positionType = CCPositionTypeNormalized;
-    backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
-    [backButton setTarget:self selector:@selector(onBackClicked:)];
+    CCButton *playAgainButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:20.0f];
+    [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
 
     // Create a share button
-    CCButton *shareButtuon = [CCButton buttonWithTitle:@"[ Share ]" fontName:@"Verdana-Bold" fontSize:16.0f];
-    shareButtuon.positionType = CCPositionTypeNormalized;
-    shareButtuon.position = ccp(0.85f, 0.95f); // Top Right of screen
-    [shareButtuon setTarget:self selector:@selector(onBackClicked:)];
+    CCButton *shareButton = [CCButton buttonWithTitle:@"[ Share ]" fontName:@"Verdana-Bold" fontSize:20.0f];
+    [shareButton setTarget:self selector:@selector(onShareClick:)];
 
-    CCLayoutBox *endMenu;
+    endMenu = [[CCLayoutBox alloc] init];
+    endMenu.direction = CCLayoutBoxDirectionVertical;
+    endMenu.spacing = 10.f;
+    endMenu.position = CGPointMake((self.contentSize.width/2 - (shareButton.contentSize.width/2)),self.contentSize.height/2);
+    //endMenu.positionType = CCPositionTypeNormalized;
+    //endMenu.position = ccp(0.85f, 0.95f);
+
+    [endMenu addChild:shareButton];
+    [endMenu addChild:playAgainButton];
     [self addChild:endMenu];
     
 }
