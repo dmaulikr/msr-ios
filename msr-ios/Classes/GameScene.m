@@ -22,6 +22,7 @@ const int MAX_MISSILES = 4;
 bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
 bool playAccel = false;
+bool gameRunning = false;
 
 
 @implementation GameScene
@@ -149,7 +150,9 @@ bool playAccel = false;
     //endMenu.position = ccp(0.85f, 0.95f);
     [endMenu addChild:shareButton];
     [endMenu addChild:playAgainButton];
-
+    
+    //start the gameRunning
+    gameRunning = true;
      
      // Initialize the highscore table
      _defaults = [NSUserDefaults standardUserDefaults];
@@ -207,8 +210,10 @@ bool playAccel = false;
 
 - (void)incrementScore
 {
-    _score++;
-    [_scoreLabel setString:[NSString stringWithFormat:@"Score: %03d", _score]];
+    if (gameRunning == true) {
+        _score++;
+        [_scoreLabel setString:[NSString stringWithFormat:@"Score: %03d", _score]];
+    }
 }
 
 // -----------------------------------------------------------------------
@@ -262,7 +267,6 @@ bool playAccel = false;
     [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
 }
-
 - (void)onPlayAgainClick:(id)sender
 {
     //transition to begin of this scene again
@@ -271,25 +275,26 @@ bool playAccel = false;
 
 
 }
-
 - (void)onShareClick:(id)sender
 {
+    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
+    
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheet = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at www.otb2.com", _score];
+        [tweetSheet setInitialText: shareMessage];
+        
+        [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
+    } else if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+        SLComposeViewController *tweetSheet = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeFacebook];
         [tweetSheet setInitialText: shareMessage];
         
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
-        NSLog(@"User does not have twitter configured");
-        
+        NSLog(@"User does not have twitter or Facebook configured");
     }
-    
-    //NEED TO IMPLEMENT SHARE VIA TWITTER
-    //[[CCDirector sharedDirector] replaceScene:[GameScene scene]
-    //                           withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
 }
 
 
@@ -402,19 +407,15 @@ bool playAccel = false;
     CCAction *actionRemove = [CCActionRemove action];
     [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
 
+    //stop the score
+    gameRunning = false;
+    
     [self calculateHighScore];
     
     //create end menu
-    [self endMenu];
+    [self addChild:endMenu];
     
     return YES;
-}
-
-// -----------------------------------------------------------------------
-#pragma mark - Make end menu
-// -----------------------------------------------------------------------
--(void)endMenu {
-    [self addChild:endMenu];
 }
 
 
