@@ -22,7 +22,7 @@ bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
 bool playAccel = false;
 bool gameRunning = false;
-
+bool inIntroScene = false;
 
 @implementation GameScene
 {
@@ -40,7 +40,6 @@ bool gameRunning = false;
     NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray; //create an array of missiles,
-    BOOL introMenu;
 }
 
 @synthesize manager;
@@ -86,9 +85,8 @@ bool gameRunning = false;
     _ship.position = ccp(0.5f, 0.6f);
     [self addChild:_ship z:1];
     [_ship runAction:[CCActionRepeatForever actionWithAction:[CCActionSequence actionWithArray:@[waverDown, waverUp]]]];
-    
-    // Intro menu
-    introMenu = true;
+    //turn intro scene bool on
+    inIntroScene = true;
     
     // Intro title
     _introLabel = [CCLabelTTF labelWithString:@"Martian Fall" fontName:@"Chalkduster" fontSize:36.0f];
@@ -108,7 +106,7 @@ bool gameRunning = false;
 }
 
 - (void)initGame {
-    introMenu = false;
+    inIntroScene = false;
      // Fade out buttons
     [_introLabel runAction:[CCActionFadeOut actionWithDuration:0.4]];
     [self removeChild:_playGame];
@@ -128,20 +126,20 @@ bool gameRunning = false;
      // Init and alloc mutable missile array
      _missilesArray = [[NSMutableArray alloc] init];
     
-     // Create a accelorometer button for testing
-     CCButton *accelButton = [CCButton buttonWithTitle:@"[ Accelerometer ]" fontName:@"Verdana-Bold" fontSize:14.0f];
-     accelButton.positionType = CCPositionTypeNormalized;
-     accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
-     [accelButton setTarget:self selector:@selector(turnOnAccel:)];
-     [self addChild:accelButton];
+    // Create a accelorometer button for testing
+    CCButton *accelButton = [CCButton buttonWithTitle:@"[ Accelerometer ]" fontName:@"Verdana-Bold" fontSize:14.0f];
+    accelButton.positionType = CCPositionTypeNormalized;
+    accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
+    [accelButton setTarget:self selector:@selector(turnOnAccel:)];
+    [self addChild:accelButton];
      
-     // Initialize the score & its label
-     _score = 0;
-     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
-     _scoreLabel.positionType = CCPositionTypeNormalized;
-     _scoreLabel.color = [CCColor blackColor];
-     _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
-     [self addChild:_scoreLabel];
+    // Initialize the score & its label
+    _score = 0;
+    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
+    _scoreLabel.positionType = CCPositionTypeNormalized;
+    _scoreLabel.color = [CCColor blackColor];
+    _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
+    [self addChild:_scoreLabel];
     
      // Schedule upwards clouds & sky
     [self unschedule:@selector(introClouds:)];
@@ -153,6 +151,11 @@ bool gameRunning = false;
     CCButton *playAgainButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:20.0f];
     [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
     
+    //make twitter button
+    CCSpriteFrame *weiboFrame = [CCSpriteFrame frameWithImageNamed:@"weibo2.png"];
+    CCButton *weiboB = [CCButton buttonWithTitle:@" " spriteFrame:weiboFrame];
+    [weiboB setTarget:self selector:@selector(onWeiboClick:)];
+
     //make facebook button
     CCSpriteFrame *facebookFrame = [CCSpriteFrame frameWithImageNamed:@"facebook.png"];
     CCButton *facebookB = [CCButton buttonWithTitle:@" " spriteFrame:facebookFrame];
@@ -169,6 +172,7 @@ bool gameRunning = false;
     endMenu.position = CGPointMake((self.contentSize.width/2 - (playAgainButton.contentSize.width/2)),(self.contentSize.height/2 - (playAgainButton.contentSize.height * 2)));
     //endMenu.positionType = CCPositionTypeNormalized;
     //endMenu.position = ccp(0.85f, 0.95f);
+    [endMenu addChild:weiboB];
     [endMenu addChild:facebookB];
     [endMenu addChild:twitterB];
     [endMenu addChild:playAgainButton];
@@ -264,8 +268,6 @@ bool gameRunning = false;
 }
 
 // -----------------------------------------------------------------------
-
-// -----------------------------------------------------------------------
 #pragma mark - Touch Handler
 // -----------------------------------------------------------------------
 
@@ -280,13 +282,18 @@ bool gameRunning = false;
         CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
         [_martian._sprite runAction:actionMove];
     }
+    //make it so if you tap anywhere on screen while on intro scene and the game begins
+    if (inIntroScene == true) {
+        [self initGame];
+    }
 }
-
+// -----------------------------------------------------------------------
+#pragma mark - Accelerometer movement
+// -----------------------------------------------------------------------
 -(void) getValues:(NSTimer *) timer {
     //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
     //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.x * 20), 20)]);
     if (playAccel == true) {
-
         CGPoint touchLoc = _martian._sprite.position;
         touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
         touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
@@ -296,7 +303,6 @@ bool gameRunning = false;
         [_martian._sprite runAction:actionMove];
     }
 }
-
 // -----------------------------------------------------------------------
 #pragma mark - Button Callbacks
 // -----------------------------------------------------------------------
@@ -311,20 +317,22 @@ bool gameRunning = false;
 {
     //transition to begin of this scene again
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-     withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
-
+                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
 
 }
+// -----------------------------------------------------------------------
+#pragma mark - Social Media Sharing Functions
+// -----------------------------------------------------------------------
+
 - (void)onTwitterClick:(id)sender
 {
-    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at ", _score];
+    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in #MartianFall. Play for yourself at ", _score];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheet = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeTwitter];
         [tweetSheet setInitialText: shareMessage];
-        
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
         CCLabelTTF *twitterMessage = [CCLabelTTF labelWithString:@"No Twitter account found." fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -336,15 +344,15 @@ bool gameRunning = false;
         [twitterMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
+
 - (void)onFacebookClick:(id)sender
 {
-    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in Martian Fall. Play for yourself at ", _score];
+    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in #MartianFall. Play for yourself at ", _score];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
         SLComposeViewController *tweetSheet = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeFacebook];
         [tweetSheet setInitialText: shareMessage];
-        
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
         CCLabelTTF *fbMessage = [CCLabelTTF labelWithString:@"No Facebook account found." fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -354,6 +362,25 @@ bool gameRunning = false;
         CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
         CCAction *actionRemove = [CCActionRemove action];
         [fbMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    }
+}
+- (void)onWeiboClick:(id)sender
+{
+    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in #MartianFall. Play for yourself at ", _score];
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]){
+        SLComposeViewController *tweetSheet = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
+        [tweetSheet setInitialText: shareMessage];
+        [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
+    } else {
+        CCLabelTTF *weiboMessage = [CCLabelTTF labelWithString:@"No Weibo account found." fontName:@"Verdana-Bold" fontSize:18.0f];
+        weiboMessage.positionType = CCPositionTypeNormalized;
+        weiboMessage.position = ccp(0.5f, 0.8f); // Middle of screen
+        [self addChild: weiboMessage];
+        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
+        CCAction *actionRemove = [CCActionRemove action];
+        [weiboMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
 
@@ -553,9 +580,5 @@ bool gameRunning = false;
     
     return YES;
 }
-
-
-
-
 
 @end

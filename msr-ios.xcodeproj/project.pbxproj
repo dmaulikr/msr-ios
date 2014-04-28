@@ -236,6 +236,8 @@
 		53F89DDD190D9C5F00E7BA7E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F89DDC190D9C5F00E7BA7E /* Social.framework */; };
 		53F89DE1190DAE6800E7BA7E /* twitterSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE0190DAE6800E7BA7E /* twitterSmall.png */; };
 		53F89DE3190DAF8C00E7BA7E /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE2190DAF8C00E7BA7E /* facebook.png */; };
+		53F89DE5190E018300E7BA7E /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE4190E018300E7BA7E /* weibo.png */; };
+		53F89DE9190E022500E7BA7E /* weibo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE8190E022500E7BA7E /* weibo2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -704,6 +706,8 @@
 		53F89DDC190D9C5F00E7BA7E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		53F89DE0190DAE6800E7BA7E /* twitterSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterSmall.png; sourceTree = "<group>"; };
 		53F89DE2190DAF8C00E7BA7E /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		53F89DE4190E018300E7BA7E /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
+		53F89DE8190E022500E7BA7E /* weibo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1618,8 +1622,10 @@
 			isa = PBXGroup;
 			children = (
 				539FF7FA1909D0A100549B3B /* boomer.png */,
+				53F89DE8190E022500E7BA7E /* weibo2.png */,
 				53F89DD6190D831C00E7BA7E /* fireworks.png */,
 				53F89DD8190D878400E7BA7E /* parachute.png */,
+				53F89DE4190E018300E7BA7E /* weibo.png */,
 				53F89DE2190DAF8C00E7BA7E /* facebook.png */,
 				53CE052F190981BF003454B2 /* rocket.png */,
 				53F89DCE190D82B200E7BA7E /* martianSmall.png */,
@@ -1740,6 +1746,7 @@
 				43759B971902B46200717DF5 /* Icon-72.png in Resources */,
 				43759CE51902B46300717DF5 /* LICENSE_cocos2d.txt in Resources */,
 				53F89DD9190D878400E7BA7E /* parachute.png in Resources */,
+				53F89DE5190E018300E7BA7E /* weibo.png in Resources */,
 				43759B8E1902B46100717DF5 /* Default-568h@2x.png in Resources */,
 				43759BAE1902B46200717DF5 /* iTunesArtwork in Resources */,
 				43759BA91902B46200717DF5 /* Icon-Spotlight-iOS7.png in Resources */,
@@ -1752,6 +1759,7 @@
 				53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */,
 				43D933531902C51D006704B8 /* cloud.png in Resources */,
 				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
+				53F89DE9190E022500E7BA7E /* weibo2.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,
 			);
