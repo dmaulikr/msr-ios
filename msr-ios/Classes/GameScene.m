@@ -12,6 +12,7 @@
 #import "Player.h"
 #import "Missile.h"
 #import "Powerup.h"
+#import "Wind.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
@@ -35,6 +36,7 @@ bool inIntroScene = false;
     Player *_martian;
     Missile *_missile;
     Powerup *_powerup;
+    Wind *_wind;
     CCLayoutBox *endMenu;
     NSUserDefaults *_defaults;
     int _score;
@@ -168,9 +170,14 @@ bool inIntroScene = false;
     endMenu.direction = CCLayoutBoxDirectionVertical;
     endMenu.spacing = 10.f;
     endMenu.position = CGPointMake((self.contentSize.width/2 - (playAgainButton.contentSize.width/2)),(self.contentSize.height/2 - (playAgainButton.contentSize.height * 2)));
-    //endMenu.positionType = CCPositionTypeNormalized;
-    //endMenu.position = ccp(0.85f, 0.95f);
-    [endMenu addChild:weiboB];
+
+    //NEED TO WORK ON THIS, ONLY SHOWING WEIBO IF LANGUAGE IS CHINESE
+    //get the current language and only add weibo if language is chinese
+    //NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    //NSLog(language);
+    //if (language == @"zh") {
+        [endMenu addChild:weiboB];
+    //}
     [endMenu addChild:facebookB];
     [endMenu addChild:twitterB];
     [endMenu addChild:playAgainButton];
@@ -201,6 +208,7 @@ bool inIntroScene = false;
     [self schedule:@selector(addMissile:) interval:2];
     [self schedule:@selector(incrementScore) interval:0.1];
     [self schedule:@selector(addPowerup:) interval:4.5];
+    [self schedule:@selector(addWind:) interval:5];
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
     // Per frame update is automatically enabled, if update is overridden
@@ -497,11 +505,11 @@ bool inIntroScene = false;
 }
 
 // -----------------------------------------------------------------------
-#pragma mark - Collision Detection for Missiles
+#pragma mark - Collision Detection for Missiles and Player
 // -----------------------------------------------------------------------
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair missileCollision:(CCNode *)missile playerCollision:(CCNode *)player {
-        
+    
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
     CGPoint new_pos = missile.position;
     new_pos.y = new_pos.y + 10;
@@ -561,6 +569,16 @@ bool inIntroScene = false;
     _powerup = [[Powerup alloc] initWithPhysicsWorld: _physicsWorld andGameScene:self];
 }
 // -----------------------------------------------------------------------
+#pragma mark - Add Powerup
+// -----------------------------------------------------------------------
+-(void)addWind:(CCTime)delta
+{
+    //random type
+    int _type = arc4random() % 3;
+    _wind = [[Wind alloc] initWorld:_physicsWorld andScene:self andType:_type];
+}
+
+// -----------------------------------------------------------------------
 #pragma mark - Collision Detection for Powerups and player
 // -----------------------------------------------------------------------
 
@@ -602,5 +620,20 @@ bool inIntroScene = false;
     
     return YES;
 }
+// -----------------------------------------------------------------------
+#pragma mark - Collision Detection for Wind and player
+// -----------------------------------------------------------------------
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind playerCollision:(CCNode *)player {
+    
+    return YES;
+}
+// -----------------------------------------------------------------------
+#pragma mark - Collision Detection for Wind and Powerup
+// -----------------------------------------------------------------------
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind powerupCollision:(CCNode *)player {
+    
+    return YES;
+}
+
 
 @end
