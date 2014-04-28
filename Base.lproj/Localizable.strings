@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  msr-ios
+
+  Created by Macgill on 4/27/14.
+  Copyright (c) 2014 o2bt. All rights reserved.
+*/
+
+
+"Tap to begin" = "Tap to begin";
+"Martian Fall" = "Martian Fall";
+"[ Play ]" = "[ Play ]";
+"I just scored %d in #MartianFall. Play for yourself at " = "I just scored %d in #MartianFall. Play for yourself at ";
+"No Facebook account found." = "No Facebook account found.";
+"[ Accelerometer ]" = "[ Accelerometer ]";

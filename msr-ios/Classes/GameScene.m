@@ -13,7 +13,6 @@
 #import "Missile.h"
 #import "Powerup.h"
 
-
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
 // -----------------------------------------------------------------------
@@ -54,7 +53,6 @@ bool inIntroScene = false;
 }
 
 // -----------------------------------------------------------------------
-
 - (id)init
 {
     self = [super init];
@@ -89,14 +87,14 @@ bool inIntroScene = false;
     inIntroScene = true;
     
     // Intro title
-    _introLabel = [CCLabelTTF labelWithString:@"Martian Fall" fontName:@"Chalkduster" fontSize:36.0f];
+    _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"Chalkduster" fontSize:36.0f];
     _introLabel.positionType = CCPositionTypeNormalized;
     _introLabel.color = [CCColor redColor];
     _introLabel.position = ccp(0.5f, 0.8f); // Middle of screen
     [self addChild: _introLabel];
     
     // Play button
-    _playGame = [CCButton buttonWithTitle:@"Tap to begin" fontName:@"Verdana-Bold" fontSize:18.0f];
+    _playGame = [CCButton buttonWithTitle: NSLocalizedString(@"Tap to begin", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
     [_playGame setTarget:self selector:@selector(initGame)];
@@ -127,7 +125,7 @@ bool inIntroScene = false;
      _missilesArray = [[NSMutableArray alloc] init];
     
     // Create a accelorometer button for testing
-    CCButton *accelButton = [CCButton buttonWithTitle:@"[ Accelerometer ]" fontName:@"Verdana-Bold" fontSize:14.0f];
+    CCButton *accelButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Accelerometer ]", nil) fontName:@"Verdana-Bold" fontSize:14.0f];
     accelButton.positionType = CCPositionTypeNormalized;
     accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
     [accelButton setTarget:self selector:@selector(turnOnAccel:)];
@@ -146,9 +144,9 @@ bool inIntroScene = false;
     [self schedule:@selector(addCloud:) interval:1.5];
     [self schedule:@selector(moveBackground:) interval:0.03];
 
-    //End of game menu
+    //End of game menu, created now but added only at end of game
     // Create a playAgain button for end of game
-    CCButton *playAgainButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:20.0f];
+    CCButton *playAgainButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Play ]", nil) fontName:@"Verdana-Bold" fontSize:20.0f];
     [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
     
     //make twitter button
@@ -326,7 +324,7 @@ bool inIntroScene = false;
 
 - (void)onTwitterClick:(id)sender
 {
-    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in #MartianFall. Play for yourself at ", _score];
+    NSString *shareMessage = [NSString stringWithFormat:NSLocalizedString(@"I just scored %d in #MartianFall. Play for yourself at ", nil), _score];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
@@ -335,11 +333,11 @@ bool inIntroScene = false;
         [tweetSheet setInitialText: shareMessage];
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
-        CCLabelTTF *twitterMessage = [CCLabelTTF labelWithString:@"No Twitter account found." fontName:@"Verdana-Bold" fontSize:18.0f];
+        CCLabelTTF *twitterMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"No Twitter account found.",nil) fontName:@"Verdana-Bold" fontSize:18.0f];
         twitterMessage.positionType = CCPositionTypeNormalized;
         twitterMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: twitterMessage];
-        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
+        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
         CCAction *actionRemove = [CCActionRemove action];
         [twitterMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
@@ -347,7 +345,7 @@ bool inIntroScene = false;
 
 - (void)onFacebookClick:(id)sender
 {
-    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in #MartianFall. Play for yourself at ", _score];
+    NSString *shareMessage = [NSString stringWithFormat:NSLocalizedString(@"I just scored %d in #MartianFall. Play for yourself at ", nil), _score];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
         SLComposeViewController *tweetSheet = [SLComposeViewController
@@ -355,18 +353,19 @@ bool inIntroScene = false;
         [tweetSheet setInitialText: shareMessage];
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
-        CCLabelTTF *fbMessage = [CCLabelTTF labelWithString:@"No Facebook account found." fontName:@"Verdana-Bold" fontSize:18.0f];
+        CCLabelTTF *fbMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"No Facebook account found.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
         fbMessage.positionType = CCPositionTypeNormalized;
         fbMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: fbMessage];
-        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
+        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
         CCAction *actionRemove = [CCActionRemove action];
         [fbMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
+
 - (void)onWeiboClick:(id)sender
 {
-    NSString *shareMessage = [NSString stringWithFormat:@"I just scored %d in #MartianFall. Play for yourself at ", _score];
+    NSString *shareMessage = [NSString stringWithFormat:NSLocalizedString(@"I just scored %d in #MartianFall. Play for yourself at ", nil), _score];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]){
         SLComposeViewController *tweetSheet = [SLComposeViewController
@@ -374,24 +373,21 @@ bool inIntroScene = false;
         [tweetSheet setInitialText: shareMessage];
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
-        CCLabelTTF *weiboMessage = [CCLabelTTF labelWithString:@"No Weibo account found." fontName:@"Verdana-Bold" fontSize:18.0f];
+        CCLabelTTF *weiboMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"No Weibo account found.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
         weiboMessage.positionType = CCPositionTypeNormalized;
         weiboMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: weiboMessage];
-        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.5];
+        CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
         CCAction *actionRemove = [CCActionRemove action];
         [weiboMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
-
 - (void)turnOnAccel:(id)sender {
     playAccel = !playAccel;
 }
-
 // -----------------------------------------------------------------------
 #pragma mark - Move Scrolling Background
 // -----------------------------------------------------------------------
-
 -(void)moveBackground:(CCTime)delta
 {
     CGPoint bgPos1 = _background1.position;
@@ -405,7 +401,6 @@ bool inIntroScene = false;
     CCLOG(@"bspos1.y is %d", otherbackground);
     int other = bgPos1.y  - _background1.contentSize.height/2;
     CCLOG(@"bgPos2.y is %d", other);*/
-
     
     if (bgPos1.y > (_background1.contentSize.height - (2 * self.contentSize.width))) {
         bgPos1.y = 0;
@@ -555,7 +550,6 @@ bool inIntroScene = false;
     CCAction *actionRemove = [CCActionRemove action];
    
     [pUp runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
-    
     return YES;
 }
 // -----------------------------------------------------------------------

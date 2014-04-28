@@ -238,6 +238,7 @@
 		53F89DE3190DAF8C00E7BA7E /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE2190DAF8C00E7BA7E /* facebook.png */; };
 		53F89DE5190E018300E7BA7E /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE4190E018300E7BA7E /* weibo.png */; };
 		53F89DE9190E022500E7BA7E /* weibo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE8190E022500E7BA7E /* weibo2.png */; };
+		53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DF0190E0AF700E7BA7E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -708,6 +709,9 @@
 		53F89DE2190DAF8C00E7BA7E /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		53F89DE4190E018300E7BA7E /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
 		53F89DE8190E022500E7BA7E /* weibo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo2.png; sourceTree = "<group>"; };
+		53F89DEF190E0AF700E7BA7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		53F89DF1190E0AFB00E7BA7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		53F89DF2190E0B1800E7BA7E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1602,6 +1606,7 @@
 		43759E161902B46400717DF5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				53F89DF0190E0AF700E7BA7E /* Localizable.strings */,
 				43759E171902B46400717DF5 /* AppDelegate.h */,
 				43759E181902B46400717DF5 /* AppDelegate.m */,
 				43759E1A1902B46400717DF5 /* GameScene.h */,
@@ -1701,6 +1706,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
+				pt,
 			);
 			mainGroup = 43759B631902B46100717DF5;
 			productRefGroup = 43759B6D1902B46100717DF5 /* Products */;
@@ -1758,6 +1765,7 @@
 				43759B9B1902B46200717DF5 /* Icon-76.png in Resources */,
 				53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */,
 				43D933531902C51D006704B8 /* cloud.png in Resources */,
+				53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */,
 				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
 				53F89DE9190E022500E7BA7E /* weibo2.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
@@ -1965,6 +1973,20 @@
 			targetProxy = 43759B841902B46100717DF5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		53F89DF0190E0AF700E7BA7E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				53F89DEF190E0AF700E7BA7E /* en */,
+				53F89DF1190E0AFB00E7BA7E /* Base */,
+				53F89DF2190E0B1800E7BA7E /* pt */,
+			);
+			name = Localizable.strings;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		43759E201902B46400717DF5 /* Debug */ = {
