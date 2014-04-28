@@ -21,7 +21,7 @@ bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
 bool playAccel = false;
 bool gameRunning = false;
-bool inIntroScene = false;
+bool inIntroScene = true;
 
 @implementation GameScene
 {
@@ -97,7 +97,7 @@ bool inIntroScene = false;
     _playGame = [CCButton buttonWithTitle: NSLocalizedString(@"Tap to begin", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
-    [_playGame setTarget:self selector:@selector(initGame)];
+    [_playGame setTarget:self selector:@selector(transition)];
     [self addChild:_playGame];
     
 	return self;
@@ -118,8 +118,7 @@ bool inIntroScene = false;
      [self addChild:_physicsWorld z:-1];
     
      // Player
-     _martian = [[Player alloc] initWorld:_physicsWorld withPosition:_ship.positionInPoints andScene:self];
-     [self removeChild:_ship];
+     _martian = [[Player alloc] initWorld:_physicsWorld withPosition: new_pos andScene:self];
     
      // Init and alloc mutable missile array
      _missilesArray = [[NSMutableArray alloc] init];
@@ -140,7 +139,6 @@ bool inIntroScene = false;
     [self addChild:_scoreLabel];
     
      // Schedule upwards clouds & sky
-    [self unschedule:@selector(introClouds:)];
     [self schedule:@selector(addCloud:) interval:1.5];
     [self schedule:@selector(moveBackground:) interval:0.03];
 
@@ -222,8 +220,8 @@ bool inIntroScene = false;
     // Set time and space bounds for cloud generation
     int maxY = self.contentSize.height;
     int randomY = (arc4random() % maxY);
-    int minDuration = 2.0;
-    int maxDuration = 3.0;
+    int minDuration = 1.8;
+    int maxDuration = 2.0;
     int rangeDuration = maxDuration - minDuration;
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -241,7 +239,7 @@ bool inIntroScene = false;
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
     int randomX = (arc4random() % maxX);
-    int minDuration = 2.0;
+    int minDuration = 1.8;
     int maxDuration = 4.0;
     int rangeDuration = maxDuration - minDuration;
     int randomDuration = (arc4random() % rangeDuration) + minDuration;
@@ -278,7 +276,12 @@ bool inIntroScene = false;
 // -----------------------------------------------------------------------
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    if (playAccel == false) {
+    //make it so if you tap anywhere on screen while on intro scene and the game begins
+    if (inIntroScene == true) {
+        [self transition];
+    }
+    
+    else if (playAccel == false) {
         CGPoint touchLoc = [touch locationInNode:self];
     
         // Log touch location
@@ -288,10 +291,7 @@ bool inIntroScene = false;
         CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
         [_martian._sprite runAction:actionMove];
     }
-    //make it so if you tap anywhere on screen while on intro scene and the game begins
-    if (inIntroScene == true) {
-        [self initGame];
-    }
+
 }
 // -----------------------------------------------------------------------
 #pragma mark - Accelerometer movement
@@ -365,7 +365,7 @@ bool inIntroScene = false;
 {
     //transition to begin of this scene again
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.8f]];
+     withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
 
 }
 // -----------------------------------------------------------------------
