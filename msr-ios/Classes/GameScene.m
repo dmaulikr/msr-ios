@@ -37,7 +37,7 @@ bool inTransition = false;
     Player *_martian;
     Missile *_missile;
     Powerup *_powerup;
-    Wind *_wind;
+    /*Wind *_wind;*/
     CCLayoutBox *endMenu;
     NSUserDefaults *_defaults;
     int _score;
@@ -239,7 +239,7 @@ bool inTransition = false;
     [self schedule:@selector(addMissile:) interval:2];
     [self schedule:@selector(incrementScore) interval:0.1];
     [self schedule:@selector(addPowerup:) interval:4.5];
-    [self schedule:@selector(addWind:) interval:5];
+    /*[self schedule:@selector(addWind:) interval:5];*/
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
     // Per frame update is automatically enabled, if update is overridden
@@ -601,15 +601,15 @@ bool inTransition = false;
 {
     _powerup = [[Powerup alloc] initWithPhysicsWorld: _physicsWorld andGameScene:self];
 }
-// -----------------------------------------------------------------------
-#pragma mark - Add Powerup
+/*// -----------------------------------------------------------------------
+#pragma mark - Add Wind
 // -----------------------------------------------------------------------
 -(void)addWind:(CCTime)delta
 {
     //random type
     int _type = arc4random() % 3;
     _wind = [[Wind alloc] initWorld:_physicsWorld andScene:self andType:_type];
-}
+}*/
 
 // -----------------------------------------------------------------------
 #pragma mark - Collision Detection for Powerups and player
@@ -653,7 +653,7 @@ bool inTransition = false;
     
     return YES;
 }
-// -----------------------------------------------------------------------
+/*// -----------------------------------------------------------------------
 #pragma mark - Collision Detection for Wind and player
 // -----------------------------------------------------------------------
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind playerCollision:(CCNode *)player {
@@ -666,7 +666,7 @@ bool inTransition = false;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind powerupCollision:(CCNode *)player {
     
     return YES;
-}
+}*/
 
 
 @end
