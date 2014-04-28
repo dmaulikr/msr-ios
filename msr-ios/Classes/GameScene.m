@@ -21,7 +21,7 @@ bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
 bool playAccel = false;
 bool gameRunning = false;
-bool inIntroScene = false;
+bool inIntroScene = true;
 
 @implementation GameScene
 {
@@ -123,6 +123,8 @@ bool inIntroScene = false;
 }
 
 - (void)initGame {
+    inIntroScene = false;
+    
     
     // Destroy ship
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
@@ -295,7 +297,12 @@ bool inIntroScene = false;
 // -----------------------------------------------------------------------
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    if (playAccel == false) {
+    //make it so if you tap anywhere on screen while on intro scene and the game begins
+    if (inIntroScene == true) {
+        [self transition];
+    }
+    
+    else if (playAccel == false) {
         CGPoint touchLoc = [touch locationInNode:self];
     
         // Log touch location
@@ -305,10 +312,7 @@ bool inIntroScene = false;
         CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
         [_martian._sprite runAction:actionMove];
     }
-    //make it so if you tap anywhere on screen while on intro scene and the game begins
-    if (inIntroScene == true) {
-        [self initGame];
-    }
+
 }
 // -----------------------------------------------------------------------
 #pragma mark - Accelerometer movement
