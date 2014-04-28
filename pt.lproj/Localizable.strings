@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  msr-ios
+
+  Created by Macgill on 4/27/14.
+  Copyright (c) 2014 o2bt. All rights reserved.
+*/
+
+
+"Tap to begin" = "Toca para começar";
+"Martian Fall" = "Queda do Marciano";
+"[ Play ]" = "[ Jogar ]";
+"I just scored %d in #MartianFall. Play for yourself at " = "Eu já marquei %d en #QuedaDoMarciano! Joga aqui ";
+"No Facebook account found." = "Nenhuma conta de Facebook encontrado";
+"No Twitter account found." = "Nenhuma conta de Twitter encontrado";
+"No Weibo account found." = "Nenhuma conta de Weibo encontrado";
+"[ Accelerometer ]" = "[Acelerômetro]";
+"Score: %03d" = "Pontos: %03d";
