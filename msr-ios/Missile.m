@@ -35,7 +35,7 @@
     
     missile.position = CGPointMake(randomX, 0);//-(self.contentSize.height + missile.contentSize.height));
     missile.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, missile.contentSize} cornerRadius:0];
-    missile.physicsBody.collisionGroup = @"missileGroup";
+    missile.physicsBody.collisionGroup = @"aerialGroup";
     missile.physicsBody.collisionType  = @"missileCollision";
     [_physicsWorld addChild:missile z:-1];
     
