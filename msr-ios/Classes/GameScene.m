@@ -22,6 +22,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 bool playAccel = false;
 bool gameRunning = false;
 bool inIntroScene = true;
+bool inTransition = false;
 
 @implementation GameScene
 {
@@ -85,6 +86,7 @@ bool inIntroScene = true;
     [_ship runAction:[CCActionRepeatForever actionWithAction:[CCActionSequence actionWithArray:@[waverDown, waverUp]]]];
     //turn intro scene bool on
     inIntroScene = true;
+    inTransition = false;
     
     // Intro title
     _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"Chalkduster" fontSize:36.0f];
@@ -103,12 +105,43 @@ bool inIntroScene = true;
 	return self;
 }
 
-- (void)initGame {
+- (void)transition {
     inIntroScene = false;
+    inTransition = true;
     
-     // Fade out buttons
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(initGame) userInfo:nil repeats:NO];
+    // Fade out buttons + clouds
+    [self unschedule:@selector(introClouds:)];
     [_introLabel runAction:[CCActionFadeOut actionWithDuration:0.4]];
     [self removeChild:_playGame];
+    
+    // Initial missile
+    CCSprite *missile = [CCSprite spriteWithImageNamed:@"rocket.png"];
+    missile.positionType = CCPositionTypeNormalized;
+    missile.position = ccp(0.5f, 0);
+    [self addChild:missile];
+    
+    CCAction *actionMove = [CCActionMoveTo actionWithDuration:2.0 position:_ship.position];
+    CCAction *actionRemove = [CCActionRemove action];
+    [missile runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+    
+}
+
+- (void)initGame {
+    inTransition = false;
+    
+    // Destroy ship
+    CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
+    CGPoint new_pos = _ship.positionInPoints;
+    new_pos.y = new_pos.y + 10;
+    boomer.position  = new_pos;
+    [self addChild:boomer z:3];
+    [self removeChild:_ship];
+    
+    CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:0.8];
+    CCAction *actionRemove = [CCActionRemove action];
+    [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    
     
      // Set up the physics world
      _physicsWorld = [CCPhysicsNode node];
@@ -167,8 +200,8 @@ bool inIntroScene = true;
     CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"High score: %d", highScore] fontName:@"Chalkduster" fontSize:14.0f];
     highScoreLabel.positionType = CCPositionTypeNormalized;
     highScoreLabel.color = [CCColor blackColor];
-    //_scoreLabel.position = ccp(0.15f, 0.95f); // Top left corner
-    [self addChild:highScoreLabel];
+    //highScoreLabel.position = ccp(0.55f, 0.25f); // Middle center
+    //[self addChild:highScoreLabel];
     
     endMenu = [[CCLayoutBox alloc] init];
     endMenu.direction = CCLayoutBoxDirectionVertical;
@@ -180,6 +213,7 @@ bool inIntroScene = true;
     [endMenu addChild:facebookB];
     [endMenu addChild:twitterB];
     [endMenu addChild:playAgainButton];
+    [endMenu addChild:highScoreLabel];
     
     //start the gameRunning
     gameRunning = true;
@@ -541,8 +575,6 @@ bool inIntroScene = true;
     gameRunning = false;
     playAccel = false;
     
-
-    
     //create end menu
     [self addChild:endMenu];
     
@@ -555,27 +587,29 @@ bool inIntroScene = true;
 // -----------------------------------------------------------------------
 
 -(int) calculateHighScore {
-    /* HIGHSCORE MANAGEMENT */
-    int highScore = _score;
+
+    int highScore;
     
     // If the app is running for the first time, set the high score
     if (![_defaults objectForKey:@"firstRun"]) {
         [_defaults setObject:[NSDate date] forKey:@"firstRun"];
         [_defaults setFloat:_score forKey:@"SavedHighScore"];
-        NSLog(@"Highscore updated bro");
         [_defaults synchronize];
         
-        return highScore;
+        return _score;
     }
     // Otherwise, check if the highscore needs to be updated
     else {
         highScore = [[_defaults valueForKey:@"SavedHighScore"] intValue];
         if (_score > highScore) {
             [_defaults setFloat:_score forKey:@"SavedHighScore"];
-            NSLog(@"Highscore updated");
+            NSLog(@"Highscore updated from %d to %d", highScore, _score);
+        }
+        /* testing only */
+        else {
+            [_defaults setFloat:0.0 forKey:@"SavedHighScore"];
         }
     }
-    
     [_defaults synchronize];
     return highScore;
     
