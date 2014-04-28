@@ -1,0 +1,23 @@
+Need to implemenet:
+    - bounding box for the player
+    - get other language translations done (chinese, japanese, french, spanish, etc.)
+    - fit all text to screen (make a function that resizes buttons/labels until they fit to screen)
+    - create wind obstacle
+    - new assets
+    - extra classes?
+        - airplane
+        - balloon
+        - birds
+        - fall through city?
+        - fall into ocean?
+            - fish, sharks, etc.
+        - skydiver
+        - hot air balloon
+        - totoro
+    - can we use the noun project?
+        - http://thenounproject.com/
+    - for the website:
+        - http://thepatternlibrary.com/
+
+
+    

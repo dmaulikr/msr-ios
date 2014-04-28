@@ -66,6 +66,6 @@
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
                                withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
 }
-
 // -----------------------------------------------------------------------
+
 @end
