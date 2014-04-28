@@ -1,0 +1,7 @@
+Need to implemenet:
+    - bounding box for the player
+    - get other language translations done (chinese, japanese, french, etc.)
+    - fit all text to screen (make a function that resizes buttons/labels until they fit to screen)
+    - create wind obstacle
+    - new assets
+    

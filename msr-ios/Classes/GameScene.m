@@ -261,7 +261,7 @@ bool inIntroScene = false;
 {
     if (gameRunning == true) {
         _score++;
-        [_scoreLabel setString:[NSString stringWithFormat:@"Score: %03d", _score]];
+        [_scoreLabel setString:[NSString stringWithFormat:NSLocalizedString(@"Score: %03d", nil), _score]];
     }
 }
 

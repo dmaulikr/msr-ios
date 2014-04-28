@@ -223,6 +223,7 @@
 		536A14D2190AE3E9004AEEAF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = 536A14D1190AE3E9004AEEAF /* Powerup.m */; };
 		537658B01907610A00DA1EB4 /* Player2.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658AF1907610A00DA1EB4 /* Player2.m */; };
 		537658B319076A9A00DA1EB4 /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658B219076A9A00DA1EB4 /* Missile.m */; };
+		539E3E32190E9C5800515F1B /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = 539E3E31190E9C5800515F1B /* Notes */; };
 		539FF7FB1909D0A100549B3B /* boomer.png in Resources */ = {isa = PBXBuildFile; fileRef = 539FF7FA1909D0A100549B3B /* boomer.png */; };
 		53CE0530190981BF003454B2 /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE052F190981BF003454B2 /* rocket.png */; };
 		53CE05381909A6EE003454B2 /* skybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05371909A6EE003454B2 /* skybackground.png */; };
@@ -694,6 +695,7 @@
 		537658AF1907610A00DA1EB4 /* Player2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player2.m; path = ../Player2.m; sourceTree = "<group>"; };
 		537658B119076A9A00DA1EB4 /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
 		537658B219076A9A00DA1EB4 /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
+		539E3E31190E9C5800515F1B /* Notes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		539FF7FA1909D0A100549B3B /* boomer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boomer.png; path = ../boomer.png; sourceTree = "<group>"; };
 		53CE052F190981BF003454B2 /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rocket.png; path = ../rocket.png; sourceTree = "<group>"; };
 		53CE05371909A6EE003454B2 /* skybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground.png; sourceTree = "<group>"; };
@@ -1619,6 +1621,7 @@
 				536A14D1190AE3E9004AEEAF /* Powerup.m */,
 				43759E1D1902B46400717DF5 /* IntroScene.h */,
 				43759E1E1902B46400717DF5 /* IntroScene.m */,
+				539E3E31190E9C5800515F1B /* Notes */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1743,6 +1746,7 @@
 				43759B901902B46200717DF5 /* Default-Landscape~ipad.png in Resources */,
 				43759BA51902B46200717DF5 /* Icon-Small.png in Resources */,
 				43D933521902C51D006704B8 /* bird.png in Resources */,
+				539E3E32190E9C5800515F1B /* Notes in Resources */,
 				535FF5D219058C240094C98C /* background.png in Resources */,
 				43759BA31902B46200717DF5 /* Icon-Small-50.png in Resources */,
 				53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */,
