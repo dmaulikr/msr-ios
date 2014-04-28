@@ -123,7 +123,6 @@ bool inIntroScene = false;
 }
 
 - (void)initGame {
-    introMenu = false;
     
     // Destroy ship
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
@@ -370,7 +369,6 @@ bool inIntroScene = false;
     //transition to begin of this scene again
     [[CCDirector sharedDirector] replaceScene:[GameScene scene]
      withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
-
 
 }
 // -----------------------------------------------------------------------
