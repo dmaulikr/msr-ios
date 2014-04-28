@@ -26,3 +26,5 @@ Need to implemenet:
     -Only show Weibo if language is chinese
 
     
+Bugs:
+    - text overlaps for social media button tapping
