@@ -295,12 +295,40 @@ bool inIntroScene = false;
         CGPoint touchLoc = _martian._sprite.position;
         touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
         touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
-    
+        
+        touchLoc = [self playerBoundBox:touchLoc];
+        
         // Move our sprite to touch location
         CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
         [_martian._sprite runAction:actionMove];
     }
 }
+// -----------------------------------------------------------------------
+#pragma mark - Bounding box for player function - make sure player stays on screen
+// -----------------------------------------------------------------------
+-(CGPoint)playerBoundBox:(CGPoint) playerLoc {
+    int padding = 5;
+    float extra = 0;
+    //check x coordinates
+    if (playerLoc.x > (self.contentSize.width + padding)) {
+        extra = playerLoc.x - (self.contentSize.width + padding);
+        playerLoc.x = playerLoc.x - extra;
+    } else if (playerLoc.x < -10) {
+        playerLoc.x = -10;
+    }
+
+    //check y coordinates, keep y coords in top 2/3 of screen
+    if (playerLoc.y > (self.contentSize.height + padding)) {
+        extra = playerLoc.y - (self.contentSize.height + padding);
+        playerLoc.y = playerLoc.y - extra;
+    } else if (playerLoc.y < (self.contentSize.height/3)) {
+        playerLoc.y = (self.contentSize.height/3);
+    }
+    
+    return playerLoc;
+}
+
+
 // -----------------------------------------------------------------------
 #pragma mark - Button Callbacks
 // -----------------------------------------------------------------------

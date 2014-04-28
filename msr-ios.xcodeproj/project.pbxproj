@@ -1700,6 +1700,11 @@
 				TargetAttributes = {
 					43759B6B1902B46100717DF5 = {
 						DevelopmentTeam = MEY4AVA7K7;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
