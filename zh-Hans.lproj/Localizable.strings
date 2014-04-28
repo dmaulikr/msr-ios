@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  msr-ios
+
+  Created by Macgill on 4/27/14.
+  Copyright (c) 2014 o2bt. All rights reserved.
+*/
+
+
+"Tap to begin" = "点击开始";
+"Martian Fall" = "火星秋季";
+"[ Play ]" = "[ 游戏 ]";
+"I just scored %d in #MartianFall. Play for yourself at " = "我刚刚拿下的第 ％d ＃MartianFall。玩自己的";
+"No Facebook account found." = "No没有找到Facebook帐户";
+"No Twitter account found." = "没有Twitter帐户发现。";
+"No Weibo account found." = "没有发现微博帐号";
+"[ Accelerometer ]" = "[ 加速度计 ]";
+"Score: %03d" = "分数: %03d";

@@ -688,6 +688,7 @@
 		43D9334F1902C51D006704B8 /* martian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martian.png; sourceTree = "<group>"; };
 		43D933501902C51D006704B8 /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		43D933511902C51D006704B8 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		530A107E190EE69B0072FEE0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		535FF5D119058C240094C98C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../background.png; sourceTree = "<group>"; };
 		536A14D0190AE3E9004AEEAF /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Powerup.h; path = ../Powerup.h; sourceTree = "<group>"; };
 		536A14D1190AE3E9004AEEAF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Powerup.m; path = ../Powerup.m; sourceTree = "<group>"; };
@@ -1716,6 +1717,7 @@
 				en,
 				Base,
 				pt,
+				"zh-Hans",
 			);
 			mainGroup = 43759B631902B46100717DF5;
 			productRefGroup = 43759B6D1902B46100717DF5 /* Products */;
@@ -1990,6 +1992,7 @@
 				53F89DEF190E0AF700E7BA7E /* en */,
 				53F89DF1190E0AFB00E7BA7E /* Base */,
 				53F89DF2190E0B1800E7BA7E /* pt */,
+				530A107E190EE69B0072FEE0 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			path = ..;
