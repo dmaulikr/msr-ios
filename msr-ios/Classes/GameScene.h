@@ -28,5 +28,6 @@
 - (id)init;
 - (void) getValues:(NSTimer *) timer;
 - (void)initGame;
+- (void)transition;
 // -----------------------------------------------------------------------
 @end
