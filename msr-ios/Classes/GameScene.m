@@ -61,7 +61,7 @@ bool inIntroScene = false;
     // Enable touch handling on scene node + set up motion manager
     self.userInteractionEnabled = YES;
     self.manager = [[CMMotionManager alloc] init];
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(getValues:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.04 target:self selector:@selector(getValues:) userInfo:nil repeats:YES];
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
@@ -105,10 +105,10 @@ bool inIntroScene = false;
 
 - (void)initGame {
     inIntroScene = false;
+    
      // Fade out buttons
     [_introLabel runAction:[CCActionFadeOut actionWithDuration:0.4]];
     [self removeChild:_playGame];
-    
     
      // Set up the physics world
      _physicsWorld = [CCPhysicsNode node];
@@ -128,7 +128,7 @@ bool inIntroScene = false;
     CCButton *accelButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Accelerometer ]", nil) fontName:@"Verdana-Bold" fontSize:14.0f];
     accelButton.positionType = CCPositionTypeNormalized;
     accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
-    [accelButton setTarget:self selector:@selector(turnOnAccel:)];
+    [accelButton setTarget:self selector:@selector(toggleAccel:)];
     [self addChild:accelButton];
      
     // Initialize the score & its label
@@ -163,7 +163,15 @@ bool inIntroScene = false;
     CCSpriteFrame *twitterFrame = [CCSpriteFrame frameWithImageNamed:@"twitterSmall.png"];
     CCButton *twitterB = [CCButton buttonWithTitle:@" " spriteFrame:twitterFrame];
     [twitterB setTarget:self selector:@selector(onTwitterClick:)];
-     
+    
+    //highscore label
+    int highScore = [self calculateHighScore];
+    CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"High score: %d", highScore] fontName:@"Chalkduster" fontSize:14.0f];
+    highScoreLabel.positionType = CCPositionTypeNormalized;
+    highScoreLabel.color = [CCColor blackColor];
+    //_scoreLabel.position = ccp(0.15f, 0.95f); // Top left corner
+    [self addChild:highScoreLabel];
+    
     endMenu = [[CCLayoutBox alloc] init];
     endMenu.direction = CCLayoutBoxDirectionVertical;
     endMenu.spacing = 10.f;
@@ -293,26 +301,27 @@ bool inIntroScene = false;
     
     if (playAccel == true) {
 
-        CGPoint newAccel = CGPointMake(self.manager.accelerometerData.acceleration.x * 20,
-                                       self.manager.accelerometerData.acceleration.y * 20);
+        float accelX = self.manager.accelerometerData.acceleration.x * 15;
+        float accelY = self.manager.accelerometerData.acceleration.y;
         
-        //NSLog(@"Acceleration: %f %f", newAccel.x, newAccel.y);
+        // Adjust so player doesn't have to tilt so much to go upwards
+        if (accelY > 0) {
+            accelY *= 25;
+        }
+        else accelY *= 13;
         
+        CGPoint newAccel = CGPointMake(accelX, accelY);
         CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
                                      _martian.physicsBody.surfaceVelocity.y + newAccel.y);
     
-        NSLog(@"Velocity: %f %f", newVel.x, newVel.y);
-    
-        [_martian.physicsBody setSurfaceVelocity:CGPointMake(_martian.physicsBody.velocity.x + newAccel.x,_martian.physicsBody.velocity.y + newAccel.y)];
-        
-        //_martian.physicsBody.velocity = ccp(newVel.x,newVel.y);
-
-        //NSLog(@"Velocity: %f %f", _martian.physicsBody.velocity.x, _martian.physicsBody.velocity.y);
+        [_martian.physicsBody setSurfaceVelocity:newVel];
         
         CGPoint touchLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
                                         _martian._sprite.position.y + newVel.y);
-    
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.01f position:touchLoc];
+
+        touchLoc = [self playerBoundBox:touchLoc];
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.02f position:touchLoc];
+        
         [_martian._sprite runAction:actionMove];
     }
 }
@@ -423,7 +432,7 @@ bool inIntroScene = false;
         [weiboMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
-- (void)turnOnAccel:(id)sender {
+- (void)toggleAccel:(id)sender {
     playAccel = !playAccel;
 }
 // -----------------------------------------------------------------------
@@ -528,10 +537,11 @@ bool inIntroScene = false;
     CCAction *actionRemove = [CCActionRemove action];
     [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
 
-    //stop the score
+    //stop the score & control scheme
     gameRunning = false;
+    playAccel = false;
     
-    [self calculateHighScore];
+
     
     //create end menu
     [self addChild:endMenu];
@@ -544,15 +554,18 @@ bool inIntroScene = false;
 #pragma mark - High Score Calculation and Storing
 // -----------------------------------------------------------------------
 
--(void) calculateHighScore {
+-(int) calculateHighScore {
     /* HIGHSCORE MANAGEMENT */
-    int highScore;
+    int highScore = _score;
     
     // If the app is running for the first time, set the high score
     if (![_defaults objectForKey:@"firstRun"]) {
         [_defaults setObject:[NSDate date] forKey:@"firstRun"];
         [_defaults setFloat:_score forKey:@"SavedHighScore"];
         NSLog(@"Highscore updated bro");
+        [_defaults synchronize];
+        
+        return highScore;
     }
     // Otherwise, check if the highscore needs to be updated
     else {
@@ -564,7 +577,8 @@ bool inIntroScene = false;
     }
     
     [_defaults synchronize];
-
+    return highScore;
+    
 }
 // -----------------------------------------------------------------------
 #pragma mark - Add Powerup
