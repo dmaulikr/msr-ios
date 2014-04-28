@@ -280,26 +280,26 @@ bool gameRunning = false;
     
     if (playAccel == true) {
 
-        CGPoint newAccel = CGPointMake(self.manager.accelerometerData.acceleration.x * 15,
-                                       self.manager.accelerometerData.acceleration.y * 15);
+        CGPoint newAccel = CGPointMake(self.manager.accelerometerData.acceleration.x * 20,
+                                       self.manager.accelerometerData.acceleration.y * 20);
         
         //NSLog(@"Acceleration: %f %f", newAccel.x, newAccel.y);
         
-        CGPoint newVel = CGPointMake(_martian.physicsBody.velocity.x + newAccel.x,
-                                     _martian.physicsBody.velocity.y + newAccel.y);
+        CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
+                                     _martian.physicsBody.surfaceVelocity.y + newAccel.y);
     
         NSLog(@"Velocity: %f %f", newVel.x, newVel.y);
     
+        [_martian.physicsBody setSurfaceVelocity:CGPointMake(_martian.physicsBody.velocity.x + newAccel.x,_martian.physicsBody.velocity.y + newAccel.y)];
         
-        [_martian.physicsBody setVelocity:CGPointMake(_martian.physicsBody.velocity.x + newAccel.x,
-                                                      _martian.physicsBody.velocity.y + newAccel.y)];
-        
+        //_martian.physicsBody.velocity = ccp(newVel.x,newVel.y);
+
         //NSLog(@"Velocity: %f %f", _martian.physicsBody.velocity.x, _martian.physicsBody.velocity.y);
         
-        CGPoint touchLoc = CGPointMake (_martian._sprite.position.x + _martian.physicsBody.velocity.x,
-                                        _martian._sprite.position.y + _martian.physicsBody.velocity.y);
+        CGPoint touchLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
+                                        _martian._sprite.position.y + newVel.y);
     
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.2f position:touchLoc];
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.01f position:touchLoc];
         [_martian._sprite runAction:actionMove];
     }
 }
