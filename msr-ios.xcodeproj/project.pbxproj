@@ -1759,12 +1759,7 @@
 				ORGANIZATIONNAME = o2bt;
 				TargetAttributes = {
 					43759B6B1902B46100717DF5 = {
-						DevelopmentTeam = MEY4AVA7K7;
-						SystemCapabilities = {
-							com.apple.GameCenter = {
-								enabled = 0;
-							};
-						};
+						DevelopmentTeam = U6MKAK47DY;
 					};
 				};
 			};
@@ -1794,6 +1789,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF8BF14619104603002BFE24 /* backgroundloop1.png in Resources */,
 				53CE053A1909A945003454B2 /* skybackground2.png in Resources */,
 				43759B8C1902B46100717DF5 /* Default@2x.png in Resources */,
 				530A1087190EFC760072FEE0 /* windVertical.png in Resources */,
@@ -1844,6 +1840,7 @@
 				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
 				53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */,
 				53F89DE9190E022500E7BA7E /* weibo2.png in Resources */,
+				EF8BF14419104277002BFE24 /* transition1.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,
 				530A1086190EFC760072FEE0 /* windHorizontalSmall.png in Resources */,

@@ -26,6 +26,8 @@ bool inTransition = false;
 //how much to increase score for powerups
 const int POWERUP_INCREASE = 100;
 
+int yVel = 0;
+
 @implementation GameScene
 {
     CCSprite *_background1;
@@ -64,7 +66,7 @@ const int POWERUP_INCREASE = 100;
     // Enable touch handling on scene node + set up motion manager
     self.userInteractionEnabled = YES;
     self.manager = [[CMMotionManager alloc] init];
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(getValues:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.04 target:self selector:@selector(spriteUpdate:withDx:withDy:withDuration:) userInfo:nil repeats:YES];
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
@@ -171,7 +173,7 @@ const int POWERUP_INCREASE = 100;
     CCButton *accelButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Accelerometer ]", nil) fontName:@"Verdana-Bold" fontSize:14.0f];
     accelButton.positionType = CCPositionTypeNormalized;
     accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
-    [accelButton setTarget:self selector:@selector(turnOnAccel:)];
+    [accelButton setTarget:self selector:@selector(toggleAccel:)];
     [self addChild:accelButton];
      
     // Initialize the score & its label
@@ -205,7 +207,15 @@ const int POWERUP_INCREASE = 100;
     CCSpriteFrame *twitterFrame = [CCSpriteFrame frameWithImageNamed:@"twitterSmall.png"];
     CCButton *twitterB = [CCButton buttonWithTitle:@" " spriteFrame:twitterFrame];
     [twitterB setTarget:self selector:@selector(onTwitterClick:)];
-     
+    
+    //highscore label
+    int highScore = [self calculateHighScore];
+    CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"High score: %d", highScore] fontName:@"Chalkduster" fontSize:14.0f];
+    highScoreLabel.positionType = CCPositionTypeNormalized;
+    highScoreLabel.color = [CCColor blackColor];
+    //highScoreLabel.position = ccp(0.55f, 0.25f); // Middle center
+    //[self addChild:highScoreLabel];
+    
     endMenu = [[CCLayoutBox alloc] init];
     endMenu.direction = CCLayoutBoxDirectionVertical;
     endMenu.spacing = 10.f;
@@ -221,6 +231,7 @@ const int POWERUP_INCREASE = 100;
     [endMenu addChild:facebookB];
     [endMenu addChild:twitterB];
     [endMenu addChild:playAgainButton];
+    [endMenu addChild:highScoreLabel];
     
     //start the gameRunning
     gameRunning = true;
@@ -322,32 +333,56 @@ const int POWERUP_INCREASE = 100;
         [self transition];
     }
     
-    else if (!playAccel && !inTransition) {
-        CGPoint touchLoc = [touch locationInNode:self];
+    else if (playAccel && !inTransition) {
+        //CGPoint touchLoc = [touch locationInNode:self];
     
         // Log touch location
-        CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
+        //CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
     
         // Move our sprite to touch location
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-        [_martian._sprite runAction:actionMove];
+        //CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+        //[_martian._sprite runAction:actionMove];
+        
+        // A touch gives an acceleration in the y-direction
+        
+        
+        CCLOG(@"THUG LIFE FOR LIFE");
+        [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.25];
     }
 }
 // -----------------------------------------------------------------------
 #pragma mark - Accelerometer movement
 // -----------------------------------------------------------------------
--(void) getValues:(NSTimer *) timer {
-    //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.y * 20), 20)]);
-    //NSLog([NSString stringWithFormat:@"%.2f", fmod((self.manager.accelerometerData.acceleration.x * 20), 20)]);
+-(void) spriteUpdate:(NSTimer *) timer withDx:(float) dx withDy:(float) dy withDuration:(float) dur{
+    
     if (playAccel == true) {
-        CGPoint touchLoc = _martian._sprite.position;
-        touchLoc.x += self.manager.accelerometerData.acceleration.x * 80.0;
-        touchLoc.y += self.manager.accelerometerData.acceleration.y * 30 + 20.0;
+
+        /* NOTE: Issue: Still little collisions with invisbile wall. Not sure how to fix */
         
-        touchLoc = [self playerBoundBox:touchLoc];
+        NSLog(@"%f", dur);
+        float accelX = self.manager.accelerometerData.acceleration.x;
+        //float accelY = self.manager.accelerometerData.acceleration.y;
         
-        // Move our sprite to touch location
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+        //NSLog(@"Falling at %f", accelY);
+        
+        CGPoint newAccel = CGPointMake(accelX * 15 + dx, dy - 2.8);
+        
+        CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
+                                     _martian.physicsBody.surfaceVelocity.y + newAccel.y);
+        
+        CGPoint moveLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
+                                       _martian._sprite.position.y + newVel.y);
+
+        moveLoc = [self playerBoundBox:moveLoc];
+        
+        float duration = 0.01f;
+        
+        //if (newVel.y < 0)
+            duration = 0.10;
+        
+        
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:duration position:moveLoc];
+        
         [_martian._sprite runAction:actionMove];
     }
 }
@@ -489,12 +524,16 @@ const int POWERUP_INCREASE = 100;
     int other = bgPos1.y  - _background1.contentSize.height/2;
     CCLOG(@"bgPos2.y is %d", other);*/
     
-    if (bgPos1.y > (_background1.contentSize.height - (2 * self.contentSize.width))) {
-        bgPos1.y = 0;
+    if (bgPos2.y > 0) {
+        //[self removeChild:_background1];
+        NSLog(@"disappear");
+        // start looping main background
     }
-    bgPos2.y = bgPos1.y - _background1.contentSize.height/2;
     
+    
+    bgPos2.y = bgPos1.y - _background1.contentSize.height/2 - _background2.contentSize.height/2;
 
+    
     bgPos1.y = (int)bgPos1.y;
     bgPos2.y = (int)bgPos2.y;
     _background1.position = bgPos1;
@@ -574,10 +613,9 @@ const int POWERUP_INCREASE = 100;
     CCAction *actionRemove = [CCActionRemove action];
     [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
 
-    //stop the score
+    //stop the score & control scheme
     gameRunning = false;
-    
-    [self calculateHighScore];
+    playAccel = false;
     
     //create end menu
     [self addChild:endMenu];
@@ -590,27 +628,33 @@ const int POWERUP_INCREASE = 100;
 #pragma mark - High Score Calculation and Storing
 // -----------------------------------------------------------------------
 
--(void) calculateHighScore {
-    /* HIGHSCORE MANAGEMENT */
+-(int) calculateHighScore {
+
     int highScore;
     
     // If the app is running for the first time, set the high score
     if (![_defaults objectForKey:@"firstRun"]) {
         [_defaults setObject:[NSDate date] forKey:@"firstRun"];
         [_defaults setFloat:_score forKey:@"SavedHighScore"];
-        NSLog(@"Highscore updated bro");
+        [_defaults synchronize];
+        
+        return _score;
     }
     // Otherwise, check if the highscore needs to be updated
     else {
         highScore = [[_defaults valueForKey:@"SavedHighScore"] intValue];
         if (_score > highScore) {
             [_defaults setFloat:_score forKey:@"SavedHighScore"];
-            NSLog(@"Highscore updated");
+            NSLog(@"Highscore updated from %d to %d", highScore, _score);
+        }
+        /* testing only */
+        else {
+            [_defaults setFloat:0.0 forKey:@"SavedHighScore"];
         }
     }
-    
     [_defaults synchronize];
-
+    return highScore;
+    
 }
 // -----------------------------------------------------------------------
 #pragma mark - Add Powerup
