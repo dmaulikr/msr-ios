@@ -71,12 +71,12 @@ int yVel = 0;
     [self.manager startAccelerometerUpdates];
     
     // Add images as backgrounds
-    _background1 = [CCSprite spriteWithImageNamed:@"background.png"];
-    _background1.position = CGPointMake(_background1.contentSize.width/2,0);
+    _background1 = [CCSprite spriteWithImageNamed:@"transition1.png"];
+    _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"background.png"];
-    _background2.position = CGPointMake(_background2.contentSize.width/2,0);
+    _background2 = [CCSprite spriteWithImageNamed:@"backgroundloop1.png"];
+    _background2.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
     
@@ -390,7 +390,7 @@ int yVel = 0;
 #pragma mark - Bounding box for player function - make sure player stays on screen
 // -----------------------------------------------------------------------
 -(CGPoint)playerBoundBox:(CGPoint) playerLoc {
-    int padding = 5;
+    int padding = 0;
     float extra = 0;
     //check x coordinates
     if (playerLoc.x > (self.contentSize.width + padding)) {
