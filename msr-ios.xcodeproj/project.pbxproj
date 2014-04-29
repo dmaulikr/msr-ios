@@ -232,6 +232,7 @@
 		53CE0530190981BF003454B2 /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE052F190981BF003454B2 /* rocket.png */; };
 		53CE05381909A6EE003454B2 /* skybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05371909A6EE003454B2 /* skybackground.png */; };
 		53CE053A1909A945003454B2 /* skybackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05391909A945003454B2 /* skybackground2.png */; };
+		53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EE4CFE19101D5E00934154 /* diamondworld.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
 		53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD4190D82FC00E7BA7E /* lightning.png */; };
@@ -710,6 +711,7 @@
 		53CE052F190981BF003454B2 /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rocket.png; path = ../rocket.png; sourceTree = "<group>"; };
 		53CE05371909A6EE003454B2 /* skybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground.png; sourceTree = "<group>"; };
 		53CE05391909A945003454B2 /* skybackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground2.png; sourceTree = "<group>"; };
+		53EE4CFE19101D5E00934154 /* diamondworld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondworld.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
 		53F89DD4190D82FC00E7BA7E /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 		43759B881902B46100717DF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53FADF081910338200468B33 /* noun-project-type1 */,
 				43D9334B1902C51D006704B8 /* scratch-assets */,
 				43759B891902B46100717DF5 /* Default.png */,
 				43759B8B1902B46100717DF5 /* Default@2x.png */,
@@ -1642,6 +1645,7 @@
 			isa = PBXGroup;
 			children = (
 				539FF7FA1909D0A100549B3B /* boomer.png */,
+				53EE4CFE19101D5E00934154 /* diamondworld.png */,
 				53F89DE8190E022500E7BA7E /* weibo2.png */,
 				530A1084190EFC760072FEE0 /* windHorizontalSmall.png */,
 				530A1085190EFC760072FEE0 /* windVertical.png */,
@@ -1666,6 +1670,38 @@
 				43D933511902C51D006704B8 /* ship.png */,
 			);
 			path = "scratch-assets";
+			sourceTree = "<group>";
+		};
+		53FADF081910338200468B33 /* noun-project-type1 */ = {
+			isa = PBXGroup;
+			children = (
+				53FADF09191033A400468B33 /* Space */,
+				53FADF0A191033AA00468B33 /* Sky */,
+				53FADF0B1910370000468B33 /* Sea */,
+			);
+			name = "noun-project-type1";
+			path = "scratch-assets";
+			sourceTree = "<group>";
+		};
+		53FADF09191033A400468B33 /* Space */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Space;
+			sourceTree = "<group>";
+		};
+		53FADF0A191033AA00468B33 /* Sky */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sky;
+			sourceTree = "<group>";
+		};
+		53FADF0B1910370000468B33 /* Sea */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sea;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1794,6 +1830,7 @@
 				43D933531902C51D006704B8 /* cloud.png in Resources */,
 				53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */,
 				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
+				53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */,
 				53F89DE9190E022500E7BA7E /* weibo2.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,

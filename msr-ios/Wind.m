@@ -14,7 +14,7 @@
 @synthesize _windSprite;
 @synthesize _windType;
 
--(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int)_type {
+-(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int *)_type {
     self = [super init];
     
     _windType = _type;

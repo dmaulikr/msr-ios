@@ -66,12 +66,12 @@ bool inIntroScene = true;
     [self.manager startAccelerometerUpdates];
     
     // Add images as backgrounds
-    _background1 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
-    _background1.position = CGPointMake(10,0);
+    _background1 = [CCSprite spriteWithImageNamed:@"diamondworld.png"];
+    _background1.position = CGPointMake(_background1.contentSize.width/2,0);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"skybackground2.png"];
-    _background2.position = CGPointMake(10,0);
+    _background2 = [CCSprite spriteWithImageNamed:@"diamondworld.png"];
+    _background2.position = CGPointMake(_background2.contentSize.width/2,0);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
     
@@ -163,7 +163,7 @@ bool inIntroScene = true;
     _score = 0;
     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
     _scoreLabel.positionType = CCPositionTypeNormalized;
-    _scoreLabel.color = [CCColor blackColor];
+    _scoreLabel.color = [CCColor whiteColor];
     _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
     [self addChild:_scoreLabel];
     
@@ -306,7 +306,6 @@ bool inIntroScene = true;
     if (inIntroScene == true) {
         [self transition];
     }
-    
     else if (playAccel == false) {
         CGPoint touchLoc = [touch locationInNode:self];
     
