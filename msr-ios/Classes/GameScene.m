@@ -22,6 +22,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 bool playAccel = false;
 bool gameRunning = false;
 bool inIntroScene = true;
+bool inTransition = false;
 
 @implementation GameScene
 {
@@ -85,6 +86,7 @@ bool inIntroScene = true;
     [_ship runAction:[CCActionRepeatForever actionWithAction:[CCActionSequence actionWithArray:@[waverDown, waverUp]]]];
     //turn intro scene bool on
     inIntroScene = true;
+    inTransition = false;
     
     // Intro title
     _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"Chalkduster" fontSize:36.0f];
@@ -104,6 +106,9 @@ bool inIntroScene = true;
 }
 
 - (void)transition {
+    inIntroScene = false;
+    inTransition = true;
+    
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(initGame) userInfo:nil repeats:NO];
     // Fade out buttons + clouds
     [self unschedule:@selector(introClouds:)];
@@ -123,8 +128,7 @@ bool inIntroScene = true;
 }
 
 - (void)initGame {
-    inIntroScene = false;
-    
+    inTransition = false;
     
     // Destroy ship
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];

@@ -3,10 +3,12 @@ Need to implemenet:
     - get other language translations done (chinese, japanese, french, spanish, etc.)
     - fit all text to screen (make a function that resizes buttons/labels until they fit to screen)
     - create wind obstacle
+    - countdown to start of game?
     - new assets
     - extra classes?
         - airplane
         - balloon
+        - bigger boom asset for initial missile
         - birds
         - fall through city?
         - fall into ocean?
