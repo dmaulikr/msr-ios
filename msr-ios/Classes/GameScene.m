@@ -70,11 +70,11 @@ bool inTransition = false;
     
     // Add images as backgrounds
     _background1 = [CCSprite spriteWithImageNamed:@"transition1.png"];
-    _background1.position = CGPointMake(_background1.contentSize.width/2,0);
+    _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"transition1.png"];
-    _background2.position = CGPointMake(_background2.contentSize.width/2,0);
+    _background2 = [CCSprite spriteWithImageNamed:@"backgroundloop1.png"];
+    _background2.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
     
@@ -471,13 +471,16 @@ bool inTransition = false;
     int other = bgPos1.y  - _background1.contentSize.height/2;
     CCLOG(@"bgPos2.y is %d", other);*/
     
-    NSLog(@"%f", bgPos1.y);
-    if (bgPos1.y > (_background1.contentSize.height * 2)) {
-        bgPos1.y = 0;
+    if (bgPos2.y > 0) {
+        //[self removeChild:_background1];
+        NSLog(@"disappear");
+        // start looping main background
     }
-    bgPos2.y = bgPos1.y - _background1.contentSize.height/2;
     
+    
+    bgPos2.y = bgPos1.y - _background1.contentSize.height/2 - _background2.contentSize.height/2;
 
+    
     bgPos1.y = (int)bgPos1.y;
     bgPos2.y = (int)bgPos2.y;
     _background1.position = bgPos1;
