@@ -69,11 +69,11 @@ const int POWERUP_INCREASE = 100;
     [self.manager startAccelerometerUpdates];
     
     // Add images as backgrounds
-    _background1 = [CCSprite spriteWithImageNamed:@"diamondworld.png"];
+    _background1 = [CCSprite spriteWithImageNamed:@"background.png"];
     _background1.position = CGPointMake(_background1.contentSize.width/2,0);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"diamondworld.png"];
+    _background2 = [CCSprite spriteWithImageNamed:@"background.png"];
     _background2.position = CGPointMake(_background2.contentSize.width/2,0);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
@@ -320,7 +320,9 @@ const int POWERUP_INCREASE = 100;
     //make it so if you tap anywhere on screen while on intro scene and the game begins
     if (inIntroScene == true) {
         [self transition];
-    } else if (!playAccel && !inTransition) {
+    }
+    
+    else if (!playAccel && !inTransition) {
         CGPoint touchLoc = [touch locationInNode:self];
     
         // Log touch location
