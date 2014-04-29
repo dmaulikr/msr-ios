@@ -25,6 +25,8 @@ bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
 
+int yVel = 0;
+
 @implementation GameScene
 {
     CCSprite *_background1;
@@ -64,7 +66,7 @@ bool inTransition = false;
     // Enable touch handling on scene node + set up motion manager
     self.userInteractionEnabled = YES;
     self.manager = [[CMMotionManager alloc] init];
-    [NSTimer scheduledTimerWithTimeInterval:0.04 target:self selector:@selector(getValues:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.04 target:self selector:@selector(spriteUpdate:withDx:withDy:withDuration:) userInfo:nil repeats:YES];
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
@@ -323,46 +325,56 @@ bool inTransition = false;
         [self transition];
     }
     
-    else if (!playAccel && !inTransition) {
-        CGPoint touchLoc = [touch locationInNode:self];
+    else if (playAccel && !inTransition) {
+        //CGPoint touchLoc = [touch locationInNode:self];
     
         // Log touch location
-        CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
+        //CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
     
         // Move our sprite to touch location
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-        [_martian._sprite runAction:actionMove];
+        //CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
+        //[_martian._sprite runAction:actionMove];
+        
+        // A touch gives an acceleration in the y-direction
+        
+        
+        CCLOG(@"THUG LIFE FOR LIFE");
+        [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.25];
     }
 
 }
 // -----------------------------------------------------------------------
 #pragma mark - Accelerometer movement
 // -----------------------------------------------------------------------
--(void) getValues:(NSTimer *) timer {
-    //NSLog(@"Position: %f %f", _martian._sprite.position.x, _martian._sprite.position.y);
+-(void) spriteUpdate:(NSTimer *) timer withDx:(float) dx withDy:(float) dy withDuration:(float) dur{
     
     if (playAccel == true) {
 
-        float accelX = self.manager.accelerometerData.acceleration.x * 15;
-        float accelY = self.manager.accelerometerData.acceleration.y;
+        /* NOTE: Issue: Still little collisions with invisbile wall. Not sure how to fix */
         
-        // Adjust so player doesn't have to tilt so much to go upwards
-        if (accelY > 0) {
-            accelY *= 25;
-        }
-        else accelY *= 13;
+        NSLog(@"%f", dur);
+        float accelX = self.manager.accelerometerData.acceleration.x;
+        //float accelY = self.manager.accelerometerData.acceleration.y;
         
-        CGPoint newAccel = CGPointMake(accelX, accelY);
+        //NSLog(@"Falling at %f", accelY);
+        
+        CGPoint newAccel = CGPointMake(accelX * 15 + dx, dy - 2.8);
+        
         CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
                                      _martian.physicsBody.surfaceVelocity.y + newAccel.y);
-    
-        [_martian.physicsBody setSurfaceVelocity:newVel];
         
-        CGPoint touchLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
-                                        _martian._sprite.position.y + newVel.y);
+        CGPoint moveLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
+                                       _martian._sprite.position.y + newVel.y);
 
-        touchLoc = [self playerBoundBox:touchLoc];
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.02f position:touchLoc];
+        moveLoc = [self playerBoundBox:moveLoc];
+        
+        float duration = 0.01f;
+        
+        //if (newVel.y < 0)
+            duration = 0.10;
+        
+        
+        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:duration position:moveLoc];
         
         [_martian._sprite runAction:actionMove];
     }
