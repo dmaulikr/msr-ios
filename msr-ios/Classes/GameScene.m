@@ -71,11 +71,12 @@ int yVel = 0;
     [self.manager startAccelerometerUpdates];
     
     // Add images as backgrounds
-    _background1 = [CCSprite spriteWithImageNamed:@"transition1.png"];
+    //DONT HAVE TRANSITION1.PNG
+    _background1 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
     _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"backgroundloop1.png"];
+    _background2 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
     _background2.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
@@ -83,7 +84,7 @@ int yVel = 0;
     // Spaceship
     CCAction *waverUp = [CCActionMoveTo actionWithDuration:0.8 position:CGPointMake(0.5f, 0.63f)];
     CCAction *waverDown = [CCActionMoveTo actionWithDuration:0.8 position:CGPointMake(0.5f, 0.58f)];
-    _ship = [CCSprite spriteWithImageNamed:@"ship.png"];
+    _ship = [CCSprite spriteWithImageNamed:@"ufo.png"];
     _ship.positionType = CCPositionTypeNormalized;
     _ship.position = ccp(0.5f, 0.6f);
     [self addChild:_ship z:1];
@@ -504,7 +505,7 @@ int yVel = 0;
 
 }
 
-- (void)turnOnAccel:(id)sender {
+- (void)toggleAccel:(id)sender {
     playAccel = !playAccel;
 }
 // -----------------------------------------------------------------------
@@ -615,7 +616,6 @@ int yVel = 0;
 
     //stop the score & control scheme
     gameRunning = false;
-    playAccel = false;
     
     //create end menu
     [self addChild:endMenu];

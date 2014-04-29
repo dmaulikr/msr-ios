@@ -247,7 +247,10 @@
 		53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DF0190E0AF700E7BA7E /* Localizable.strings */; };
 		53FADF0F19103C4100468B33 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF0E19103C4100468B33 /* info.png */; };
 		53FADF151910561D00468B33 /* asteroid_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF131910561D00468B33 /* asteroid_1.png */; };
-		53FADF17191056F600468B33 /* comet.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF16191056F600468B33 /* comet.png */; };
+		53FADF17191056F600468B33 /* comet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF16191056F600468B33 /* comet1.png */; };
+		53FADF1B19105CE100468B33 /* comet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1A19105CE100468B33 /* comet2.png */; };
+		53FADF1F19105E1500468B33 /* ufo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1E19105E1500468B33 /* ufo.png */; };
+		53FADF2119105F0500468B33 /* comet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF2019105F0500468B33 /* comet3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -731,7 +734,10 @@
 		53F89DF2190E0B1800E7BA7E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		53FADF0E19103C4100468B33 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		53FADF131910561D00468B33 /* asteroid_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid_1.png; sourceTree = "<group>"; };
-		53FADF16191056F600468B33 /* comet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet.png; sourceTree = "<group>"; };
+		53FADF16191056F600468B33 /* comet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet1.png; sourceTree = "<group>"; };
+		53FADF1A19105CE100468B33 /* comet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet2.png; sourceTree = "<group>"; };
+		53FADF1E19105E1500468B33 /* ufo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo.png; sourceTree = "<group>"; };
+		53FADF2019105F0500468B33 /* comet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1694,7 +1700,10 @@
 			isa = PBXGroup;
 			children = (
 				53FADF131910561D00468B33 /* asteroid_1.png */,
-				53FADF16191056F600468B33 /* comet.png */,
+				53FADF16191056F600468B33 /* comet1.png */,
+				53FADF1A19105CE100468B33 /* comet2.png */,
+				53FADF2019105F0500468B33 /* comet3.png */,
+				53FADF1E19105E1500468B33 /* ufo.png */,
 			);
 			name = Space;
 			sourceTree = "<group>";
@@ -1796,11 +1805,13 @@
 				53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */,
 				53CE0530190981BF003454B2 /* rocket.png in Resources */,
 				43D933541902C51D006704B8 /* fire.png in Resources */,
-				53FADF17191056F600468B33 /* comet.png in Resources */,
+				53FADF17191056F600468B33 /* comet1.png in Resources */,
 				43759DA31902B46400717DF5 /* LICENSE_CCBReader.txt in Resources */,
+				53FADF1B19105CE100468B33 /* comet2.png in Resources */,
 				43759B951902B46200717DF5 /* Icon@2x.png in Resources */,
 				43759BA71902B46200717DF5 /* Icon-Small@2x.png in Resources */,
 				43D933551902C51D006704B8 /* martian.png in Resources */,
+				53FADF1F19105E1500468B33 /* ufo.png in Resources */,
 				43759B991902B46200717DF5 /* Icon-72@2x.png in Resources */,
 				43759B8A1902B46100717DF5 /* Default.png in Resources */,
 				43759B931902B46200717DF5 /* Icon.png in Resources */,
@@ -1819,6 +1830,7 @@
 				539FF7FB1909D0A100549B3B /* boomer.png in Resources */,
 				43759D8C1902B46300717DF5 /* LICENSE_Kazmath.txt in Resources */,
 				53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */,
+				53FADF2119105F0500468B33 /* comet3.png in Resources */,
 				43759B971902B46200717DF5 /* Icon-72.png in Resources */,
 				43759CE51902B46300717DF5 /* LICENSE_cocos2d.txt in Resources */,
 				53F89DD9190D878400E7BA7E /* parachute.png in Resources */,
