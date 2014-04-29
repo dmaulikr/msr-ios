@@ -3,10 +3,12 @@ Need to implemenet:
     - get other language translations done (chinese, japanese, french, spanish, etc.)
     - fit all text to screen (make a function that resizes buttons/labels until they fit to screen)
     - create wind obstacle
+    - countdown to start of game?
     - new assets
     - extra classes?
         - airplane
         - balloon
+        - bigger boom asset for initial missile
         - birds
         - fall through city?
         - fall into ocean?
@@ -14,10 +16,15 @@ Need to implemenet:
         - skydiver
         - hot air balloon
         - totoro
+        - kitten
     - can we use the noun project?
         - http://thenounproject.com/
     - for the website:
         - http://thepatternlibrary.com/
-
+    - Implement Gamecenter with our game
+        - http://www.raywenderlich.com/3276/game-center-tutorial-for-ios-how-to-make-a-simple-multiplayer-game-part-12
+    -Only show Weibo if language is chinese
 
     
+Bugs:
+    - text overlaps for social media button tapping
