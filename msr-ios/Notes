@@ -25,6 +25,7 @@ Need to implemenet:
         - http://www.raywenderlich.com/3276/game-center-tutorial-for-ios-how-to-make-a-simple-multiplayer-game-part-12
     -Only show Weibo if language is chinese
 
+LEVELS AND SPRITES
 NC = non-collision
 D = displacement
 H = horizontal
@@ -53,3 +54,6 @@ Sea
     - bubbles (NI, V)
     - giant squid/tentacle (NI,V)
     - fishes (NI, H)
+    
+Bugs:
+    - text overlaps for social media button tapping

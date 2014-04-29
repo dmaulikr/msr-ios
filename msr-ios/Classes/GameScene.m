@@ -19,10 +19,12 @@
 const int MAX_MISSILES = 4;
 bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
-bool playAccel = false;
+bool playAccel = true;//false
 bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
+//how much to increase score for powerups
+const int POWERUP_INCREASE = 100;
 
 @implementation GameScene
 {
@@ -156,6 +158,15 @@ bool inTransition = false;
      // Init and alloc mutable missile array
      _missilesArray = [[NSMutableArray alloc] init];
     
+    // Create a info button for testing
+    CCSpriteFrame *infoFrame = [CCSpriteFrame frameWithImageNamed:@"info.png"];
+    CCButton *infoButton = [CCButton buttonWithTitle:@" " spriteFrame:infoFrame];
+    infoButton.positionType = CCPositionTypeNormalized;
+    infoButton.position = ccp(0.91f, 0.95f); // Top Right of screen
+    [infoButton setTarget:self selector:@selector(onInfoButtonClick:)];
+    [self addChild:infoButton];
+
+
     // Create a accelorometer button for testing
     CCButton *accelButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Accelerometer ]", nil) fontName:@"Verdana-Bold" fontSize:14.0f];
     accelButton.positionType = CCPositionTypeNormalized;
@@ -309,8 +320,7 @@ bool inTransition = false;
     //make it so if you tap anywhere on screen while on intro scene and the game begins
     if (inIntroScene == true) {
         [self transition];
-    }
-    else if (playAccel == false) {
+    } else if (!playAccel && !inTransition) {
         CGPoint touchLoc = [touch locationInNode:self];
     
         // Log touch location
@@ -320,7 +330,6 @@ bool inTransition = false;
         CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
         [_martian._sprite runAction:actionMove];
     }
-
 }
 // -----------------------------------------------------------------------
 #pragma mark - Accelerometer movement
@@ -447,6 +456,17 @@ bool inTransition = false;
         [weiboMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
+-(void)onInfoButtonClick:(id)sender {
+    CCLabelTTF *infoMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to move up, turn to move left and right.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
+    infoMessage.positionType = CCPositionTypeNormalized;
+    infoMessage.position = ccp(0.5f, 0.8f); // Middle of screen
+    [self addChild: infoMessage];
+    CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.8];
+    CCAction *actionRemove = [CCActionRemove action];
+    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+
+}
+
 - (void)turnOnAccel:(id)sender {
     playAccel = !playAccel;
 }
@@ -603,6 +623,9 @@ bool inTransition = false;
 // -----------------------------------------------------------------------
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair powerupCollision:(CCNode *)powerup playerCollision:(CCNode *)player {
+    
+    //increment score on powerup collision
+    _score = _score + POWERUP_INCREASE;
     
     CCSprite *pUp = [CCSprite spriteWithImageNamed:(@"fireworks.png")];
     CGPoint new_pos = powerup.position;
