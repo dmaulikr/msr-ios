@@ -244,6 +244,8 @@
 		53F89DE5190E018300E7BA7E /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE4190E018300E7BA7E /* weibo.png */; };
 		53F89DE9190E022500E7BA7E /* weibo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE8190E022500E7BA7E /* weibo2.png */; };
 		53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DF0190E0AF700E7BA7E /* Localizable.strings */; };
+		EF8BF14419104277002BFE24 /* transition1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8BF14319104277002BFE24 /* transition1.png */; };
+		EF8BF14619104603002BFE24 /* backgroundloop1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8BF14519104603002BFE24 /* backgroundloop1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -724,6 +726,8 @@
 		53F89DEF190E0AF700E7BA7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		53F89DF1190E0AFB00E7BA7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		53F89DF2190E0B1800E7BA7E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EF8BF14319104277002BFE24 /* transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition1.png; sourceTree = "<group>"; };
+		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -801,6 +805,8 @@
 		43759B881902B46100717DF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF8BF14519104603002BFE24 /* backgroundloop1.png */,
+				EF8BF14319104277002BFE24 /* transition1.png */,
 				43D9334B1902C51D006704B8 /* scratch-assets */,
 				43759B891902B46100717DF5 /* Default.png */,
 				43759B8B1902B46100717DF5 /* Default@2x.png */,
@@ -1749,6 +1755,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF8BF14619104603002BFE24 /* backgroundloop1.png in Resources */,
 				53CE053A1909A945003454B2 /* skybackground2.png in Resources */,
 				43759B8C1902B46100717DF5 /* Default@2x.png in Resources */,
 				530A1087190EFC760072FEE0 /* windVertical.png in Resources */,
@@ -1795,6 +1802,7 @@
 				53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */,
 				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
 				53F89DE9190E022500E7BA7E /* weibo2.png in Resources */,
+				EF8BF14419104277002BFE24 /* transition1.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,
 				530A1086190EFC760072FEE0 /* windHorizontalSmall.png in Resources */,
