@@ -236,6 +236,7 @@
 		53D01587191155F8001AA9E2 /* missile_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D01586191155F8001AA9E2 /* missile_3.png */; };
 		53D01589191156C3001AA9E2 /* missile_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D01588191156C3001AA9E2 /* missile_2.png */; };
 		53D0158B19115711001AA9E2 /* missile_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158A19115711001AA9E2 /* missile_4.png */; };
+		53D0158D1911582E001AA9E2 /* plane_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158C1911582E001AA9E2 /* plane_2.png */; };
 		53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EE4CFE19101D5E00934154 /* diamondworld.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
@@ -725,6 +726,7 @@
 		53D01586191155F8001AA9E2 /* missile_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_3.png; sourceTree = "<group>"; };
 		53D01588191156C3001AA9E2 /* missile_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_2.png; sourceTree = "<group>"; };
 		53D0158A19115711001AA9E2 /* missile_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_4.png; sourceTree = "<group>"; };
+		53D0158C1911582E001AA9E2 /* plane_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane_2.png; sourceTree = "<group>"; };
 		53EE4CFE19101D5E00934154 /* diamondworld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondworld.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
@@ -1723,6 +1725,7 @@
 				53D01588191156C3001AA9E2 /* missile_2.png */,
 				53D01586191155F8001AA9E2 /* missile_3.png */,
 				53D0158A19115711001AA9E2 /* missile_4.png */,
+				53D0158C1911582E001AA9E2 /* plane_2.png */,
 			);
 			name = Sky;
 			sourceTree = "<group>";
@@ -1858,6 +1861,7 @@
 				43759E111902B46400717DF5 /* LICENSE_Chipmunk.txt in Resources */,
 				53F89DE1190DAE6800E7BA7E /* twitterSmall.png in Resources */,
 				43759BAB1902B46200717DF5 /* Icon-Spotlight-iOS7@2x.png in Resources */,
+				53D0158D1911582E001AA9E2 /* plane_2.png in Resources */,
 				43759B9B1902B46200717DF5 /* Icon-76.png in Resources */,
 				53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */,
 				43D933531902C51D006704B8 /* cloud.png in Resources */,

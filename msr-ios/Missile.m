@@ -18,7 +18,7 @@
     
     self = [super init];
     missile = [CCSprite spriteWithImageNamed:@"rocket.png"];
-    missile = [CCSprite spriteWithImageNamed:@"missile_4.png"];
+    missile = [CCSprite spriteWithImageNamed:@"plane_2.png"];
     //missile = [CCSprite spriteWithImageNamed:@"comet3.png"];
     
     //keep track of player
