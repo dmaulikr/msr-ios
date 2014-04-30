@@ -14,7 +14,7 @@
 @synthesize _windSprite;
 @synthesize _windType;
 
--(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int)_type {
+-(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int *)_type {
     self = [super init];
     
     _windType = _type;
@@ -99,6 +99,45 @@
     return self;
 
 }
+
+
+/********************************* belongs in GameScene.m ****************************************/
+/*#import "Wind.h"*/
+
+/*[self schedule:@selector(addWind:) interval:5];*/
+
+/*Wind *_wind;*/
+
+
+/*// -----------------------------------------------------------------------
+ #pragma mark - Add Wind
+ // -----------------------------------------------------------------------
+ -(void)addWind:(CCTime)delta
+ {
+ //random type
+ int _type = arc4random() % 3;
+ _wind = [[Wind alloc] initWorld:_physicsWorld andScene:self andType:_type];
+ }*/
+
+
+
+
+/*// -----------------------------------------------------------------------
+ #pragma mark - Collision Detection for Wind and player
+ // -----------------------------------------------------------------------
+ - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind playerCollision:(CCNode *)player {
+ 
+ return YES;
+ }
+ // -----------------------------------------------------------------------
+ #pragma mark - Collision Detection for Wind and Powerup
+ // -----------------------------------------------------------------------
+ - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind powerupCollision:(CCNode *)player {
+ 
+ return YES;
+ }*/
+/********************************* belongs in GameScene.m ****************************************/
+
 
 
 @end
