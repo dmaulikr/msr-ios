@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "321"
             endingLineNumber = "321"
-            landmarkName = "@implementation GameScene"
-            landmarkType = "3">
+            landmarkName = "-incrementScore"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -63,8 +63,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "319"
             endingLineNumber = "319"
-            landmarkName = "@implementation GameScene"
-            landmarkType = "3">
+            landmarkName = "-incrementScore"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "616"
             endingLineNumber = "616"
-            landmarkName = "-calculateHighScore"
+            landmarkName = "-ccPhysicsCollisionBegin:missileCollision:playerCollision:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,8 +111,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "609"
             endingLineNumber = "609"
-            landmarkName = "@implementation GameScene"
-            landmarkType = "3">
+            landmarkName = "-ccPhysicsCollisionBegin:missileCollision:playerCollision:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "620"
             endingLineNumber = "620"
-            landmarkName = "-calculateHighScore"
+            landmarkName = "-ccPhysicsCollisionBegin:missileCollision:playerCollision:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,7 +143,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "620"
             endingLineNumber = "620"
-            landmarkName = "-calculateHighScore"
+            landmarkName = "-ccPhysicsCollisionBegin:missileCollision:playerCollision:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
