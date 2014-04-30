@@ -12,7 +12,6 @@
 #import "Player.h"
 #import "Missile.h"
 #import "Powerup.h"
-#import "Wind.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
@@ -20,10 +19,12 @@
 const int MAX_MISSILES = 4;
 bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
-bool playAccel = false;
+bool playAccel = true;//false
 bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
+//how much to increase score for powerups
+const int POWERUP_INCREASE = 100;
 
 int yVel = 0;
 
@@ -39,7 +40,6 @@ int yVel = 0;
     Player *_martian;
     Missile *_missile;
     Powerup *_powerup;
-    /*Wind *_wind;*/
     CCLayoutBox *endMenu;
     NSUserDefaults *_defaults;
     int _score;
@@ -71,11 +71,12 @@ int yVel = 0;
     [self.manager startAccelerometerUpdates];
     
     // Add images as backgrounds
-    _background1 = [CCSprite spriteWithImageNamed:@"transition1.png"];
+    //DONT HAVE TRANSITION1.PNG
+    _background1 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
     _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"backgroundloop1.png"];
+    _background2 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
     _background2.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
@@ -83,7 +84,7 @@ int yVel = 0;
     // Spaceship
     CCAction *waverUp = [CCActionMoveTo actionWithDuration:0.8 position:CGPointMake(0.5f, 0.63f)];
     CCAction *waverDown = [CCActionMoveTo actionWithDuration:0.8 position:CGPointMake(0.5f, 0.58f)];
-    _ship = [CCSprite spriteWithImageNamed:@"ship.png"];
+    _ship = [CCSprite spriteWithImageNamed:@"ufo.png"];
     _ship.positionType = CCPositionTypeNormalized;
     _ship.position = ccp(0.5f, 0.6f);
     [self addChild:_ship z:1];
@@ -160,6 +161,15 @@ int yVel = 0;
      // Init and alloc mutable missile array
      _missilesArray = [[NSMutableArray alloc] init];
     
+    // Create a info button for testing
+    CCSpriteFrame *infoFrame = [CCSpriteFrame frameWithImageNamed:@"info.png"];
+    CCButton *infoButton = [CCButton buttonWithTitle:@" " spriteFrame:infoFrame];
+    infoButton.positionType = CCPositionTypeNormalized;
+    infoButton.position = ccp(0.91f, 0.95f); // Top Right of screen
+    [infoButton setTarget:self selector:@selector(onInfoButtonClick:)];
+    [self addChild:infoButton];
+
+
     // Create a accelorometer button for testing
     CCButton *accelButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Accelerometer ]", nil) fontName:@"Verdana-Bold" fontSize:14.0f];
     accelButton.positionType = CCPositionTypeNormalized;
@@ -171,7 +181,7 @@ int yVel = 0;
     _score = 0;
     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
     _scoreLabel.positionType = CCPositionTypeNormalized;
-    _scoreLabel.color = [CCColor blackColor];
+    _scoreLabel.color = [CCColor whiteColor];
     _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
     [self addChild:_scoreLabel];
     
@@ -250,7 +260,6 @@ int yVel = 0;
     [self schedule:@selector(addMissile:) interval:2];
     [self schedule:@selector(incrementScore) interval:0.1];
     [self schedule:@selector(addPowerup:) interval:4.5];
-    /*[self schedule:@selector(addWind:) interval:5];*/
     // In pre-v3, touch enable and scheduleUpdate was called here
     // In v3, touch is enabled by setting userInterActionEnabled for the individual nodes
     // Per frame update is automatically enabled, if update is overridden
@@ -278,7 +287,7 @@ int yVel = 0;
 }
 
 - (void)addCloud:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud.png"];
+    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud_1.png"];
     
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
@@ -341,7 +350,6 @@ int yVel = 0;
         CCLOG(@"THUG LIFE FOR LIFE");
         [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.25];
     }
-
 }
 // -----------------------------------------------------------------------
 #pragma mark - Accelerometer movement
@@ -383,7 +391,7 @@ int yVel = 0;
 #pragma mark - Bounding box for player function - make sure player stays on screen
 // -----------------------------------------------------------------------
 -(CGPoint)playerBoundBox:(CGPoint) playerLoc {
-    int padding = 5;
+    int padding = 0;
     float extra = 0;
     //check x coordinates
     if (playerLoc.x > (self.contentSize.width + padding)) {
@@ -403,8 +411,6 @@ int yVel = 0;
     
     return playerLoc;
 }
-
-
 // -----------------------------------------------------------------------
 #pragma mark - Button Callbacks
 // -----------------------------------------------------------------------
@@ -486,6 +492,17 @@ int yVel = 0;
         [weiboMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
+-(void)onInfoButtonClick:(id)sender {
+    CCLabelTTF *infoMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to move up, turn to move left and right.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
+    infoMessage.positionType = CCPositionTypeNormalized;
+    infoMessage.position = ccp(0.5f, 0.8f); // Middle of screen
+    [self addChild: infoMessage];
+    CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.8];
+    CCAction *actionRemove = [CCActionRemove action];
+    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+
+}
+
 - (void)toggleAccel:(id)sender {
     playAccel = !playAccel;
 }
@@ -597,7 +614,6 @@ int yVel = 0;
 
     //stop the score & control scheme
     gameRunning = false;
-    playAccel = false;
     
     //create end menu
     [self addChild:endMenu];
@@ -645,21 +661,15 @@ int yVel = 0;
 {
     _powerup = [[Powerup alloc] initWithPhysicsWorld: _physicsWorld andGameScene:self];
 }
-/*// -----------------------------------------------------------------------
-#pragma mark - Add Wind
-// -----------------------------------------------------------------------
--(void)addWind:(CCTime)delta
-{
-    //random type
-    int _type = arc4random() % 3;
-    _wind = [[Wind alloc] initWorld:_physicsWorld andScene:self andType:_type];
-}*/
 
 // -----------------------------------------------------------------------
 #pragma mark - Collision Detection for Powerups and player
 // -----------------------------------------------------------------------
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair powerupCollision:(CCNode *)powerup playerCollision:(CCNode *)player {
+    
+    //increment score on powerup collision
+    _score = _score + POWERUP_INCREASE;
     
     CCSprite *pUp = [CCSprite spriteWithImageNamed:(@"fireworks.png")];
     CGPoint new_pos = powerup.position;
@@ -697,20 +707,6 @@ int yVel = 0;
     
     return YES;
 }
-/*// -----------------------------------------------------------------------
-#pragma mark - Collision Detection for Wind and player
-// -----------------------------------------------------------------------
-- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind playerCollision:(CCNode *)player {
-    
-    return YES;
-}
-// -----------------------------------------------------------------------
-#pragma mark - Collision Detection for Wind and Powerup
-// -----------------------------------------------------------------------
-- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind powerupCollision:(CCNode *)player {
-    
-    return YES;
-}*/
 
 
 @end

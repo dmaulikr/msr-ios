@@ -223,6 +223,7 @@
 		530A1083190EF9340072FEE0 /* windHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A1082190EF9340072FEE0 /* windHorizontal.png */; };
 		530A1086190EFC760072FEE0 /* windHorizontalSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A1084190EFC760072FEE0 /* windHorizontalSmall.png */; };
 		530A1087190EFC760072FEE0 /* windVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A1085190EFC760072FEE0 /* windVertical.png */; };
+		5328718E19115C260043419F /* cloud_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5328718D19115C260043419F /* cloud_1.png */; };
 		535FF5D219058C240094C98C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5D119058C240094C98C /* background.png */; };
 		536A14D2190AE3E9004AEEAF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = 536A14D1190AE3E9004AEEAF /* Powerup.m */; };
 		537658B01907610A00DA1EB4 /* Player2.m in Sources */ = {isa = PBXBuildFile; fileRef = 537658AF1907610A00DA1EB4 /* Player2.m */; };
@@ -232,6 +233,12 @@
 		53CE0530190981BF003454B2 /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE052F190981BF003454B2 /* rocket.png */; };
 		53CE05381909A6EE003454B2 /* skybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05371909A6EE003454B2 /* skybackground.png */; };
 		53CE053A1909A945003454B2 /* skybackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CE05391909A945003454B2 /* skybackground2.png */; };
+		53D015851911556E001AA9E2 /* missile_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D015841911556E001AA9E2 /* missile_1.png */; };
+		53D01587191155F8001AA9E2 /* missile_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D01586191155F8001AA9E2 /* missile_3.png */; };
+		53D01589191156C3001AA9E2 /* missile_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D01588191156C3001AA9E2 /* missile_2.png */; };
+		53D0158B19115711001AA9E2 /* missile_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158A19115711001AA9E2 /* missile_4.png */; };
+		53D0158D1911582E001AA9E2 /* plane_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158C1911582E001AA9E2 /* plane_2.png */; };
+		53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EE4CFE19101D5E00934154 /* diamondworld.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
 		53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD4190D82FC00E7BA7E /* lightning.png */; };
@@ -244,8 +251,12 @@
 		53F89DE5190E018300E7BA7E /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE4190E018300E7BA7E /* weibo.png */; };
 		53F89DE9190E022500E7BA7E /* weibo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE8190E022500E7BA7E /* weibo2.png */; };
 		53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DF0190E0AF700E7BA7E /* Localizable.strings */; };
-		EF8BF14419104277002BFE24 /* transition1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8BF14319104277002BFE24 /* transition1.png */; };
-		EF8BF14619104603002BFE24 /* backgroundloop1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8BF14519104603002BFE24 /* backgroundloop1.png */; };
+		53FADF0F19103C4100468B33 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF0E19103C4100468B33 /* info.png */; };
+		53FADF151910561D00468B33 /* asteroid_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF131910561D00468B33 /* asteroid_1.png */; };
+		53FADF17191056F600468B33 /* comet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF16191056F600468B33 /* comet1.png */; };
+		53FADF1B19105CE100468B33 /* comet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1A19105CE100468B33 /* comet2.png */; };
+		53FADF1F19105E1500468B33 /* ufo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1E19105E1500468B33 /* ufo.png */; };
+		53FADF2119105F0500468B33 /* comet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF2019105F0500468B33 /* comet3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -700,6 +711,7 @@
 		530A1082190EF9340072FEE0 /* windHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windHorizontal.png; sourceTree = "<group>"; };
 		530A1084190EFC760072FEE0 /* windHorizontalSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windHorizontalSmall.png; sourceTree = "<group>"; };
 		530A1085190EFC760072FEE0 /* windVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windVertical.png; sourceTree = "<group>"; };
+		5328718D19115C260043419F /* cloud_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud_1.png; sourceTree = "<group>"; };
 		535FF5D119058C240094C98C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../background.png; sourceTree = "<group>"; };
 		536A14D0190AE3E9004AEEAF /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Powerup.h; path = ../Powerup.h; sourceTree = "<group>"; };
 		536A14D1190AE3E9004AEEAF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Powerup.m; path = ../Powerup.m; sourceTree = "<group>"; };
@@ -712,6 +724,12 @@
 		53CE052F190981BF003454B2 /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rocket.png; path = ../rocket.png; sourceTree = "<group>"; };
 		53CE05371909A6EE003454B2 /* skybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground.png; sourceTree = "<group>"; };
 		53CE05391909A945003454B2 /* skybackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skybackground2.png; sourceTree = "<group>"; };
+		53D015841911556E001AA9E2 /* missile_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_1.png; sourceTree = "<group>"; };
+		53D01586191155F8001AA9E2 /* missile_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_3.png; sourceTree = "<group>"; };
+		53D01588191156C3001AA9E2 /* missile_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_2.png; sourceTree = "<group>"; };
+		53D0158A19115711001AA9E2 /* missile_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_4.png; sourceTree = "<group>"; };
+		53D0158C1911582E001AA9E2 /* plane_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane_2.png; sourceTree = "<group>"; };
+		53EE4CFE19101D5E00934154 /* diamondworld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondworld.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
 		53F89DD4190D82FC00E7BA7E /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
@@ -726,8 +744,12 @@
 		53F89DEF190E0AF700E7BA7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		53F89DF1190E0AFB00E7BA7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		53F89DF2190E0B1800E7BA7E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		EF8BF14319104277002BFE24 /* transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition1.png; sourceTree = "<group>"; };
-		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
+		53FADF0E19103C4100468B33 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		53FADF131910561D00468B33 /* asteroid_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid_1.png; sourceTree = "<group>"; };
+		53FADF16191056F600468B33 /* comet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet1.png; sourceTree = "<group>"; };
+		53FADF1A19105CE100468B33 /* comet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet2.png; sourceTree = "<group>"; };
+		53FADF1E19105E1500468B33 /* ufo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo.png; sourceTree = "<group>"; };
+		53FADF2019105F0500468B33 /* comet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -805,8 +827,7 @@
 		43759B881902B46100717DF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EF8BF14519104603002BFE24 /* backgroundloop1.png */,
-				EF8BF14319104277002BFE24 /* transition1.png */,
+				53FADF081910338200468B33 /* noun-project-type1 */,
 				43D9334B1902C51D006704B8 /* scratch-assets */,
 				43759B891902B46100717DF5 /* Default.png */,
 				43759B8B1902B46100717DF5 /* Default@2x.png */,
@@ -1648,6 +1669,8 @@
 			isa = PBXGroup;
 			children = (
 				539FF7FA1909D0A100549B3B /* boomer.png */,
+				53FADF0E19103C4100468B33 /* info.png */,
+				53EE4CFE19101D5E00934154 /* diamondworld.png */,
 				53F89DE8190E022500E7BA7E /* weibo2.png */,
 				530A1084190EFC760072FEE0 /* windHorizontalSmall.png */,
 				530A1085190EFC760072FEE0 /* windVertical.png */,
@@ -1672,6 +1695,49 @@
 				43D933511902C51D006704B8 /* ship.png */,
 			);
 			path = "scratch-assets";
+			sourceTree = "<group>";
+		};
+		53FADF081910338200468B33 /* noun-project-type1 */ = {
+			isa = PBXGroup;
+			children = (
+				53FADF09191033A400468B33 /* Space */,
+				53FADF0A191033AA00468B33 /* Sky */,
+				53FADF0B1910370000468B33 /* Sea */,
+			);
+			name = "noun-project-type1";
+			path = "scratch-assets";
+			sourceTree = "<group>";
+		};
+		53FADF09191033A400468B33 /* Space */ = {
+			isa = PBXGroup;
+			children = (
+				53FADF131910561D00468B33 /* asteroid_1.png */,
+				53FADF16191056F600468B33 /* comet1.png */,
+				53FADF1A19105CE100468B33 /* comet2.png */,
+				53FADF2019105F0500468B33 /* comet3.png */,
+				53FADF1E19105E1500468B33 /* ufo.png */,
+			);
+			name = Space;
+			sourceTree = "<group>";
+		};
+		53FADF0A191033AA00468B33 /* Sky */ = {
+			isa = PBXGroup;
+			children = (
+				5328718D19115C260043419F /* cloud_1.png */,
+				53D015841911556E001AA9E2 /* missile_1.png */,
+				53D01588191156C3001AA9E2 /* missile_2.png */,
+				53D01586191155F8001AA9E2 /* missile_3.png */,
+				53D0158A19115711001AA9E2 /* missile_4.png */,
+				53D0158C1911582E001AA9E2 /* plane_2.png */,
+			);
+			name = Sky;
+			sourceTree = "<group>";
+		};
+		53FADF0B1910370000468B33 /* Sea */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sea;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1720,7 +1786,7 @@
 				ORGANIZATIONNAME = o2bt;
 				TargetAttributes = {
 					43759B6B1902B46100717DF5 = {
-						DevelopmentTeam = U6MKAK47DY;
+						DevelopmentTeam = MEY4AVA7K7;
 					};
 				};
 			};
@@ -1750,7 +1816,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF8BF14619104603002BFE24 /* backgroundloop1.png in Resources */,
+				53D015851911556E001AA9E2 /* missile_1.png in Resources */,
 				53CE053A1909A945003454B2 /* skybackground2.png in Resources */,
 				43759B8C1902B46100717DF5 /* Default@2x.png in Resources */,
 				530A1087190EFC760072FEE0 /* windVertical.png in Resources */,
@@ -1758,10 +1824,14 @@
 				53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */,
 				53CE0530190981BF003454B2 /* rocket.png in Resources */,
 				43D933541902C51D006704B8 /* fire.png in Resources */,
+				53FADF17191056F600468B33 /* comet1.png in Resources */,
 				43759DA31902B46400717DF5 /* LICENSE_CCBReader.txt in Resources */,
+				53FADF1B19105CE100468B33 /* comet2.png in Resources */,
+				5328718E19115C260043419F /* cloud_1.png in Resources */,
 				43759B951902B46200717DF5 /* Icon@2x.png in Resources */,
 				43759BA71902B46200717DF5 /* Icon-Small@2x.png in Resources */,
 				43D933551902C51D006704B8 /* martian.png in Resources */,
+				53FADF1F19105E1500468B33 /* ufo.png in Resources */,
 				43759B991902B46200717DF5 /* Icon-72@2x.png in Resources */,
 				43759B8A1902B46100717DF5 /* Default.png in Resources */,
 				43759B931902B46200717DF5 /* Icon.png in Resources */,
@@ -1774,14 +1844,18 @@
 				535FF5D219058C240094C98C /* background.png in Resources */,
 				43759BA31902B46200717DF5 /* Icon-Small-50.png in Resources */,
 				530A1083190EF9340072FEE0 /* windHorizontal.png in Resources */,
+				53FADF0F19103C4100468B33 /* info.png in Resources */,
 				53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */,
 				43D933561902C51D006704B8 /* missile.png in Resources */,
 				539FF7FB1909D0A100549B3B /* boomer.png in Resources */,
 				43759D8C1902B46300717DF5 /* LICENSE_Kazmath.txt in Resources */,
 				53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */,
+				53D0158B19115711001AA9E2 /* missile_4.png in Resources */,
+				53FADF2119105F0500468B33 /* comet3.png in Resources */,
 				43759B971902B46200717DF5 /* Icon-72.png in Resources */,
 				43759CE51902B46300717DF5 /* LICENSE_cocos2d.txt in Resources */,
 				53F89DD9190D878400E7BA7E /* parachute.png in Resources */,
+				53D01589191156C3001AA9E2 /* missile_2.png in Resources */,
 				53F89DE5190E018300E7BA7E /* weibo.png in Resources */,
 				43759B8E1902B46100717DF5 /* Default-568h@2x.png in Resources */,
 				43759BAE1902B46200717DF5 /* iTunesArtwork in Resources */,
@@ -1791,13 +1865,16 @@
 				43759E111902B46400717DF5 /* LICENSE_Chipmunk.txt in Resources */,
 				53F89DE1190DAE6800E7BA7E /* twitterSmall.png in Resources */,
 				43759BAB1902B46200717DF5 /* Icon-Spotlight-iOS7@2x.png in Resources */,
+				53D0158D1911582E001AA9E2 /* plane_2.png in Resources */,
 				43759B9B1902B46200717DF5 /* Icon-76.png in Resources */,
 				53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */,
 				43D933531902C51D006704B8 /* cloud.png in Resources */,
 				53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */,
+				53D01587191155F8001AA9E2 /* missile_3.png in Resources */,
+				53FADF151910561D00468B33 /* asteroid_1.png in Resources */,
 				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
+				53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */,
 				53F89DE9190E022500E7BA7E /* weibo2.png in Resources */,
-				EF8BF14419104277002BFE24 /* transition1.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,
 				530A1086190EFC760072FEE0 /* windHorizontalSmall.png in Resources */,

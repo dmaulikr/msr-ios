@@ -26,7 +26,7 @@
 
 + (GameScene *)scene;
 - (id)init;
-- (void)updateSprite:(NSTimer *) timer withDx:(float)dx withDy:(float)dy withDuration:(float)dur;
+- (void)spriteUpdate:(NSTimer *) timer withDx:(float)dx withDy:(float)dy withDuration:(float)dur;
 - (void)initGame;
 - (void)transition;
 // -----------------------------------------------------------------------
