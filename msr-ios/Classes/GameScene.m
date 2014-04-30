@@ -287,7 +287,7 @@ int yVel = 0;
 }
 
 - (void)addCloud:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud.png"];
+    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud_1.png"];
     
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
