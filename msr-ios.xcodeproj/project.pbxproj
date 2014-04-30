@@ -255,6 +255,12 @@
 		EF8BF14619104603002BFE24 /* backgroundloop1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8BF14519104603002BFE24 /* backgroundloop1.png */; };
 		EFE979841911822200502628 /* 2backgroundloop1.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE979821911822200502628 /* 2backgroundloop1.png */; };
 		EFE979851911822200502628 /* 2transition1.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE979831911822200502628 /* 2transition1.png */; };
+		53FADF0F19103C4100468B33 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF0E19103C4100468B33 /* info.png */; };
+		53FADF151910561D00468B33 /* asteroid_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF131910561D00468B33 /* asteroid_1.png */; };
+		53FADF17191056F600468B33 /* comet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF16191056F600468B33 /* comet1.png */; };
+		53FADF1B19105CE100468B33 /* comet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1A19105CE100468B33 /* comet2.png */; };
+		53FADF1F19105E1500468B33 /* ufo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1E19105E1500468B33 /* ufo.png */; };
+		53FADF2119105F0500468B33 /* comet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF2019105F0500468B33 /* comet3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -746,6 +752,12 @@
 		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
 		EFE979821911822200502628 /* 2backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2backgroundloop1.png; sourceTree = "<group>"; };
 		EFE979831911822200502628 /* 2transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2transition1.png; sourceTree = "<group>"; };
+		53FADF0E19103C4100468B33 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		53FADF131910561D00468B33 /* asteroid_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid_1.png; sourceTree = "<group>"; };
+		53FADF16191056F600468B33 /* comet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet1.png; sourceTree = "<group>"; };
+		53FADF1A19105CE100468B33 /* comet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet2.png; sourceTree = "<group>"; };
+		53FADF1E19105E1500468B33 /* ufo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo.png; sourceTree = "<group>"; };
+		53FADF2019105F0500468B33 /* comet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -827,6 +839,7 @@
 				EF8BF14319104277002BFE24 /* transition1.png */,
 				EFE979821911822200502628 /* 2backgroundloop1.png */,
 				EFE979831911822200502628 /* 2transition1.png */,
+				53FADF081910338200468B33 /* noun-project-type1 */,
 				43D9334B1902C51D006704B8 /* scratch-assets */,
 				43759B891902B46100717DF5 /* Default.png */,
 				43759B8B1902B46100717DF5 /* Default@2x.png */,
