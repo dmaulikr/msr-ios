@@ -19,7 +19,6 @@
 const int MAX_MISSILES = 4;
 bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
-bool playAccel = true;//false
 bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
@@ -36,7 +35,7 @@ int yVel = 0;
     CCPhysicsNode *_physicsWorld;
     CCLabelTTF *_scoreLabel;
     CCLabelTTF *_introLabel;
-    CCButton *_playGame;
+    CCLabelTTF *_playGame;
     Player *_martian;
     Missile *_missile;
     Powerup *_powerup;
@@ -95,17 +94,19 @@ int yVel = 0;
     
     // Intro title
     _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"Chalkduster" fontSize:36.0f];
+    [self fitLabeltoScreen:_introLabel];
     _introLabel.positionType = CCPositionTypeNormalized;
     _introLabel.color = [CCColor redColor];
     _introLabel.position = ccp(0.5f, 0.8f); // Middle of screen
     [self addChild: _introLabel];
     
     // Play button
-    _playGame = [CCButton buttonWithTitle: NSLocalizedString(@"Tap to begin", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
+    _playGame = [CCLabelTTF labelWithString: NSLocalizedString(@"Tap to begin", nil)fontName:@"Verdana-Bold" fontSize:18.0f];
+    [self fitLabeltoScreen:_playGame];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
-    [_playGame setTarget:self selector:@selector(transition)];
     [self addChild:_playGame];
+    
     
 	return self;
 }
@@ -169,14 +170,7 @@ int yVel = 0;
     [infoButton setTarget:self selector:@selector(onInfoButtonClick:)];
     [self addChild:infoButton];
 
-
-    // Create a accelorometer button for testing
-    CCButton *accelButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Accelerometer ]", nil) fontName:@"Verdana-Bold" fontSize:14.0f];
-    accelButton.positionType = CCPositionTypeNormalized;
-    accelButton.position = ccp(0.79f, 0.90f); // Top Right of screen
-    [accelButton setTarget:self selector:@selector(toggleAccel:)];
-    [self addChild:accelButton];
-     
+    
     // Initialize the score & its label
     _score = 0;
     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
@@ -212,6 +206,7 @@ int yVel = 0;
     //highscore label
     int highScore = [self calculateHighScore];
     CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"High score: %d", highScore] fontName:@"Chalkduster" fontSize:14.0f];
+    [self fitLabeltoScreen:highScoreLabel];
     highScoreLabel.positionType = CCPositionTypeNormalized;
     highScoreLabel.color = [CCColor blackColor];
     //highScoreLabel.position = ccp(0.55f, 0.25f); // Middle center
@@ -222,13 +217,10 @@ int yVel = 0;
     endMenu.spacing = 10.f;
     endMenu.position = CGPointMake((self.contentSize.width/2 - (playAgainButton.contentSize.width/2)),(self.contentSize.height/2 - (playAgainButton.contentSize.height * 2)));
 
-    //NEED TO WORK ON THIS, ONLY SHOWING WEIBO IF LANGUAGE IS CHINESE
-    //get the current language and only add weibo if language is chinese
-    //NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    //NSLog(language);
-    //if (language == @"zh") {
+    //only add weibo is language is chinese
+    if ([[[NSLocale preferredLanguages] objectAtIndex:0]  isEqual: @"zh"]) {
         [endMenu addChild:weiboB];
-    //}
+    }
     [endMenu addChild:facebookB];
     [endMenu addChild:twitterB];
     [endMenu addChild:playAgainButton];
@@ -334,7 +326,7 @@ int yVel = 0;
         [self transition];
     }
     
-    else if (playAccel && !inTransition) {
+    else if (!inTransition) {
         //CGPoint touchLoc = [touch locationInNode:self];
     
         // Log touch location
@@ -356,36 +348,34 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 -(void) spriteUpdate:(NSTimer *) timer withDx:(float) dx withDy:(float) dy withDuration:(float) dur{
     
-    if (playAccel == true) {
 
-        /* NOTE: Issue: Still little collisions with invisbile wall. Not sure how to fix */
-        
-        NSLog(@"%f", dur);
-        float accelX = self.manager.accelerometerData.acceleration.x;
-        //float accelY = self.manager.accelerometerData.acceleration.y;
-        
-        //NSLog(@"Falling at %f", accelY);
-        
-        CGPoint newAccel = CGPointMake(accelX * 15 + dx, dy - 2.8);
-        
-        CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
-                                     _martian.physicsBody.surfaceVelocity.y + newAccel.y);
-        
-        CGPoint moveLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
-                                       _martian._sprite.position.y + newVel.y);
+    /* NOTE: Issue: Still little collisions with invisbile wall. Not sure how to fix */
+    
+    //NSLog(@"%f", dur);
+    float accelX = self.manager.accelerometerData.acceleration.x;
+    //float accelY = self.manager.accelerometerData.acceleration.y;
+    
+    //NSLog(@"Falling at %f", accelY);
+    
+    CGPoint newAccel = CGPointMake(accelX * 15 + dx, dy - 2.8);
+    
+    CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
+                                 _martian.physicsBody.surfaceVelocity.y + newAccel.y);
+    
+    CGPoint moveLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
+                                   _martian._sprite.position.y + newVel.y);
 
-        moveLoc = [self playerBoundBox:moveLoc];
-        
-        float duration = 0.01f;
-        
-        //if (newVel.y < 0)
-            duration = 0.10;
-        
-        
-        CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:duration position:moveLoc];
-        
-        [_martian._sprite runAction:actionMove];
-    }
+    moveLoc = [self playerBoundBox:moveLoc];
+    
+    float duration = 0.01f;
+    
+    //if (newVel.y < 0)
+        duration = 0.10;
+    
+    
+    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:duration position:moveLoc];
+    
+    [_martian._sprite runAction:actionMove];
 }
 // -----------------------------------------------------------------------
 #pragma mark - Bounding box for player function - make sure player stays on screen
@@ -444,6 +434,7 @@ int yVel = 0;
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
         CCLabelTTF *twitterMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"No Twitter account found.",nil) fontName:@"Verdana-Bold" fontSize:18.0f];
+        [self fitLabeltoScreen:twitterMessage];
         twitterMessage.positionType = CCPositionTypeNormalized;
         twitterMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: twitterMessage];
@@ -464,6 +455,7 @@ int yVel = 0;
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
         CCLabelTTF *fbMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"No Facebook account found.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
+        [self fitLabeltoScreen:fbMessage];
         fbMessage.positionType = CCPositionTypeNormalized;
         fbMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: fbMessage];
@@ -484,6 +476,7 @@ int yVel = 0;
         [[CCDirector sharedDirector] presentViewController:tweetSheet animated:YES completion:nil];
     } else {
         CCLabelTTF *weiboMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"No Weibo account found.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
+        [self fitLabeltoScreen:weiboMessage];
         weiboMessage.positionType = CCPositionTypeNormalized;
         weiboMessage.position = ccp(0.5f, 0.8f); // Middle of screen
         [self addChild: weiboMessage];
@@ -494,17 +487,14 @@ int yVel = 0;
 }
 -(void)onInfoButtonClick:(id)sender {
     CCLabelTTF *infoMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to move up, turn to move left and right.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
+    [self fitLabeltoScreen:infoMessage];
     infoMessage.positionType = CCPositionTypeNormalized;
-    infoMessage.position = ccp(0.5f, 0.8f); // Middle of screen
+    infoMessage.position = ccp(0.5f, 0.2f); // Middle of screen
     [self addChild: infoMessage];
     CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.8];
     CCAction *actionRemove = [CCActionRemove action];
     [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
 
-}
-
-- (void)toggleAccel:(id)sender {
-    playAccel = !playAccel;
 }
 // -----------------------------------------------------------------------
 #pragma mark - Move Scrolling Background
@@ -707,6 +697,21 @@ int yVel = 0;
     
     return YES;
 }
-
-
+// -----------------------------------------------------------------------
+#pragma mark - Make sure label fits the screen
+// -----------------------------------------------------------------------
+- (void) fitLabeltoScreen:(CCLabelTTF *)label {
+        float fontSize = [label fontSize];//[self fontSize];
+        float fontAdjustmentStep = 0.5f;
+        
+        while(self.contentSize.width < label.contentSize.width)
+        {
+            fontSize -= fontAdjustmentStep;
+            [label setFontSize:fontSize];
+            if( fontSize < 5)
+            {
+                break;
+            }
+        }
+}
 @end
