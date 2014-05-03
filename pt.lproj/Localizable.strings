@@ -17,4 +17,5 @@
 "[ Accelerometer ]" = "[Acelerômetro]";
 "Score: %03d" = "Pontos: %03d";
 //NEED TO MAKE THESE
-"Tap to move up, turn to move left and right." = "Tap to move up, turn to move left and right.";
+"Tap to move up, turn to move left and right." = "Toca para subir, inclina para mudar a esquerda e a direita";
+
