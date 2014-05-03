@@ -43,6 +43,7 @@ int yVel = 0;
     NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray; //create an array of missiles,
+    CCLabelTTF *highScoreLabel;
 }
 
 @synthesize manager;
@@ -69,13 +70,12 @@ int yVel = 0;
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
-    // Add images as backgrounds
-    //DONT HAVE TRANSITION1.PNG
-    _background1 = [CCSprite spriteWithImageNamed:@"3transition1.png"];
+    // Add images as backgrounds
+    _background1 = [CCSprite spriteWithImageNamed:@"transition1.png"];
     _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
+    _background2 = [CCSprite spriteWithImageNamed:@"backgroundloop1.png"];
     _background2.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
@@ -135,6 +135,10 @@ int yVel = 0;
 
 - (void)initGame {
     inTransition = false;
+    
+    // Initialize the highscore table
+    
+    _defaults = [NSUserDefaults standardUserDefaults];
     
     // Destroy ship
     CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
@@ -208,8 +212,10 @@ int yVel = 0;
     CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"High score: %d", highScore] fontName:@"Chalkduster" fontSize:14.0f];
     [self fitLabeltoScreen:highScoreLabel];
     highScoreLabel.positionType = CCPositionTypeNormalized;
-    highScoreLabel.color = [CCColor blackColor];
-    //highScoreLabel.position = ccp(0.55f, 0.25f); // Middle center
+    highScoreLabel.color = [CCColor whiteColor];
+
+    
+        //highScoreLabel.position = ccp(0.55f, 0.25f); // Middle center
     //[self addChild:highScoreLabel];
     
     endMenu = [[CCLayoutBox alloc] init];
@@ -228,9 +234,7 @@ int yVel = 0;
     
     //start the gameRunning
     gameRunning = true;
-     
-     // Initialize the highscore table
-     _defaults = [NSUserDefaults standardUserDefaults];
+
 }
 
 
@@ -605,7 +609,8 @@ int yVel = 0;
     //stop the score & control scheme
     gameRunning = false;
     
-    //create end menu
+    // Create the ending menu
+    [self createHighScoreLabel];
     [self addChild:endMenu];
     
     return YES;
@@ -616,32 +621,31 @@ int yVel = 0;
 #pragma mark - High Score Calculation and Storing
 // -----------------------------------------------------------------------
 
--(int) calculateHighScore {
-
+-(void) createHighScoreLabel {
+    
     int highScore;
     
     // If the app is running for the first time, set the high score
-    if (![_defaults objectForKey:@"firstRun"]) {
-        [_defaults setObject:[NSDate date] forKey:@"firstRun"];
-        [_defaults setFloat:_score forKey:@"SavedHighScore"];
-        [_defaults synchronize];
+    if (![_defaults floatForKey:@"firstRun"]) {
         
-        return _score;
+        [_defaults setFloat:1 forKey:@"firstRun"];
+        [_defaults setFloat:_score forKey:@"SavedHighScore"];
+        
+        highScore = _score;
     }
+    
     // Otherwise, check if the highscore needs to be updated
     else {
         highScore = [[_defaults valueForKey:@"SavedHighScore"] intValue];
+        
         if (_score > highScore) {
             [_defaults setFloat:_score forKey:@"SavedHighScore"];
-            NSLog(@"Highscore updated from %d to %d", highScore, _score);
-        }
-        /* testing only */
-        else {
-            [_defaults setFloat:0.0 forKey:@"SavedHighScore"];
+            highScore = _score;
         }
     }
+    
     [_defaults synchronize];
-    return highScore;
+    [highScoreLabel setString:[NSString stringWithFormat:NSLocalizedString(@"High Score: %d", nil), highScore]];
     
 }
 // -----------------------------------------------------------------------
