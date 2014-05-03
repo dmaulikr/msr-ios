@@ -72,11 +72,11 @@ int yVel = 0;
     
     // Add images as backgrounds
     //DONT HAVE TRANSITION1.PNG
-    _background1 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
+    _background1 = [CCSprite spriteWithImageNamed:@"backgroundloop1.png"];
     _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
     [self addChild:_background1 z:-3];
     
-    _background2 = [CCSprite spriteWithImageNamed:@"skybackground.png"];
+    _background2 = [CCSprite spriteWithImageNamed:@"transition1.png"];
     _background2.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2);
     [self addChild:_background2 z:-3];
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds

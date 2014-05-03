@@ -251,10 +251,6 @@
 		53F89DE5190E018300E7BA7E /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE4190E018300E7BA7E /* weibo.png */; };
 		53F89DE9190E022500E7BA7E /* weibo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DE8190E022500E7BA7E /* weibo2.png */; };
 		53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DF0190E0AF700E7BA7E /* Localizable.strings */; };
-		EF8BF14419104277002BFE24 /* transition1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8BF14319104277002BFE24 /* transition1.png */; };
-		EF8BF14619104603002BFE24 /* backgroundloop1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8BF14519104603002BFE24 /* backgroundloop1.png */; };
-		EFE979841911822200502628 /* 2backgroundloop1.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE979821911822200502628 /* 2backgroundloop1.png */; };
-		EFE979851911822200502628 /* 2transition1.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE979831911822200502628 /* 2transition1.png */; };
 		53FADF0F19103C4100468B33 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF0E19103C4100468B33 /* info.png */; };
 		53FADF151910561D00468B33 /* asteroid_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF131910561D00468B33 /* asteroid_1.png */; };
 		53FADF17191056F600468B33 /* comet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF16191056F600468B33 /* comet1.png */; };
@@ -748,16 +744,14 @@
 		53F89DEF190E0AF700E7BA7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		53F89DF1190E0AFB00E7BA7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		53F89DF2190E0B1800E7BA7E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		EF8BF14319104277002BFE24 /* transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition1.png; sourceTree = "<group>"; };
-		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
-		EFE979821911822200502628 /* 2backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2backgroundloop1.png; sourceTree = "<group>"; };
-		EFE979831911822200502628 /* 2transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2transition1.png; sourceTree = "<group>"; };
 		53FADF0E19103C4100468B33 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		53FADF131910561D00468B33 /* asteroid_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid_1.png; sourceTree = "<group>"; };
 		53FADF16191056F600468B33 /* comet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet1.png; sourceTree = "<group>"; };
 		53FADF1A19105CE100468B33 /* comet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet2.png; sourceTree = "<group>"; };
 		53FADF1E19105E1500468B33 /* ufo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo.png; sourceTree = "<group>"; };
 		53FADF2019105F0500468B33 /* comet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet3.png; sourceTree = "<group>"; };
+		EF8BF14319104277002BFE24 /* transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition1.png; sourceTree = "<group>"; };
+		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -837,8 +831,6 @@
 			children = (
 				EF8BF14519104603002BFE24 /* backgroundloop1.png */,
 				EF8BF14319104277002BFE24 /* transition1.png */,
-				EFE979821911822200502628 /* 2backgroundloop1.png */,
-				EFE979831911822200502628 /* 2transition1.png */,
 				53FADF081910338200468B33 /* noun-project-type1 */,
 				43D9334B1902C51D006704B8 /* scratch-assets */,
 				43759B891902B46100717DF5 /* Default.png */,
@@ -1872,7 +1864,6 @@
 				43759B8E1902B46100717DF5 /* Default-568h@2x.png in Resources */,
 				43759BAE1902B46200717DF5 /* iTunesArtwork in Resources */,
 				43759BA91902B46200717DF5 /* Icon-Spotlight-iOS7.png in Resources */,
-				EFE979841911822200502628 /* 2backgroundloop1.png in Resources */,
 				53F89DE3190DAF8C00E7BA7E /* facebook.png in Resources */,
 				43759B9D1902B46200717DF5 /* Icon-76@2x.png in Resources */,
 				43759E111902B46400717DF5 /* LICENSE_Chipmunk.txt in Resources */,
@@ -1881,7 +1872,6 @@
 				53D0158D1911582E001AA9E2 /* plane_2.png in Resources */,
 				43759B9B1902B46200717DF5 /* Icon-76.png in Resources */,
 				53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */,
-				EFE979851911822200502628 /* 2transition1.png in Resources */,
 				43D933531902C51D006704B8 /* cloud.png in Resources */,
 				53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */,
 				53D01587191155F8001AA9E2 /* missile_3.png in Resources */,

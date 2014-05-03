@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "-updateSprite:withDx:withDy:"
+            landmarkName = "-spriteUpdate:withDx:withDy:withDuration:"
             landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
