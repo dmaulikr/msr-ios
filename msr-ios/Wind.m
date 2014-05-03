@@ -38,7 +38,7 @@
         _windSprite.position = CGPointMake(0, randomY);
         //NOTE: make body bigger than the wind itself
         _windSprite.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _windSprite.contentSize} cornerRadius:0];
-        _windSprite.physicsBody.collisionGroup = @"windGroup";
+        _windSprite.physicsBody.collisionGroup = @"aerialGroup";
         _windSprite.physicsBody.collisionType  = @"windCollision";
         [_physicsWorld addChild:_windSprite z:-1];
         
