@@ -33,6 +33,7 @@ int yVel = 0;
 {
     CCSprite *_background1;
     CCSprite *_background2;
+    CCSprite *_background3;
     CCSprite *_ship;
     CCPhysicsNode *_physicsWorld;
     CCLabelTTF *_socialMediaMessage;
@@ -74,14 +75,21 @@ int yVel = 0;
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
-    // Add images as backgrounds
+    // Add images as backgrounds
     _background1 = [CCSprite spriteWithImageNamed:@"3transition1.png"];
     _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
     [self addChild:_background1 z:-3];
     
     _background2 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
-    _background2.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2);
+    _background2.position = CGPointMake(_background1.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2 + 1);
+    
+    
     [self addChild:_background2 z:-3];
+    
+    _background3 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
+    _background3.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2 + 1);
+    [self addChild:_background3 z:-3];
+    
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
     
     // Spaceship
@@ -97,16 +105,14 @@ int yVel = 0;
     inTransition = false;
     
     // Intro title
-    _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"Chalkduster" fontSize:36.0f];
-    [self fitLabeltoScreen:_introLabel];
+    _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"ArialRoundedMTBold" fontSize:36.0f];
     _introLabel.positionType = CCPositionTypeNormalized;
     _introLabel.color = [CCColor redColor];
     _introLabel.position = ccp(0.5f, 0.8f); // Middle of screen
     [self addChild: _introLabel];
     
     // Play button
-    _playGame = [CCLabelTTF labelWithString: NSLocalizedString(@"Tap to begin", nil)fontName:@"Verdana-Bold" fontSize:18.0f];
-    [self fitLabeltoScreen:_playGame];
+    _playGame = [CCButton buttonWithTitle: NSLocalizedString(@"Tap to begin", nil) fontName:@"ArialRoundedMTBold" fontSize:18.0f];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
     [self addChild:_playGame];
@@ -348,9 +354,7 @@ int yVel = 0;
         //[_martian._sprite runAction:actionMove];
         
         // A touch gives an acceleration in the y-direction
-        
-        
-        CCLOG(@"THUG LIFE FOR LIFE");
+
         [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.25];
     }
 }
@@ -517,30 +521,23 @@ int yVel = 0;
 {
     CGPoint bgPos1 = _background1.position;
     CGPoint bgPos2 = _background2.position;
+    CGPoint bgPos3 = _background3.position;
     bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
     bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
-    
-    /*int backgroundH = _background1.contentSize.height - (2 * self.contentSize.width);
-    CCLOG(@"background1 height - contentsize height is %d", backgroundH);
-    int otherbackground = bgPos1.y;
-    CCLOG(@"bspos1.y is %d", otherbackground);
-    int other = bgPos1.y  - _background1.contentSize.height/2;
-    CCLOG(@"bgPos2.y is %d", other);*/
-    
-    if (bgPos2.y > 0) {
-        //[self removeChild:_background1];
-        NSLog(@"disappear");
-        // start looping main background
+    bgPos3.y = bgPos3.y + BACKGROUND_SCROLL_SPEED;
+   
+    if (bgPos2.y  - _background2.contentSize.height/2 > 0.0) { // first loop image about to leave screen
+        bgPos3.y = bgPos2.y - _background2.contentSize.height/2 - _background3.contentSize.height/2 + 1;
     }
-    
-    
-    bgPos2.y = bgPos1.y - _background1.contentSize.height/2 - _background2.contentSize.height/2;
-
+    if (bgPos3.y - _background3.contentSize.height/2 > 0.0) { // second loop image about to leave screen
+        bgPos2.y = bgPos3.y - _background3.contentSize.height/2 - _background2.contentSize.height/2 + 1;
+    }
     
     bgPos1.y = (int)bgPos1.y;
     bgPos2.y = (int)bgPos2.y;
     _background1.position = bgPos1;
     _background2.position = bgPos2;
+    _background3.position = bgPos3;
 }
 // -----------------------------------------------------------------------
 #pragma mark - Add Missile
