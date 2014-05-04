@@ -215,7 +215,6 @@
 		439526DB190779D2001A81DC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439526DA190779D2001A81DC /* CoreMotion.framework */; };
 		43B845E8191594D300603EDB /* 3backgroundloop1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B845E6191594D300603EDB /* 3backgroundloop1.png */; };
 		43B845E9191594D300603EDB /* 3transition1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B845E7191594D300603EDB /* 3transition1.png */; };
-		43B845EC1915AA6400603EDB /* Levels.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B845EB1915AA6400603EDB /* Levels.m */; };
 		43B845F71915BD5B00603EDB /* blip1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 43B845EE1915BD5B00603EDB /* blip1.wav */; };
 		43B845F81915BD5B00603EDB /* blip2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 43B845EF1915BD5B00603EDB /* blip2.wav */; };
 		43B845F91915BD5B00603EDB /* blip3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 43B845F01915BD5B00603EDB /* blip3.wav */; };
@@ -715,8 +714,6 @@
 		439526DA190779D2001A81DC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		43B845E6191594D300603EDB /* 3backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3backgroundloop1.png; sourceTree = "<group>"; };
 		43B845E7191594D300603EDB /* 3transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3transition1.png; sourceTree = "<group>"; };
-		43B845EA1915AA6400603EDB /* Levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Levels.h; sourceTree = "<group>"; };
-		43B845EB1915AA6400603EDB /* Levels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Levels.m; sourceTree = "<group>"; };
 		43B845EE1915BD5B00603EDB /* blip1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blip1.wav; sourceTree = "<group>"; };
 		43B845EF1915BD5B00603EDB /* blip2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blip2.wav; sourceTree = "<group>"; };
 		43B845F01915BD5B00603EDB /* blip3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blip3.wav; sourceTree = "<group>"; };
@@ -1681,8 +1678,6 @@
 			children = (
 				53F89DF0190E0AF700E7BA7E /* Localizable.strings */,
 				43759E171902B46400717DF5 /* AppDelegate.h */,
-				43B845EA1915AA6400603EDB /* Levels.h */,
-				43B845EB1915AA6400603EDB /* Levels.m */,
 				43759E181902B46400717DF5 /* AppDelegate.m */,
 				43759E1A1902B46400717DF5 /* GameScene.h */,
 				43759E1B1902B46400717DF5 /* GameScene.m */,
@@ -2072,7 +2067,6 @@
 				43759CD11902B46300717DF5 /* NSAttributedString+CCAdditions.m in Sources */,
 				43759D931902B46400717DF5 /* CCBKeyframe.m in Sources */,
 				43759D4D1902B46300717DF5 /* CCControlTextureFactory.m in Sources */,
-				43B845EC1915AA6400603EDB /* Levels.m in Sources */,
 				43759BD21902B46200717DF5 /* CCAnimationCache.m in Sources */,
 				43759D561902B46300717DF5 /* CCTableView.m in Sources */,
 				43759E191902B46400717DF5 /* AppDelegate.m in Sources */,

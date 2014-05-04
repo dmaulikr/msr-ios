@@ -63,8 +63,8 @@
 - (void)onSpinningClicked:(id)sender
 {
     // start spinning scene with transition
-    [[CCDirector sharedDirector] replaceScene:[GameScene scene]
-                               withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
+   // [[CCDirector sharedDirector] replaceScene:[GameScene scene]
+    //                           withTransition:[CCTransition transitionCrossFadeWithDuration:0.3f]];
 }
 // -----------------------------------------------------------------------
 

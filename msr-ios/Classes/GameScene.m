@@ -19,11 +19,12 @@
 #pragma mark - GameScene
 // -----------------------------------------------------------------------
 const int MAX_MISSILES = 4;
-bool DEBUGbool = false;
 const int BACKGROUND_SCROLL_SPEED = 4;
+bool DEBUGbool = false;
 bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
+bool imgLoop = false;
 //how much to increase score for powerups
 const int POWERUP_INCREASE = 100;
 
@@ -31,22 +32,29 @@ int yVel = 0;
 
 @implementation GameScene
 {
-    CCSprite *_background1;
-    CCSprite *_background2;
-    CCSprite *_background3;
+    CCSprite *curr_transition_img;
+    CCSprite *curr_loop_img_1;
+    CCSprite *curr_loop_img_2;
     CCSprite *_ship;
+    
     CCPhysicsNode *_physicsWorld;
+    
     CCLabelTTF *_socialMediaMessage;
     CCLabelTTF *_scoreLabel;
     CCLabelTTF *_introLabel;
     CCLabelTTF *_playGame;
+    
     Player *_martian;
     Missile *_missile;
+    NSDictionary *assets;
     Powerup *_powerup;
     CCLayoutBox *endMenu;
     HorizObject *_horizObject;
     NSUserDefaults *_defaults;
+    
     int _score;
+    int _currlevel;
+    int _loopcounter;
     NSMutableArray * _missilesArray; //create an array of missiles,
     CCLabelTTF *highScoreLabel;
 }
@@ -75,6 +83,8 @@ int yVel = 0;
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
+/*    levelManager = [[Levels alloc] init:self];
+    
     // Add images as backgrounds
     _background1 = [CCSprite spriteWithImageNamed:@"3transition1.png"];
     _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
@@ -88,7 +98,29 @@ int yVel = 0;
     
     _background3 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
     _background3.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2 + 1);
-    [self addChild:_background3 z:-3];
+    [self addChild:_background3 z:-3]; */
+    
+    
+    assets = [[NSDictionary alloc] initWithObjectsAndKeys:
+              [NSArray arrayWithObjects:@"3transition1.png", nil], @"transitions",
+              [NSArray arrayWithObjects:@"3backgroundloop1.png", nil], @"backgrounds",
+              [NSArray arrayWithObjects:@"rocket.png", nil], @"missiles",
+              [NSArray arrayWithObjects:@"cloud_1.png", nil], @"clouds",
+              nil];
+    _currlevel = 0;
+    curr_loop_img_1 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
+    curr_loop_img_2 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
+    curr_transition_img = [CCSprite spriteWithImageNamed:assets[@"transitions"][_currlevel]];
+    
+    // first level setup
+    curr_transition_img.position = CGPointMake(curr_transition_img.contentSize.width/2,self.contentSize.height - curr_transition_img.contentSize.height/2);
+    [self addChild:curr_transition_img z:-3];
+    
+    curr_loop_img_1.position = CGPointMake(curr_transition_img.contentSize.width/2, curr_transition_img.position.y - curr_transition_img.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1);
+    [self addChild:curr_loop_img_1 z:-3];
+    
+    curr_loop_img_2.position = CGPointMake(curr_loop_img_1.contentSize.width/2, curr_transition_img.position.y - curr_transition_img.contentSize.height/2 - curr_loop_img_1.contentSize.height/2 + 1);
+    [self addChild:curr_loop_img_2 z:-3];
     
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
     
@@ -517,28 +549,36 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 #pragma mark - Move Scrolling Background
 // -----------------------------------------------------------------------
--(void)moveBackground:(CCTime)delta
-{
-    CGPoint bgPos1 = _background1.position;
-    CGPoint bgPos2 = _background2.position;
-    CGPoint bgPos3 = _background3.position;
+-(void)moveBackground:(CCTime)delta{
+    CGPoint bgPos1 = curr_transition_img.position;
+    CGPoint bgPos2 = curr_loop_img_1.position;
+    CGPoint bgPos3 = curr_loop_img_2.position;
     bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
     bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
     bgPos3.y = bgPos3.y + BACKGROUND_SCROLL_SPEED;
-   
-    if (bgPos2.y  - _background2.contentSize.height/2 > 0.0) { // first loop image about to leave screen
-        bgPos3.y = bgPos2.y - _background2.contentSize.height/2 - _background3.contentSize.height/2 + 1;
+    
+    NSLog(@"%i", _loopcounter);
+    
+    if (bgPos2.y  - curr_loop_img_1.contentSize.height/2 > 0.0) { // first loop image about to leave screen
+        if (imgLoop == false){
+            imgLoop = true;
+            _loopcounter++;
+        }
+        bgPos3.y = bgPos2.y - curr_loop_img_1.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1;
     }
-    if (bgPos3.y - _background3.contentSize.height/2 > 0.0) { // second loop image about to leave screen
-        bgPos2.y = bgPos3.y - _background3.contentSize.height/2 - _background2.contentSize.height/2 + 1;
+    if (bgPos3.y - curr_loop_img_2.contentSize.height/2 > 0.0) { // second loop image about to leave screen
+        imgLoop = false;
+        bgPos2.y = bgPos3.y - curr_loop_img_2.contentSize.height/2 - curr_loop_img_1.contentSize.height/2 + 1;
     }
     
     bgPos1.y = (int)bgPos1.y;
     bgPos2.y = (int)bgPos2.y;
-    _background1.position = bgPos1;
-    _background2.position = bgPos2;
-    _background3.position = bgPos3;
+    curr_transition_img.position = bgPos1;
+    curr_loop_img_1.position = bgPos2;
+    curr_loop_img_2.position = bgPos3;
 }
+
+
 // -----------------------------------------------------------------------
 #pragma mark - Add Missile
 // -----------------------------------------------------------------------
