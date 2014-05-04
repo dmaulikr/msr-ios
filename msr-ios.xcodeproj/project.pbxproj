@@ -275,6 +275,8 @@
 		EF8B20801916EDC600076822 /* meteor4.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B207B1916EDC600076822 /* meteor4.png */; };
 		EF8B20811916EDC600076822 /* meteor5.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B207C1916EDC600076822 /* meteor5.png */; };
 		EF8B20831916F3AF00076822 /* satellite.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B20821916F3AF00076822 /* satellite.png */; };
+		EF8B20861916FCA700076822 /* backgroundloop2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B20841916FCA700076822 /* backgroundloop2.png */; };
+		EF8B20871916FCA700076822 /* transition2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B20851916FCA700076822 /* transition2.png */; };
 		EFA6FBF81915D5E000BD7000 /* PauseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA6FBF71915D5E000BD7000 /* PauseScene.m */; };
 		EFE979881911841300502628 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EFE979891911841300502628 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -789,6 +791,8 @@
 		EF8B207B1916EDC600076822 /* meteor4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor4.png; sourceTree = "<group>"; };
 		EF8B207C1916EDC600076822 /* meteor5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor5.png; sourceTree = "<group>"; };
 		EF8B20821916F3AF00076822 /* satellite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satellite.png; sourceTree = "<group>"; };
+		EF8B20841916FCA700076822 /* backgroundloop2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop2.png; sourceTree = "<group>"; };
+		EF8B20851916FCA700076822 /* transition2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition2.png; sourceTree = "<group>"; };
 		EF8BF14319104277002BFE24 /* transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition1.png; sourceTree = "<group>"; };
 		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
 		EFA6FBF61915D5E000BD7000 /* PauseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PauseScene.h; path = Classes/PauseScene.h; sourceTree = "<group>"; };
@@ -871,6 +875,8 @@
 		43759B881902B46100717DF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF8B20841916FCA700076822 /* backgroundloop2.png */,
+				EF8B20851916FCA700076822 /* transition2.png */,
 				EF8B20781916EDC600076822 /* meteor1.png */,
 				EF8B20791916EDC600076822 /* meteor2.png */,
 				EF8B207A1916EDC600076822 /* meteor3.png */,
@@ -1892,8 +1898,10 @@
 				43B845FA1915BD5B00603EDB /* blip4.wav in Resources */,
 				53D015851911556E001AA9E2 /* missile_1.png in Resources */,
 				53CE053A1909A945003454B2 /* skybackground2.png in Resources */,
+				EF8B20871916FCA700076822 /* transition2.png in Resources */,
 				43759B8C1902B46100717DF5 /* Default@2x.png in Resources */,
 				43B846031915D78700603EDB /* martian0.png in Resources */,
+				EF8B20861916FCA700076822 /* backgroundloop2.png in Resources */,
 				530A1087190EFC760072FEE0 /* windVertical.png in Resources */,
 				43B845FC1915BD5B00603EDB /* explosion2.wav in Resources */,
 				43759B9F1902B46200717DF5 /* Icon-120.png in Resources */,
