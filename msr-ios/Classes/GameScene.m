@@ -187,6 +187,8 @@ int yVel = 0;
     boomer.position  = new_pos;
     [self addChild:boomer z:3];
     [self removeChild:_ship];
+    [[OALSimpleAudio sharedInstance] playBg:@"explosion2.wav" loop:NO];
+
     
     CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:0.8];
     CCAction *actionRemove = [CCActionRemove action];
