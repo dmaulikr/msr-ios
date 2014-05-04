@@ -17,9 +17,9 @@
 -(id)initPlayer:(Player *)_martian andWorld:(CCPhysicsNode *)_physicsWorld andScene:(GameScene *)_scene {
     
     self = [super init];
-    missile = [CCSprite spriteWithImageNamed:@"rocket.png"];
-    missile = [CCSprite spriteWithImageNamed:@"plane_2.png"];
-    //missile = [CCSprite spriteWithImageNamed:@"comet3.png"];
+    //missile = [CCSprite spriteWithImageNamed:@"rocket.png"];
+    //missile = [CCSprite spriteWithImageNamed:@"plane_2.png"];
+    missile = [CCSprite spriteWithImageNamed:@"comet3.png"];
     
     //keep track of player
     player = _martian;

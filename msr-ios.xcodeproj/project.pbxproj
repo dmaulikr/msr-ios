@@ -231,7 +231,6 @@
 		43D933551902C51D006704B8 /* martian.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334F1902C51D006704B8 /* martian.png */; };
 		43D933561902C51D006704B8 /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D933501902C51D006704B8 /* missile.png */; };
 		43D933571902C51D006704B8 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D933511902C51D006704B8 /* ship.png */; };
-		530A1081190EF55E0072FEE0 /* Wind.m in Sources */ = {isa = PBXBuildFile; fileRef = 530A1080190EF55E0072FEE0 /* Wind.m */; };
 		530A1083190EF9340072FEE0 /* windHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A1082190EF9340072FEE0 /* windHorizontal.png */; };
 		530A1086190EFC760072FEE0 /* windHorizontalSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A1084190EFC760072FEE0 /* windHorizontalSmall.png */; };
 		530A1087190EFC760072FEE0 /* windVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A1085190EFC760072FEE0 /* windVertical.png */; };
@@ -250,6 +249,7 @@
 		53D01589191156C3001AA9E2 /* missile_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D01588191156C3001AA9E2 /* missile_2.png */; };
 		53D0158B19115711001AA9E2 /* missile_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158A19115711001AA9E2 /* missile_4.png */; };
 		53D0158D1911582E001AA9E2 /* plane_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158C1911582E001AA9E2 /* plane_2.png */; };
+		53E068CE1915A72300992154 /* HorizObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E068CD1915A72300992154 /* HorizObject.m */; };
 		53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EE4CFE19101D5E00934154 /* diamondworld.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
@@ -733,8 +733,6 @@
 		43D933501902C51D006704B8 /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		43D933511902C51D006704B8 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
 		530A107E190EE69B0072FEE0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		530A107F190EF55E0072FEE0 /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
-		530A1080190EF55E0072FEE0 /* Wind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wind.m; sourceTree = "<group>"; };
 		530A1082190EF9340072FEE0 /* windHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windHorizontal.png; sourceTree = "<group>"; };
 		530A1084190EFC760072FEE0 /* windHorizontalSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windHorizontalSmall.png; sourceTree = "<group>"; };
 		530A1085190EFC760072FEE0 /* windVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windVertical.png; sourceTree = "<group>"; };
@@ -756,6 +754,8 @@
 		53D01588191156C3001AA9E2 /* missile_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_2.png; sourceTree = "<group>"; };
 		53D0158A19115711001AA9E2 /* missile_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_4.png; sourceTree = "<group>"; };
 		53D0158C1911582E001AA9E2 /* plane_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane_2.png; sourceTree = "<group>"; };
+		53E068CC1915A72300992154 /* HorizObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizObject.h; sourceTree = "<group>"; };
+		53E068CD1915A72300992154 /* HorizObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizObject.m; sourceTree = "<group>"; };
 		53EE4CFE19101D5E00934154 /* diamondworld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondworld.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
@@ -1695,8 +1695,8 @@
 				43759E1D1902B46400717DF5 /* IntroScene.h */,
 				43759E1E1902B46400717DF5 /* IntroScene.m */,
 				539E3E31190E9C5800515F1B /* Notes */,
-				530A107F190EF55E0072FEE0 /* Wind.h */,
-				530A1080190EF55E0072FEE0 /* Wind.m */,
+				53E068CC1915A72300992154 /* HorizObject.h */,
+				53E068CD1915A72300992154 /* HorizObject.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2046,6 +2046,7 @@
 				43759C691902B46200717DF5 /* CCSprite9Slice.m in Sources */,
 				43759C7B1902B46300717DF5 /* CCTextureAtlas.m in Sources */,
 				43759D3C1902B46300717DF5 /* OALAudioFile.m in Sources */,
+				53E068CE1915A72300992154 /* HorizObject.m in Sources */,
 				43759C621902B46200717DF5 /* ccShaders.m in Sources */,
 				43759D761902B46300717DF5 /* matrix.c in Sources */,
 				43759C881902B46300717DF5 /* CCTiledMapLayer.m in Sources */,
@@ -2068,7 +2069,6 @@
 				43759CC01902B46300717DF5 /* CCColor.m in Sources */,
 				43759D0D1902B46300717DF5 /* ALChannelSource.m in Sources */,
 				43759BB91902B46200717DF5 /* CCActionCatmullRom.m in Sources */,
-				530A1081190EF55E0072FEE0 /* Wind.m in Sources */,
 				43759CD11902B46300717DF5 /* NSAttributedString+CCAdditions.m in Sources */,
 				43759D931902B46400717DF5 /* CCBKeyframe.m in Sources */,
 				43759D4D1902B46300717DF5 /* CCControlTextureFactory.m in Sources */,

@@ -12,6 +12,8 @@
 #import "Player.h"
 #import "Missile.h"
 #import "Powerup.h"
+#import "HorizObject.h"
+
 
 // -----------------------------------------------------------------------
 #pragma mark - GameScene
@@ -34,6 +36,7 @@ int yVel = 0;
     CCSprite *_background3;
     CCSprite *_ship;
     CCPhysicsNode *_physicsWorld;
+    CCLabelTTF *_socialMediaMessage;
     CCLabelTTF *_scoreLabel;
     CCLabelTTF *_introLabel;
     CCLabelTTF *_playGame;
@@ -41,6 +44,7 @@ int yVel = 0;
     Missile *_missile;
     Powerup *_powerup;
     CCLayoutBox *endMenu;
+    HorizObject *_horizObject;
     NSUserDefaults *_defaults;
     int _score;
     NSMutableArray * _missilesArray; //create an array of missiles,
@@ -192,6 +196,7 @@ int yVel = 0;
      // Schedule upwards clouds & sky
     [self schedule:@selector(addCloud:) interval:1.5];
     [self schedule:@selector(moveBackground:) interval:0.03];
+    [self schedule:@selector(addHObject:) interval:5];
 
     //End of game menu, created now but added only at end of game
     // Create a playAgain button for end of game
@@ -213,11 +218,11 @@ int yVel = 0;
     CCButton *twitterB = [CCButton buttonWithTitle:@" " spriteFrame:twitterFrame];
     [twitterB setTarget:self selector:@selector(onTwitterClick:)];
 
-    highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"High score:"] fontName:@"Chalkduster" fontSize:14.0f];
+    highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"High score:"] fontName:@"Verdana-Bold" fontSize:16.0f];
+    [self fitLabeltoScreen:highScoreLabel];
     highScoreLabel.positionType = CCPositionTypeNormalized;
     highScoreLabel.color = [CCColor whiteColor];
 
-    
         //highScoreLabel.position = ccp(0.55f, 0.25f); // Middle center
     //[self addChild:highScoreLabel];
     
@@ -304,6 +309,11 @@ int yVel = 0;
     [cloud runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     
 }
+-(void)addHObject:(CCTime)dt {
+    //random type
+    int *_type = arc4random() % 2;
+    _horizObject = [[HorizObject alloc] initWorld:_physicsWorld andScene:self andType:_type];
+}
 
 - (void)onExit
 {
@@ -386,7 +396,7 @@ int yVel = 0;
 #pragma mark - Bounding box for player function - make sure player stays on screen
 // -----------------------------------------------------------------------
 -(CGPoint)playerBoundBox:(CGPoint) playerLoc {
-    int padding = 0;
+    int padding = _martian.contentSize.width + 5;
     float extra = 0;
     //check x coordinates
     if (playerLoc.x > (self.contentSize.width + padding)) {
@@ -445,7 +455,8 @@ int yVel = 0;
         [self addChild: twitterMessage];
         CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
         CCAction *actionRemove = [CCActionRemove action];
-        [twitterMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+        _socialMediaMessage = twitterMessage;
+        [_socialMediaMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
 
@@ -466,7 +477,8 @@ int yVel = 0;
         [self addChild: fbMessage];
         CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
         CCAction *actionRemove = [CCActionRemove action];
-        [fbMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+        _socialMediaMessage = fbMessage;
+        [_socialMediaMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
 
@@ -487,7 +499,8 @@ int yVel = 0;
         [self addChild: weiboMessage];
         CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.0];
         CCAction *actionRemove = [CCActionRemove action];
-        [weiboMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+        _socialMediaMessage = weiboMessage;
+        [_socialMediaMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
 -(void)onInfoButtonClick:(id)sender {
@@ -695,6 +708,20 @@ int yVel = 0;
     
     return YES;
 }
+// -----------------------------------------------------------------------
+ #pragma mark - Collision Detection for HorizObject and player
+ // -----------------------------------------------------------------------
+ - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind playerCollision:(CCNode *)player {
+ 
+ return YES;
+ }
+ // -----------------------------------------------------------------------
+ #pragma mark - Collision Detection for HorizObject and Powerup
+ // -----------------------------------------------------------------------
+ - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair windCollision:(CCNode *)wind powerupCollision:(CCNode *)player {
+ 
+ return YES;
+ }
 // -----------------------------------------------------------------------
 #pragma mark - Make sure label fits the screen
 // -----------------------------------------------------------------------
