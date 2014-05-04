@@ -93,9 +93,10 @@ int yVel = 0;
                     [NSArray arrayWithObjects:
                         @"comet3.png", @"rocket.png", nil], @"missiles",
                     [NSArray arrayWithObjects:
-                        @"cloud_1.png", nil], @"clouds",
+                        [NSArray arrayWithObjects:@"meteor1.png", @"meteor2.png", @"meteor3.png", @"meteor4.png", @"meteor5.png", nil], @"cloud_1.png", nil], @"clouds",
                     [NSArray arrayWithObjects:
-                        @"plane_2.png", nil], @"horiz",
+                        @"satellite.png", @"plane_2.png", nil], @"horiz",
+                    @"ArialRoundedMTBold", @"font",
               nil];
     _currlevel = 0;
     curr_loop_img_1 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
@@ -127,7 +128,7 @@ int yVel = 0;
     inTransition = false;
     
     // Intro title
-    _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"ArialRoundedMTBold" fontSize:36.0f];
+    _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:assets[@"font"] fontSize:36.0f];
     [self fitLabeltoScreen:_introLabel];
     _introLabel.positionType = CCPositionTypeNormalized;
     _introLabel.color = [CCColor redColor];
@@ -135,7 +136,7 @@ int yVel = 0;
     [self addChild: _introLabel];
     
     // Play button
-    _playGame = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to begin", nil) fontName:@"ArialRoundedMTBold" fontSize:18.0f];
+    _playGame = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to begin", nil) fontName:assets[@"font"] fontSize:18.0f];
     [self fitLabeltoScreen:_playGame];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
@@ -210,7 +211,7 @@ int yVel = 0;
     
     // Initialize the score & its label
     _score = 0;
-    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Chalkduster" fontSize:14.0f];
+    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:assets[@"font"] fontSize:14.0f];
     _scoreLabel.positionType = CCPositionTypeNormalized;
     _scoreLabel.color = [CCColor whiteColor];
     _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
@@ -223,7 +224,7 @@ int yVel = 0;
 
     //End of game menu, created now but added only at end of game
     // Create a playAgain button for end of game
-    CCButton *playAgainButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Play ]", nil) fontName:@"Verdana-Bold" fontSize:20.0f];
+    CCButton *playAgainButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Play ]", nil) fontName:assets[@"font"] fontSize:20.0f];
     [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
     
     //make twitter button
@@ -295,7 +296,9 @@ int yVel = 0;
 }
 
 - (void)introClouds:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed:assets[@"clouds"][_currlevel]];
+    NSArray *clouds = assets[@"clouds"][0];
+    int randomCloud = (arc4random() % [clouds count]);
+    CCSprite *cloud = [CCSprite spriteWithImageNamed:clouds[randomCloud]];
     [cloud setName:@"cloud"];
 
     // Set time and space bounds for cloud generation
@@ -315,8 +318,16 @@ int yVel = 0;
 }
 
 - (void)addCloud:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed: assets[@"clouds"][_currlevel]];
-    
+    CCSprite *cloud;
+    if (_currlevel == 0) {
+        NSArray *clouds = assets[@"clouds"][0];
+        int randomCloud = (arc4random() % [clouds count]);
+        cloud = [CCSprite spriteWithImageNamed:clouds[randomCloud]];
+    }
+    else {
+        cloud = [CCSprite spriteWithImageNamed: assets[@"clouds"][_currlevel]];
+    }
+        
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
     int randomX = (arc4random() % maxX);
@@ -403,7 +414,7 @@ int yVel = 0;
     moveLoc = [self playerBoundBox:moveLoc];
     
     /* If this task was scheduled... */
-    if (dur == 0) {
+    if (dur <= 1) {
         dur = 0.10f;
     }
     

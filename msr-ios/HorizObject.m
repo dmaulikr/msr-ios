@@ -46,7 +46,7 @@
         CCAction *actionRemove = [CCActionRemove action];
         [_objectSprite runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     } else {
-        _objectSprite = [CCSprite spriteWithImageNamed:@"plane_2.png"];
+        _objectSprite = [CCSprite spriteWithImageNamed:png];
         
         // Make appear at a random Y coordinate
         int minY = _objectSprite.contentSize.height / 2;

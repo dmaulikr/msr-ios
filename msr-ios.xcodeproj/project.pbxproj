@@ -269,6 +269,12 @@
 		53FADF1B19105CE100468B33 /* comet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1A19105CE100468B33 /* comet2.png */; };
 		53FADF1F19105E1500468B33 /* ufo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1E19105E1500468B33 /* ufo.png */; };
 		53FADF2119105F0500468B33 /* comet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF2019105F0500468B33 /* comet3.png */; };
+		EF8B207D1916EDC600076822 /* meteor1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B20781916EDC600076822 /* meteor1.png */; };
+		EF8B207E1916EDC600076822 /* meteor2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B20791916EDC600076822 /* meteor2.png */; };
+		EF8B207F1916EDC600076822 /* meteor3.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B207A1916EDC600076822 /* meteor3.png */; };
+		EF8B20801916EDC600076822 /* meteor4.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B207B1916EDC600076822 /* meteor4.png */; };
+		EF8B20811916EDC600076822 /* meteor5.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B207C1916EDC600076822 /* meteor5.png */; };
+		EF8B20831916F3AF00076822 /* satellite.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8B20821916F3AF00076822 /* satellite.png */; };
 		EFA6FBF81915D5E000BD7000 /* PauseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA6FBF71915D5E000BD7000 /* PauseScene.m */; };
 		EFE979881911841300502628 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EFE979891911841300502628 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -777,6 +783,12 @@
 		53FADF1A19105CE100468B33 /* comet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet2.png; sourceTree = "<group>"; };
 		53FADF1E19105E1500468B33 /* ufo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo.png; sourceTree = "<group>"; };
 		53FADF2019105F0500468B33 /* comet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet3.png; sourceTree = "<group>"; };
+		EF8B20781916EDC600076822 /* meteor1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor1.png; sourceTree = "<group>"; };
+		EF8B20791916EDC600076822 /* meteor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor2.png; sourceTree = "<group>"; };
+		EF8B207A1916EDC600076822 /* meteor3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor3.png; sourceTree = "<group>"; };
+		EF8B207B1916EDC600076822 /* meteor4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor4.png; sourceTree = "<group>"; };
+		EF8B207C1916EDC600076822 /* meteor5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor5.png; sourceTree = "<group>"; };
+		EF8B20821916F3AF00076822 /* satellite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satellite.png; sourceTree = "<group>"; };
 		EF8BF14319104277002BFE24 /* transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition1.png; sourceTree = "<group>"; };
 		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
 		EFA6FBF61915D5E000BD7000 /* PauseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PauseScene.h; path = Classes/PauseScene.h; sourceTree = "<group>"; };
@@ -859,6 +871,11 @@
 		43759B881902B46100717DF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF8B20781916EDC600076822 /* meteor1.png */,
+				EF8B20791916EDC600076822 /* meteor2.png */,
+				EF8B207A1916EDC600076822 /* meteor3.png */,
+				EF8B207B1916EDC600076822 /* meteor4.png */,
+				EF8B207C1916EDC600076822 /* meteor5.png */,
 				43B846021915D78700603EDB /* martian0.png */,
 				43B845E6191594D300603EDB /* 3backgroundloop1.png */,
 				43B845E7191594D300603EDB /* 3transition1.png */,
@@ -1727,6 +1744,7 @@
 				53FADF0E19103C4100468B33 /* info.png */,
 				53EE4CFE19101D5E00934154 /* diamondworld.png */,
 				53F89DE8190E022500E7BA7E /* weibo2.png */,
+				EF8B20821916F3AF00076822 /* satellite.png */,
 				530A1084190EFC760072FEE0 /* windHorizontalSmall.png */,
 				530A1085190EFC760072FEE0 /* windVertical.png */,
 				530A1082190EF9340072FEE0 /* windHorizontal.png */,
@@ -1885,6 +1903,7 @@
 				53CE0530190981BF003454B2 /* rocket.png in Resources */,
 				43D933541902C51D006704B8 /* fire.png in Resources */,
 				43B845F81915BD5B00603EDB /* blip2.wav in Resources */,
+				EF8B20801916EDC600076822 /* meteor4.png in Resources */,
 				53FADF17191056F600468B33 /* comet1.png in Resources */,
 				43759DA31902B46400717DF5 /* LICENSE_CCBReader.txt in Resources */,
 				53FADF1B19105CE100468B33 /* comet2.png in Resources */,
@@ -1895,8 +1914,10 @@
 				53FADF1F19105E1500468B33 /* ufo.png in Resources */,
 				43759B991902B46200717DF5 /* Icon-72@2x.png in Resources */,
 				43B845FB1915BD5B00603EDB /* explosion1.wav in Resources */,
+				EF8B20811916EDC600076822 /* meteor5.png in Resources */,
 				43759B8A1902B46100717DF5 /* Default.png in Resources */,
 				43B845E9191594D300603EDB /* 3transition1.png in Resources */,
+				EF8B207D1916EDC600076822 /* meteor1.png in Resources */,
 				43759B931902B46200717DF5 /* Icon.png in Resources */,
 				EFE979891911841300502628 /* (null) in Resources */,
 				43759BA11902B46200717DF5 /* Icon-iPad-Spotlight-iOS7@2x.png in Resources */,
@@ -1937,6 +1958,7 @@
 				43B845F71915BD5B00603EDB /* blip1.wav in Resources */,
 				53F89DD7190D831C00E7BA7E /* fireworks.png in Resources */,
 				43D933531902C51D006704B8 /* cloud.png in Resources */,
+				EF8B20831916F3AF00076822 /* satellite.png in Resources */,
 				53F89DEE190E0AF700E7BA7E /* Localizable.strings in Resources */,
 				53D01587191155F8001AA9E2 /* missile_3.png in Resources */,
 				53FADF151910561D00468B33 /* asteroid_1.png in Resources */,
@@ -1946,7 +1968,9 @@
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,
 				530A1086190EFC760072FEE0 /* windHorizontalSmall.png in Resources */,
+				EF8B207E1916EDC600076822 /* meteor2.png in Resources */,
 				43B845FE1915BD5B00603EDB /* powerup1.wav in Resources */,
+				EF8B207F1916EDC600076822 /* meteor3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
