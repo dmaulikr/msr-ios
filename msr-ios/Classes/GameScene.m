@@ -544,6 +544,11 @@ int yVel = 0;
         [_socialMediaMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
+
+// -----------------------------------------------------------------------
+#pragma mark - Tutorial button
+// -----------------------------------------------------------------------
+
 -(void)onInfoButtonClick:(id)sender {
     
     [[CCDirector sharedDirector] pause];
