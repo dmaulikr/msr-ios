@@ -25,6 +25,7 @@ bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
 bool playerAlive = false;
+bool imgLoop = false;
 //how much to increase score for powerups
 const int POWERUP_INCREASE = 100;
 
