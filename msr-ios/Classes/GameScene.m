@@ -108,7 +108,7 @@ int yVel = 0;
     
     
     assets = [[NSDictionary alloc] initWithObjectsAndKeys:
-              [NSArray arrayWithObjects:@"3transition1.png", @"skybackground.png", @"skybackground.png", nil], @"transitions",
+              [NSArray arrayWithObjects:@"Default.png", @"Default.png", @"Default.png", nil], @"transitions",
               [NSArray arrayWithObjects:@"3backgroundloop1.png", @"3backgroundloop1.png", @"3backgroundloop1.png", nil], @"backgrounds",
               [NSArray arrayWithObjects:@"rocket.png", nil], @"missiles",
               [NSArray arrayWithObjects:@"cloud_1.png", nil], @"clouds",
@@ -123,10 +123,10 @@ int yVel = 0;
     [self addChild:curr_transition_img z:-3];
     
     curr_loop_img_1.position = CGPointMake(curr_transition_img.contentSize.width/2, curr_transition_img.position.y - curr_transition_img.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1);
-    [self addChild:curr_loop_img_1 z:-3];
+    [self addChild:curr_loop_img_1 z:-4];
     
     curr_loop_img_2.position = CGPointMake(curr_loop_img_1.contentSize.width/2, curr_transition_img.position.y - curr_transition_img.contentSize.height/2 - curr_loop_img_1.contentSize.height/2 + 1);
-    [self addChild:curr_loop_img_2 z:-3];
+    [self addChild:curr_loop_img_2 z:-4];
     
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
     
@@ -564,14 +564,14 @@ int yVel = 0;
 #pragma mark - Move Scrolling Background
 // -----------------------------------------------------------------------
 -(void)moveBackground:(CCTime)delta{
-    CGPoint bgPos1 = curr_transition_img.position;
+    CGPoint bgPos_trans = curr_transition_img.position;
     CGPoint bgPos2 = curr_loop_img_1.position;
     CGPoint bgPos3 = curr_loop_img_2.position;
-    bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
+    bgPos_trans.y = bgPos_trans.y + BACKGROUND_SCROLL_SPEED;
     bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
     bgPos3.y = bgPos3.y + BACKGROUND_SCROLL_SPEED;
     
-    NSLog(@"%i", _loopcounter);
+    //NSLog(@"We are in moveBackground %i", _loopcounter);
     
     if (bgPos2.y  - curr_loop_img_1.contentSize.height/2 > 0.0) { // first loop image about to leave screen
         if (imgLoop == false){
@@ -581,9 +581,10 @@ int yVel = 0;
         
         //time to enter a transition if loop counter is whatever and the first image is above second image
         //unschedule movebackground, the whole screen is filled by image one
-        if (_loopcounter == 1) {
-            [self unschedule:@selector(moveBackground:)];
-            [self changeLevel];
+        if (_loopcounter == 2) {
+            //[self unschedule:@selector(moveBackground:)];
+            bgPos_trans = [self changeLevel];
+            NSLog(@"back from change level");
         }
         
         bgPos3.y = bgPos2.y - curr_loop_img_1.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1;
@@ -593,9 +594,12 @@ int yVel = 0;
         bgPos2.y = bgPos3.y - curr_loop_img_2.contentSize.height/2 - curr_loop_img_1.contentSize.height/2 + 1;
     }
     
-    bgPos1.y = (int)bgPos1.y;
+    bgPos_trans.y = (int)bgPos_trans.y;
     bgPos2.y = (int)bgPos2.y;
-    curr_transition_img.position = bgPos1;
+    bgPos3.y = (int)bgPos3.y;
+    //setting x to 
+    bgPos2.x = (int)bgPos3.x;
+    curr_transition_img.position = bgPos_trans; //this is chagning it back to the old positoin
     curr_loop_img_1.position = bgPos2;
     curr_loop_img_2.position = bgPos3;
     
@@ -604,23 +608,57 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 #pragma mark - Level transitions
 // -----------------------------------------------------------------------
--(void)changeLevel {
-    NSLog(@"in level transition");
-    //set new transition picture
-    transitionPic = [CCSprite spriteWithImageNamed:assets[@"transitions"][_currlevel + 1]];
-    [transitionPic setAnchorPoint:CGPointMake(.5, 0)];
-    //set position to right below image 1
-    transitionPic.position = CGPointMake(self.contentSize.width/2,self.contentSize.height);
-    [transitionPic setOpacity:.99];
-    [self addChild:transitionPic z:1];
-    [self schedule:@selector(moveTransition:) interval:.03];
+-(CGPoint)changeLevel {
+    NSLog(@"in change level");
+
+    CGPoint bgPos1 = curr_loop_img_1.position;
+    CGPoint bgPos2 = curr_loop_img_2.position;
+    //CGPoint bgPos3 = curr_transition_img.position;
+
+
+    //reschedule move background
+    if (_currlevel < 2) {
+        _currlevel++; //we need to only do this once
+    } else {
+        _currlevel = 1;
+    }
+    _loopcounter = 0;
+    
+    NSLog(@"cur level new %d ", _currlevel);
+
+    //remove old images
+    [self removeChild:curr_loop_img_1];
+    [self removeChild:curr_loop_img_2];
+    [self removeChild:curr_transition_img];
+    
+    curr_loop_img_1 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
+    curr_loop_img_2 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
+    curr_transition_img = [CCSprite spriteWithImageNamed:assets[@"transitions"][_currlevel]];
+
+    
+    curr_transition_img.position = bgPos1;
+    curr_loop_img_1.position = bgPos1;
+    curr_loop_img_2.position = bgPos2;
+
+    //bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
+    //bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
+    bgPos1.y = (int)bgPos1.y;
+    bgPos2.y = (int)bgPos2.y;
+    curr_transition_img.position = bgPos1;
+    curr_loop_img_1.position = bgPos1;
+    curr_loop_img_2.position = bgPos2;
+
+    [self addChild:curr_loop_img_1 z:-3];
+    [self addChild:curr_loop_img_2 z:-3];
+    [self addChild:curr_transition_img z:-2];
+    
+    return bgPos1;
 
 }
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
--(void)moveTransition:(CCTime)delta{
-    
-    
+/*-(void)moveTransition:(CCTime)delta{
+
     CGPoint bgPos1 = curr_transition_img.position;
     CGPoint bgPos2 = curr_loop_img_1.position;
     CGPoint bgPos3 = curr_loop_img_2.position;
@@ -661,7 +699,7 @@ int yVel = 0;
         NSLog(@"cur level is %d", _currlevel);
         [self removeChild:transitionPic];
     }
-}
+}*/
 // -----------------------------------------------------------------------
 //JUNKKKKKK
 // -----------------------------------------------------------------------
