@@ -545,6 +545,12 @@ int yVel = 0;
     }
 }
 -(void)onInfoButtonClick:(id)sender {
+    
+    [[CCDirector sharedDirector] pause];
+    
+    //CCSprite *tutorialPic =
+    
+    /*
     CCLabelTTF *infoMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to move up, turn to move left and right.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
     [self fitLabeltoScreen:infoMessage];
     infoMessage.positionType = CCPositionTypeNormalized;
@@ -552,7 +558,7 @@ int yVel = 0;
     [self addChild: infoMessage];
     CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.8];
     CCAction *actionRemove = [CCActionRemove action];
-    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];*/
 
 }
 // -----------------------------------------------------------------------
@@ -727,7 +733,8 @@ int yVel = 0;
     //increment score on powerup collision
     _score = _score + POWERUP_INCREASE;
     
-    CCSprite *pUp = [CCSprite spriteWithImageNamed:(@"fireworks.png")];
+    CCLabelTTF *pUp = [CCLabelTTF labelWithString:@"+100" fontName:@"ArialRoundedMTBold" fontSize:13.0f];
+    pUp.color = [CCColor whiteColor];
     CGPoint new_pos = powerup.position;
     new_pos.y = new_pos.y + 10;
     pUp.position  = new_pos;
