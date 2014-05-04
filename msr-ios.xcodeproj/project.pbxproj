@@ -224,6 +224,7 @@
 		43B845FD1915BD5B00603EDB /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 43B845F41915BD5B00603EDB /* jump.wav */; };
 		43B845FE1915BD5B00603EDB /* powerup1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 43B845F51915BD5B00603EDB /* powerup1.wav */; };
 		43B845FF1915BD5B00603EDB /* space-theme.band in Resources */ = {isa = PBXBuildFile; fileRef = 43B845F61915BD5B00603EDB /* space-theme.band */; };
+		43B846031915D78700603EDB /* martian0.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B846021915D78700603EDB /* martian0.png */; };
 		43D933521902C51D006704B8 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334C1902C51D006704B8 /* bird.png */; };
 		43D933531902C51D006704B8 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334D1902C51D006704B8 /* cloud.png */; };
 		43D933541902C51D006704B8 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D9334E1902C51D006704B8 /* fire.png */; };
@@ -724,6 +725,7 @@
 		43B845F41915BD5B00603EDB /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		43B845F51915BD5B00603EDB /* powerup1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerup1.wav; sourceTree = "<group>"; };
 		43B845F61915BD5B00603EDB /* space-theme.band */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "space-theme.band"; sourceTree = "<group>"; };
+		43B846021915D78700603EDB /* martian0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = martian0.png; path = "scratch-assets/martian0.png"; sourceTree = "<group>"; };
 		43D9334C1902C51D006704B8 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
 		43D9334D1902C51D006704B8 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
 		43D9334E1902C51D006704B8 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
@@ -857,6 +859,7 @@
 		43759B881902B46100717DF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				43B846021915D78700603EDB /* martian0.png */,
 				43B845E6191594D300603EDB /* 3backgroundloop1.png */,
 				43B845E7191594D300603EDB /* 3transition1.png */,
 				EF8BF14519104603002BFE24 /* backgroundloop1.png */,
@@ -1872,6 +1875,7 @@
 				53D015851911556E001AA9E2 /* missile_1.png in Resources */,
 				53CE053A1909A945003454B2 /* skybackground2.png in Resources */,
 				43759B8C1902B46100717DF5 /* Default@2x.png in Resources */,
+				43B846031915D78700603EDB /* martian0.png in Resources */,
 				530A1087190EFC760072FEE0 /* windVertical.png in Resources */,
 				43B845FC1915BD5B00603EDB /* explosion2.wav in Resources */,
 				43759B9F1902B46200717DF5 /* Icon-120.png in Resources */,
@@ -2192,6 +2196,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Martian Fall";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2221,6 +2226,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "Martian Fall";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -15,7 +15,7 @@
 @property CCSprite *missile;
 @property Player *player;
 
--(id)initPlayer: (Player *)_martian andWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene;
+-(id)initPlayer: (Player *)_martian andWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andImgName:(NSString *)png;
 
 
 @end
