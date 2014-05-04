@@ -383,18 +383,9 @@ int yVel = 0;
     }
     
     else if (!inTransition) {
-        //CGPoint touchLoc = [touch locationInNode:self];
-    
-        // Log touch location
-        //CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
-    
-        // Move our sprite to touch location
-        //CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-        //[_martian._sprite runAction:actionMove];
-        
         // A touch gives an acceleration in the y-direction
 
-        [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.25];
+        [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.22];
         
         //play jump sound
         if (playerAlive) {
@@ -407,32 +398,15 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 -(void) spriteUpdate:(NSTimer *) timer withDx:(float) dx withDy:(float) dy withDuration:(float) dur{
     
-
-    /* NOTE: Issue: Still little collisions with invisbile wall. Not sure how to fix */
-    
-    //NSLog(@"%f", dur);
     float accelX = self.manager.accelerometerData.acceleration.x;
-    //float accelY = self.manager.accelerometerData.acceleration.y;
     
-    //NSLog(@"Falling at %f", accelY);
-    
-    CGPoint newAccel = CGPointMake(accelX * 15 + dx, dy - 2.8);
-    
-    CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
-                                 _martian.physicsBody.surfaceVelocity.y + newAccel.y);
+    CGPoint newVel = CGPointMake(accelX * 15 + dx, dy - 2.8);
     
     CGPoint moveLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
                                    _martian._sprite.position.y + newVel.y);
 
     moveLoc = [self playerBoundBox:moveLoc];
-    
-    float duration = 0.01f;
-    
-    //if (newVel.y < 0)
-        duration = 0.10;
-    
-    
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:duration position:moveLoc];
+    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:dur position:moveLoc];
     
     [_martian._sprite runAction:actionMove];
 }
@@ -547,6 +521,11 @@ int yVel = 0;
         [_socialMediaMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
+
+// -----------------------------------------------------------------------
+#pragma mark - Tutorial button
+// -----------------------------------------------------------------------
+
 -(void)onInfoButtonClick:(id)sender {
     
     [[CCDirector sharedDirector] pause];
