@@ -24,6 +24,7 @@ const int BACKGROUND_SCROLL_SPEED = 4;
 bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
+bool playerAlive = false;
 //how much to increase score for powerups
 const int POWERUP_INCREASE = 100;
 
@@ -106,17 +107,18 @@ int yVel = 0;
     
     // Intro title
     _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"ArialRoundedMTBold" fontSize:36.0f];
+    [self fitLabeltoScreen:_introLabel];
     _introLabel.positionType = CCPositionTypeNormalized;
     _introLabel.color = [CCColor redColor];
     _introLabel.position = ccp(0.5f, 0.8f); // Middle of screen
     [self addChild: _introLabel];
     
     // Play button
-    _playGame = [CCButton buttonWithTitle: NSLocalizedString(@"Tap to begin", nil) fontName:@"ArialRoundedMTBold" fontSize:18.0f];
+    _playGame = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to begin", nil) fontName:@"ArialRoundedMTBold" fontSize:18.0f];
+    [self fitLabeltoScreen:_playGame];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
     [self addChild:_playGame];
-    
     
 	return self;
 }
@@ -170,8 +172,9 @@ int yVel = 0;
      _physicsWorld.collisionDelegate = self;
      [self addChild:_physicsWorld z:-1];
     
-     // Player
-     _martian = [[Player alloc] initWorld:_physicsWorld withPosition: new_pos andScene:self];
+    // Player
+    _martian = [[Player alloc] initWorld:_physicsWorld withPosition: new_pos andScene:self];
+    playerAlive = true;
     
      // Init and alloc mutable missile array
      _missilesArray = [[NSMutableArray alloc] init];
@@ -229,7 +232,8 @@ int yVel = 0;
     endMenu = [[CCLayoutBox alloc] init];
     endMenu.direction = CCLayoutBoxDirectionVertical;
     endMenu.spacing = 10.f;
-    endMenu.position = CGPointMake((self.contentSize.width/2 - (playAgainButton.contentSize.width/2)),(self.contentSize.height/2 - (playAgainButton.contentSize.height * 2)));
+    [endMenu setAnchorPoint:CGPointMake(.5, .5)];
+    endMenu.position = CGPointMake(self.contentSize.width/2,self.contentSize.height/2);
 
     //only add weibo is language is chinese
     if ([[[NSLocale preferredLanguages] objectAtIndex:0]  isEqual: @"zh"]) {
@@ -356,6 +360,11 @@ int yVel = 0;
         // A touch gives an acceleration in the y-direction
 
         [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.25];
+        
+        //play jump sound
+        if (playerAlive) {
+            [[OALSimpleAudio sharedInstance] playBg:@"jump.wav" loop:NO];
+        }
     }
 }
 // -----------------------------------------------------------------------
@@ -620,6 +629,12 @@ int yVel = 0;
     [self createHighScoreLabel];
     [self addChild:endMenu];
     
+    //play sound
+    [[OALSimpleAudio sharedInstance] playBg:@"explosion2.wav" loop:NO];
+    
+    //player is dead
+    playerAlive = false;
+    
     return YES;
 }
 
@@ -684,6 +699,9 @@ int yVel = 0;
     CCAction *actionRemove = [CCActionRemove action];
    
     [pUp runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    
+    //play sound
+    [[OALSimpleAudio sharedInstance] playBg:@"powerup1.wav" loop:NO];
     return YES;
 }
 // -----------------------------------------------------------------------
