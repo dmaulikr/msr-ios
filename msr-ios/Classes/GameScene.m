@@ -161,7 +161,7 @@ int yVel = 0;
     [self removeChild:_playGame];
     
     // Initial missile
-    CCSprite *missile = [CCSprite spriteWithImageNamed:@"comet.png"];
+    CCSprite *missile = [CCSprite spriteWithImageNamed:@"comet3.png"];
     missile.positionType = CCPositionTypeNormalized;
     missile.position = ccp(0.5f, 0);
     [self addChild:missile];
@@ -580,7 +580,7 @@ int yVel = 0;
         
         //time to enter a transition if loop counter is whatever and the first image is above second image
         //unschedule movebackground, the whole screen is filled by image one
-        if (_loopcounter == 3) {
+        if (_loopcounter == 2) {
             //[self unschedule:@selector(moveBackground:)];
             bgPos_trans = [self changeLevel];
             NSLog(@"back from change level");
@@ -607,16 +607,19 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 #pragma mark - Level transitions
 // -----------------------------------------------------------------------
+
+//NOTE: this is off by like 10 pixels
 -(CGPoint)changeLevel {
     CGPoint bgPos1 = curr_loop_img_1.position;
     CGPoint bgPos2 = curr_loop_img_2.position;
+    CGPoint bgPos_trans;
     //CGPoint bgPos3 = curr_transition_img.position;
 
     //reschedule move background, up this to 2?
     if (_currlevel < 1) {
         _currlevel++; //we need to only do this once
     } else {
-        _currlevel = 1;
+        _currlevel = 0;
     }
     _loopcounter = 0;
     
@@ -631,16 +634,18 @@ int yVel = 0;
     curr_loop_img_2 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
     curr_transition_img = [CCSprite spriteWithImageNamed:assets[@"transitions"][_currlevel]];
 
-    
-    curr_transition_img.position = bgPos1;
+    //[curr_transition_img setAnchorPoint:CGPointMake(.5, 0)];
+    //need to get cur_transition_img_posiotn y right
+    bgPos_trans = bgPos1;
+    bgPos_trans.y = bgPos_trans.y - (curr_loop_img_1.contentSize.height/2);
+    curr_transition_img.position = bgPos_trans;//= bgPos1;
     curr_loop_img_1.position = bgPos1;
     curr_loop_img_2.position = bgPos2;
 
-    //bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
-    //bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
     bgPos1.y = (int)bgPos1.y;
     bgPos2.y = (int)bgPos2.y;
-    curr_transition_img.position = bgPos1;
+    bgPos_trans.y = (int)bgPos_trans.y;
+    curr_transition_img.position = bgPos_trans;
     curr_loop_img_1.position = bgPos1;
     curr_loop_img_2.position = bgPos2;
 
@@ -648,58 +653,9 @@ int yVel = 0;
     [self addChild:curr_loop_img_2 z:-3];
     [self addChild:curr_transition_img z:-2];
     
-    return bgPos1;
+    return bgPos_trans;
 
 }
-// -----------------------------------------------------------------------
-// -----------------------------------------------------------------------
-/*-(void)moveTransition:(CCTime)delta{
-
-    CGPoint bgPos1 = curr_transition_img.position;
-    CGPoint bgPos2 = curr_loop_img_1.position;
-    CGPoint bgPos3 = curr_loop_img_2.position;
-    bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
-    bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
-    bgPos3.y = bgPos3.y + BACKGROUND_SCROLL_SPEED;
-    
-    //NSLog(@"%i", _loopcounter);
-    
-    if (bgPos2.y  - curr_loop_img_1.contentSize.height/2 > 0.0) { // first loop image about to leave screen
-        if (imgLoop == false){
-            imgLoop = true;
-            _loopcounter++;
-        }
-        bgPos3.y = bgPos2.y - curr_loop_img_1.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1;
-    }
-    if (bgPos3.y - curr_loop_img_2.contentSize.height/2 > 0.0) { // second loop image about to leave screen
-        imgLoop = false;
-        bgPos2.y = bgPos3.y - curr_loop_img_2.contentSize.height/2 - curr_loop_img_1.contentSize.height/2 + 1;
-    }
-    
-    bgPos1.y = (int)bgPos1.y;
-    bgPos2.y = (int)bgPos2.y;
-    curr_transition_img.position = bgPos1;
-    curr_loop_img_1.position = bgPos2;
-    curr_loop_img_2.position = bgPos3;
-    
-    CGPoint transitionPos = transitionPic.position;
-    transitionPos.y = (int)(curr_loop_img_1.position.y - curr_loop_img_1.contentSize.height);
-    transitionPic.position = transitionPos;
-    
-    //if top of transition pic is higher than screen height, change all the assets
-    if ((transitionPic.position.y + transitionPic.contentSize.height) > self.contentSize.height) {
-        _currlevel++; //we need to only do this once
-        [self unschedule:@selector(moveTransition:)];
-        [self schedule:@selector(moveBackground:) interval:.03];
-        _loopcounter = 5; //RESET LOOP COUNTER
-        NSLog(@"cur level is %d", _currlevel);
-        [self removeChild:transitionPic];
-    }
-}*/
-// -----------------------------------------------------------------------
-//JUNKKKKKK
-// -----------------------------------------------------------------------
-
 // -----------------------------------------------------------------------
 #pragma mark - Add Missile
 // -----------------------------------------------------------------------

@@ -38,16 +38,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420862645.861495"
+            timestampString = "420938985.020651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-initGame"
+            startingLineNumber = "614"
+            endingLineNumber = "614"
+            landmarkName = "-changeLevel"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
