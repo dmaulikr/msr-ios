@@ -89,24 +89,7 @@ int yVel = 0;
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
-/*    levelManager = [[Levels alloc] init:self];
-    
-    // Add images as backgrounds
-    _background1 = [CCSprite spriteWithImageNamed:@"3transition1.png"];
-    _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
-    [self addChild:_background1 z:-3];
-    
-    _background2 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
-    _background2.position = CGPointMake(_background1.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2 + 1);
-    
-    
-    [self addChild:_background2 z:-3];
-    
-    _background3 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
-    _background3.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2 + 1);
-    [self addChild:_background3 z:-3]; */
-    
-    
+    // Dictionary containing assets
     assets = [[NSDictionary alloc] initWithObjectsAndKeys:
               [NSArray arrayWithObjects:@"Default.png", @"Default.png", @"Default.png", nil], @"transitions",
               [NSArray arrayWithObjects:@"3backgroundloop1.png", @"3backgroundloop1.png", @"3backgroundloop1.png", nil], @"backgrounds",
@@ -143,7 +126,7 @@ int yVel = 0;
     inTransition = false;
     
     // Intro title
-    _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"ArialRoundedMTBold" fontSize:36.0f];
+    _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:assets[@"font"] fontSize:36.0f];
     [self fitLabeltoScreen:_introLabel];
     _introLabel.positionType = CCPositionTypeNormalized;
     _introLabel.color = [CCColor redColor];
@@ -151,7 +134,7 @@ int yVel = 0;
     [self addChild: _introLabel];
     
     // Play button
-    _playGame = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to begin", nil) fontName:@"ArialRoundedMTBold" fontSize:18.0f];
+    _playGame = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to begin", nil) fontName:assets[@"font"] fontSize:18.0f];
     [self fitLabeltoScreen:_playGame];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
@@ -202,7 +185,6 @@ int yVel = 0;
     CCAction *actionRemove = [CCActionRemove action];
     [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     
-    
      // Set up the physics world
      _physicsWorld = [CCPhysicsNode node];
      _physicsWorld.gravity = ccp(0,0);
@@ -241,7 +223,7 @@ int yVel = 0;
     
     //End of game menu, created now but added only at end of game
     // Create a playAgain button for end of game
-    CCButton *playAgainButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Play ]", nil) fontName:@"Verdana-Bold" fontSize:20.0f];
+    CCButton *playAgainButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Play ]", nil) fontName:assets[@"font"] fontSize:20.0f];
     [playAgainButton setTarget:self selector:@selector(onPlayAgainClick:)];
     
     //make twitter button
@@ -310,7 +292,9 @@ int yVel = 0;
 }
 
 - (void)introClouds:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud.png"];
+    NSArray *clouds = assets[@"clouds"][0];
+    int randomCloud = (arc4random() % [clouds count]);
+    CCSprite *cloud = [CCSprite spriteWithImageNamed:clouds[randomCloud]];
     [cloud setName:@"cloud"];
 
     // Set time and space bounds for cloud generation
@@ -330,8 +314,16 @@ int yVel = 0;
 }
 
 - (void)addCloud:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud_1.png"];
-    
+    CCSprite *cloud;
+    if (_currlevel == 0) {
+        NSArray *clouds = assets[@"clouds"][0];
+        int randomCloud = (arc4random() % [clouds count]);
+        cloud = [CCSprite spriteWithImageNamed:clouds[randomCloud]];
+    }
+    else {
+        cloud = [CCSprite spriteWithImageNamed: assets[@"clouds"][_currlevel]];
+    }
+        
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
     int randomX = (arc4random() % maxX);
@@ -351,7 +343,7 @@ int yVel = 0;
 -(void)addHObject:(CCTime)dt {
     //random type
     int *_type = arc4random() % 2;
-    _horizObject = [[HorizObject alloc] initWorld:_physicsWorld andScene:self andType:_type];
+    _horizObject = [[HorizObject alloc] initWorld:_physicsWorld andScene:self andType:_type andImgName:assets[@"horiz"][_currlevel]];
 }
 
 - (void)onExit
@@ -418,7 +410,7 @@ int yVel = 0;
     moveLoc = [self playerBoundBox:moveLoc];
     
     /* If this task was scheduled... */
-    if (dur == 0) {
+    if (dur <= 1) {
         dur = 0.10f;
     }
     
@@ -709,7 +701,7 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 -(void)addMissile:(CCTime)delta
 {
-    _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self];
+    _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self andImgName:assets[@"missiles"][_currlevel]];
     //add missile to array
     [_missilesArray addObject: _missile];
     [self schedule:(@selector(trackPlayerwithMissile)) interval:0.07];
