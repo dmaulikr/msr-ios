@@ -91,10 +91,17 @@ int yVel = 0;
     
     // Dictionary containing assets
     assets = [[NSDictionary alloc] initWithObjectsAndKeys:
-              [NSArray arrayWithObjects:@"Default.png", @"Default.png", @"Default.png", nil], @"transitions",
-              [NSArray arrayWithObjects:@"3backgroundloop1.png", @"3backgroundloop1.png", @"3backgroundloop1.png", nil], @"backgrounds",
-              [NSArray arrayWithObjects:@"rocket.png", nil], @"missiles",
-              [NSArray arrayWithObjects:@"cloud_1.png", nil], @"clouds",
+                    [NSArray arrayWithObjects:
+                        @"3transition1.png", @"3transition1.png", nil], @"transitions",
+                    [NSArray arrayWithObjects:
+                        @"3backgroundloop1.png", @"3backgroundloop1.png", nil], @"backgrounds",
+                    [NSArray arrayWithObjects:
+                        @"comet3.png", @"rocket.png", nil], @"missiles",
+                    [NSArray arrayWithObjects:
+                        [NSArray arrayWithObjects:@"meteor1.png", @"meteor2.png", @"meteor3.png", @"meteor4.png", @"meteor5.png", nil], @"cloud_1.png", nil], @"clouds",
+                    [NSArray arrayWithObjects:
+                        @"satellite.png", @"plane_2.png", nil], @"horiz",
+                    @"ArialRoundedMTBold", @"font",
               nil];
     _currlevel = 0;
     curr_loop_img_1 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
@@ -154,7 +161,7 @@ int yVel = 0;
     [self removeChild:_playGame];
     
     // Initial missile
-    CCSprite *missile = [CCSprite spriteWithImageNamed:@"rocket.png"];
+    CCSprite *missile = [CCSprite spriteWithImageNamed:@"comet.png"];
     missile.positionType = CCPositionTypeNormalized;
     missile.position = ccp(0.5f, 0);
     [self addChild:missile];
@@ -210,7 +217,7 @@ int yVel = 0;
     
     // Initialize the score & its label
     _score = 0;
-    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:@"Verdana-Bold" fontSize:14.0f];
+    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_score] fontName:assets[@"font"] fontSize:14.0f];
     _scoreLabel.positionType = CCPositionTypeNormalized;
     _scoreLabel.color = [CCColor whiteColor];
     _scoreLabel.position = ccp(0.15f, 0.95f); // Top right corner
@@ -573,7 +580,7 @@ int yVel = 0;
         
         //time to enter a transition if loop counter is whatever and the first image is above second image
         //unschedule movebackground, the whole screen is filled by image one
-        if (_loopcounter == 2) {
+        if (_loopcounter == 3) {
             //[self unschedule:@selector(moveBackground:)];
             bgPos_trans = [self changeLevel];
             NSLog(@"back from change level");
@@ -589,7 +596,7 @@ int yVel = 0;
     bgPos_trans.y = (int)bgPos_trans.y;
     bgPos2.y = (int)bgPos2.y;
     bgPos3.y = (int)bgPos3.y;
-    //setting x to 
+    //setting of curr_loop_img_1 to the x of curloopimg2 because the x was off, dont know why
     bgPos2.x = (int)bgPos3.x;
     curr_transition_img.position = bgPos_trans; //this is chagning it back to the old positoin
     curr_loop_img_1.position = bgPos2;
@@ -601,15 +608,12 @@ int yVel = 0;
 #pragma mark - Level transitions
 // -----------------------------------------------------------------------
 -(CGPoint)changeLevel {
-    NSLog(@"in change level");
-
     CGPoint bgPos1 = curr_loop_img_1.position;
     CGPoint bgPos2 = curr_loop_img_2.position;
     //CGPoint bgPos3 = curr_transition_img.position;
 
-
-    //reschedule move background
-    if (_currlevel < 2) {
+    //reschedule move background, up this to 2?
+    if (_currlevel < 1) {
         _currlevel++; //we need to only do this once
     } else {
         _currlevel = 1;

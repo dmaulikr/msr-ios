@@ -251,6 +251,7 @@
 		53D0158D1911582E001AA9E2 /* plane_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158C1911582E001AA9E2 /* plane_2.png */; };
 		53E068CE1915A72300992154 /* HorizObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E068CD1915A72300992154 /* HorizObject.m */; };
 		53E8F8471916CCC100FCFCC8 /* bigboomer.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F8461916CCC100FCFCC8 /* bigboomer.png */; };
+		53E8F8491916FA6300FCFCC8 /* bigComet.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F8481916FA6300FCFCC8 /* bigComet.png */; };
 		53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EE4CFE19101D5E00934154 /* diamondworld.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
@@ -764,6 +765,7 @@
 		53E068CC1915A72300992154 /* HorizObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizObject.h; sourceTree = "<group>"; };
 		53E068CD1915A72300992154 /* HorizObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizObject.m; sourceTree = "<group>"; };
 		53E8F8461916CCC100FCFCC8 /* bigboomer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigboomer.png; sourceTree = "<group>"; };
+		53E8F8481916FA6300FCFCC8 /* bigComet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigComet.png; sourceTree = "<group>"; };
 		53EE4CFE19101D5E00934154 /* diamondworld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondworld.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
@@ -1704,9 +1706,9 @@
 				53F89DF0190E0AF700E7BA7E /* Localizable.strings */,
 				43759E171902B46400717DF5 /* AppDelegate.h */,
 				43759E181902B46400717DF5 /* AppDelegate.m */,
-				43759E1A1902B46400717DF5 /* GameScene.h */,
 				EFA6FBF61915D5E000BD7000 /* PauseScene.h */,
 				EFA6FBF71915D5E000BD7000 /* PauseScene.m */,
+				43759E1A1902B46400717DF5 /* GameScene.h */,
 				43759E1B1902B46400717DF5 /* GameScene.m */,
 				537658B119076A9A00DA1EB4 /* Missile.h */,
 				537658B219076A9A00DA1EB4 /* Missile.m */,
@@ -1787,6 +1789,7 @@
 		53FADF09191033A400468B33 /* Space */ = {
 			isa = PBXGroup;
 			children = (
+				53E8F8481916FA6300FCFCC8 /* bigComet.png */,
 				53FADF131910561D00468B33 /* asteroid_1.png */,
 				53FADF16191056F600468B33 /* comet1.png */,
 				53FADF1A19105CE100468B33 /* comet2.png */,
@@ -1937,6 +1940,7 @@
 				43D933561902C51D006704B8 /* missile.png in Resources */,
 				539FF7FB1909D0A100549B3B /* boomer.png in Resources */,
 				43759D8C1902B46300717DF5 /* LICENSE_Kazmath.txt in Resources */,
+				53E8F8491916FA6300FCFCC8 /* bigComet.png in Resources */,
 				53F89DD5190D82FC00E7BA7E /* lightning.png in Resources */,
 				53D0158B19115711001AA9E2 /* missile_4.png in Resources */,
 				53FADF2119105F0500468B33 /* comet3.png in Resources */,
