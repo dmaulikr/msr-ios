@@ -561,6 +561,14 @@ int yVel = 0;
             imgLoop = true;
             _loopcounter++;
         }
+        
+        //time to enter a transition if loop counter is whatever and the first image is above second image
+        //unschedule movebackground, the whole screen is filled by image one
+        if (_loopcounter == 1) {
+            [self unschedule:@selector(moveBackground:)];
+            [self changeLevel];
+        }
+        
         bgPos3.y = bgPos2.y - curr_loop_img_1.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1;
     }
     if (bgPos3.y - curr_loop_img_2.contentSize.height/2 > 0.0) { // second loop image about to leave screen
@@ -574,10 +582,6 @@ int yVel = 0;
     curr_loop_img_1.position = bgPos2;
     curr_loop_img_2.position = bgPos3;
     
-    if (_loopcounter == 1) {
-        [self unschedule:@selector(moveBackground:)];
-        [self changeLevel];
-    }
     
 }
 // -----------------------------------------------------------------------
@@ -588,18 +592,18 @@ int yVel = 0;
     //set new transition picture
     transitionPic = [CCSprite spriteWithImageNamed:assets[@"transitions"][_currlevel + 1]];
     [transitionPic setAnchorPoint:CGPointMake(.5, 0)];
-    transitionPic.position = CGPointMake(self.contentSize.width/2,(curr_loop_img_1.position.y - curr_loop_img_1.contentSize.height));
+    //set position to right below image 1
+    transitionPic.position = CGPointMake(self.contentSize.width/2,self.contentSize.height);
     [transitionPic setOpacity:.99];
     [self addChild:transitionPic z:1];
-    
     [self schedule:@selector(moveTransition:) interval:.03];
 
 }
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
-
-
 -(void)moveTransition:(CCTime)delta{
+    
+    
     CGPoint bgPos1 = curr_transition_img.position;
     CGPoint bgPos2 = curr_loop_img_1.position;
     CGPoint bgPos3 = curr_loop_img_2.position;
@@ -607,7 +611,7 @@ int yVel = 0;
     bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
     bgPos3.y = bgPos3.y + BACKGROUND_SCROLL_SPEED;
     
-    NSLog(@"%i", _loopcounter);
+    //NSLog(@"%i", _loopcounter);
     
     if (bgPos2.y  - curr_loop_img_1.contentSize.height/2 > 0.0) { // first loop image about to leave screen
         if (imgLoop == false){
@@ -628,7 +632,7 @@ int yVel = 0;
     curr_loop_img_2.position = bgPos3;
     
     CGPoint transitionPos = transitionPic.position;
-    transitionPos.y = curr_loop_img_1.position.y - curr_loop_img_1.contentSize.height;
+    transitionPos.y = (int)(curr_loop_img_1.position.y - curr_loop_img_1.contentSize.height);
     transitionPic.position = transitionPos;
     
     //if top of transition pic is higher than screen height, change all the assets
