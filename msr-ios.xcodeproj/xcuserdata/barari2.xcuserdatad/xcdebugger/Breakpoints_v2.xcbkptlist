@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420861183.162527"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-initGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "-initGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "-incrementScore"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "@implementation GameScene"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "@implementation GameScene"
             landmarkType = "3">
          </BreakpointContent>
@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "680"
-            endingLineNumber = "680"
-            landmarkName = "-ccPhysicsCollisionBegin:missileCollision:playerCollision:"
+            startingLineNumber = "668"
+            endingLineNumber = "668"
+            landmarkName = "-createHighScoreLabel"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "673"
-            endingLineNumber = "673"
-            landmarkName = "-ccPhysicsCollisionBegin:missileCollision:playerCollision:"
+            startingLineNumber = "661"
+            endingLineNumber = "661"
+            landmarkName = "-createHighScoreLabel"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-initGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.h"
-            timestampString = "420856205.863023"
+            timestampString = "420858608.260321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "-spriteUpdate:withDx:withDy:withDuration:"
             landmarkType = "4">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420859383.091384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "-initGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420858246.00388"
+            timestampString = "420861183.162527"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>

@@ -14,7 +14,7 @@
 @synthesize _objectSprite;
 @synthesize _objectType;
 
--(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int *)_type {
+-(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int *)_type andImgName:(NSString *)png{
     self = [super init];
     
     _objectType = _type;
@@ -22,7 +22,7 @@
     //type 1 = horizontal wind, left to right
     //type 2 = vertical wind, bottom to top
     if(_type == 0) {
-        _objectSprite = [CCSprite spriteWithImageNamed:@"plane_2.png"];
+        _objectSprite = [CCSprite spriteWithImageNamed:png];
         
         // Make appear at a random Y coordinate
         int minY = _objectSprite.contentSize.height / 2;

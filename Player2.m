@@ -18,7 +18,7 @@
 -(id)initWorld: (CCPhysicsNode *)_physicsWorld withPosition:(CGPoint)_positionPlayer andScene:(GameScene *)_scene{
     self = [super init];
     
-    _sprite = [CCSprite spriteWithImageNamed:@"martianSmall.png"];
+    _sprite = [CCSprite spriteWithImageNamed:@"martian0.png"];
     _sprite.position  = _positionPlayer;
     _sprite.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _sprite.contentSize} cornerRadius:0]; // 1
     _sprite.physicsBody.collisionGroup = @"playerGroup";

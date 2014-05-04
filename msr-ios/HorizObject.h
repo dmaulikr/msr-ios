@@ -15,7 +15,7 @@
 @property CCSprite *_objectSprite;
 @property int *_objectType;
 
--(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int *)_type;
+-(id)initWorld:(CCPhysicsNode *)_physicsWorld andScene: (GameScene *)_scene andType:(int *)_type andImgName:(NSString *)png;
 
     
 

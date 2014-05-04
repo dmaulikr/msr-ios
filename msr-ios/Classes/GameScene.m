@@ -83,29 +83,18 @@ int yVel = 0;
     self.manager.accelerometerUpdateInterval = 0.05;
     [self.manager startAccelerometerUpdates];
     
-/*    levelManager = [[Levels alloc] init:self];
-    
-    // Add images as backgrounds
-    _background1 = [CCSprite spriteWithImageNamed:@"3transition1.png"];
-    _background1.position = CGPointMake(_background1.contentSize.width/2,self.contentSize.height - _background1.contentSize.height/2);
-    [self addChild:_background1 z:-3];
-    
-    _background2 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
-    _background2.position = CGPointMake(_background1.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2 + 1);
-    
-    
-    [self addChild:_background2 z:-3];
-    
-    _background3 = [CCSprite spriteWithImageNamed:@"3backgroundloop1.png"];
-    _background3.position = CGPointMake(_background2.contentSize.width/2, _background1.position.y - _background1.contentSize.height/2 - _background2.contentSize.height/2 + 1);
-    [self addChild:_background3 z:-3]; */
-    
-    
+    // Dictionary containing assets
     assets = [[NSDictionary alloc] initWithObjectsAndKeys:
-              [NSArray arrayWithObjects:@"3transition1.png", nil], @"transitions",
-              [NSArray arrayWithObjects:@"3backgroundloop1.png", nil], @"backgrounds",
-              [NSArray arrayWithObjects:@"rocket.png", nil], @"missiles",
-              [NSArray arrayWithObjects:@"cloud_1.png", nil], @"clouds",
+                    [NSArray arrayWithObjects:
+                        @"3transition1.png", nil], @"transitions",
+                    [NSArray arrayWithObjects:
+                        @"3backgroundloop1.png", nil], @"backgrounds",
+                    [NSArray arrayWithObjects:
+                        @"comet3.png", @"rocket.png", nil], @"missiles",
+                    [NSArray arrayWithObjects:
+                        @"cloud_1.png", nil], @"clouds",
+                    [NSArray arrayWithObjects:
+                        @"plane_2.png", nil], @"horiz",
               nil];
     _currlevel = 0;
     curr_loop_img_1 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
@@ -193,7 +182,6 @@ int yVel = 0;
     CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:0.8];
     CCAction *actionRemove = [CCActionRemove action];
     [boomer runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
-    
     
      // Set up the physics world
      _physicsWorld = [CCPhysicsNode node];
@@ -303,7 +291,7 @@ int yVel = 0;
 }
 
 - (void)introClouds:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud.png"];
+    CCSprite *cloud = [CCSprite spriteWithImageNamed:assets[@"clouds"][_currlevel]];
     [cloud setName:@"cloud"];
 
     // Set time and space bounds for cloud generation
@@ -323,7 +311,7 @@ int yVel = 0;
 }
 
 - (void)addCloud:(CCTime)dt {
-    CCSprite *cloud = [CCSprite spriteWithImageNamed:@"cloud_1.png"];
+    CCSprite *cloud = [CCSprite spriteWithImageNamed: assets[@"clouds"][_currlevel]];
     
     // Set time and space bounds for cloud generation
     int maxX = self.contentSize.width;
@@ -344,7 +332,7 @@ int yVel = 0;
 -(void)addHObject:(CCTime)dt {
     //random type
     int *_type = arc4random() % 2;
-    _horizObject = [[HorizObject alloc] initWorld:_physicsWorld andScene:self andType:_type];
+    _horizObject = [[HorizObject alloc] initWorld:_physicsWorld andScene:self andType:_type andImgName:assets[@"horiz"][_currlevel]];
 }
 
 - (void)onExit
@@ -584,7 +572,7 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 -(void)addMissile:(CCTime)delta
 {
-    _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self];
+    _missile = [[Missile alloc] initPlayer:_martian andWorld:_physicsWorld andScene:self andImgName:assets[@"missiles"][_currlevel]];
     //add missile to array
     [_missilesArray addObject: _missile];
     [self schedule:(@selector(trackPlayerwithMissile)) interval:0.07];
