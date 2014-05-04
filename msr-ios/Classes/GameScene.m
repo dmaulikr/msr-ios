@@ -92,9 +92,9 @@ int yVel = 0;
     // Dictionary containing assets
     assets = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSArray arrayWithObjects:
-                        @"3transition1.png", @"3transition1.png", nil], @"transitions",
+                        @"3transition1.png", @"3transition2.png", nil], @"transitions",
                     [NSArray arrayWithObjects:
-                        @"3backgroundloop1.png", @"3backgroundloop1.png", nil], @"backgrounds",
+                        @"3backgroundloop1.png", @"3backgroundloop2.png", nil], @"backgrounds",
                     [NSArray arrayWithObjects:
                         @"comet3.png", @"rocket.png", nil], @"missiles",
                     [NSArray arrayWithObjects:
