@@ -398,18 +398,35 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 -(void) spriteUpdate:(NSTimer *) timer withDx:(float) dx withDy:(float) dy withDuration:(float) dur{
     
-    float accelX = self.manager.accelerometerData.acceleration.x;
     
-    CGPoint newVel = CGPointMake(accelX * 15 + dx, dy - 2.8);
+    /* NOTE: Issue: Still little collisions with invisbile wall. Not sure how to fix */
+    
+    //NSLog(@"%f", dur);
+    float accelX = self.manager.accelerometerData.acceleration.x;
+    //float accelY = self.manager.accelerometerData.acceleration.y;
+    
+    //NSLog(@"Falling at %f", accelY);
+    
+    CGPoint newAccel = CGPointMake(accelX * 15 + dx, dy - 2.8);
+    
+    CGPoint newVel = CGPointMake(_martian.physicsBody.surfaceVelocity.x + newAccel.x,
+                                 _martian.physicsBody.surfaceVelocity.y + newAccel.y);
     
     CGPoint moveLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
                                    _martian._sprite.position.y + newVel.y);
-
+    
     moveLoc = [self playerBoundBox:moveLoc];
+    
+    /* If this task was scheduled... */
+    if (dur == 0) {
+        dur = 0.10f;
+    }
+    
     CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:dur position:moveLoc];
     
     [_martian._sprite runAction:actionMove];
 }
+
 // -----------------------------------------------------------------------
 #pragma mark - Bounding box for player function - make sure player stays on screen
 // -----------------------------------------------------------------------
