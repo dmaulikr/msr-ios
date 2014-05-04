@@ -26,6 +26,8 @@ bool inIntroScene = true;
 bool inTransition = false;
 bool playerAlive = false;
 bool imgLoop = false;
+bool changingLevel = false;
+bool onTransPhase1 = false;
 //how much to increase score for powerups
 const int POWERUP_INCREASE = 100;
 
@@ -58,6 +60,9 @@ int yVel = 0;
     int _loopcounter;
     NSMutableArray * _missilesArray; //create an array of missiles,
     CCLabelTTF *highScoreLabel;
+    
+    CCSprite *transitionPic;
+    
 }
 
 @synthesize manager;
@@ -108,10 +113,10 @@ int yVel = 0;
     [self addChild:curr_transition_img z:-3];
     
     curr_loop_img_1.position = CGPointMake(curr_transition_img.contentSize.width/2, curr_transition_img.position.y - curr_transition_img.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1);
-    [self addChild:curr_loop_img_1 z:-3];
+    [self addChild:curr_loop_img_1 z:-4];
     
     curr_loop_img_2.position = CGPointMake(curr_loop_img_1.contentSize.width/2, curr_transition_img.position.y - curr_transition_img.contentSize.height/2 - curr_loop_img_1.contentSize.height/2 + 1);
-    [self addChild:curr_loop_img_2 z:-3];
+    [self addChild:curr_loop_img_2 z:-4];
     
     [self schedule:@selector(introClouds:) interval:1.0]; // Animating sideways clouds
     
@@ -156,7 +161,7 @@ int yVel = 0;
     [self removeChild:_playGame];
     
     // Initial missile
-    CCSprite *missile = [CCSprite spriteWithImageNamed:@"rocket.png"];
+    CCSprite *missile = [CCSprite spriteWithImageNamed:@"comet.png"];
     missile.positionType = CCPositionTypeNormalized;
     missile.position = ccp(0.5f, 0);
     [self addChild:missile];
@@ -175,7 +180,8 @@ int yVel = 0;
     _defaults = [NSUserDefaults standardUserDefaults];
     
     // Destroy ship
-    CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"boomer.png")];
+    //replace with bigger boom image
+    CCSprite *boomer = [CCSprite spriteWithImageNamed:(@"bigboomer.png")];
     CGPoint new_pos = _ship.positionInPoints;
     new_pos.y = new_pos.y + 10;
     boomer.position  = new_pos;
@@ -221,7 +227,7 @@ int yVel = 0;
     [self schedule:@selector(addCloud:) interval:1.5];
     [self schedule:@selector(moveBackground:) interval:0.03];
     [self schedule:@selector(addHObject:) interval:5];
-
+    
     //End of game menu, created now but added only at end of game
     // Create a playAgain button for end of game
     CCButton *playAgainButton = [CCButton buttonWithTitle:NSLocalizedString(@"[ Play ]", nil) fontName:assets[@"font"] fontSize:20.0f];
@@ -246,9 +252,6 @@ int yVel = 0;
     [self fitLabeltoScreen:highScoreLabel];
     highScoreLabel.positionType = CCPositionTypeNormalized;
     highScoreLabel.color = [CCColor whiteColor];
-
-        //highScoreLabel.position = ccp(0.55f, 0.25f); // Middle center
-    //[self addChild:highScoreLabel];
     
     endMenu = [[CCLayoutBox alloc] init];
     endMenu.direction = CCLayoutBoxDirectionVertical;
@@ -560,6 +563,98 @@ int yVel = 0;
 #pragma mark - Move Scrolling Background
 // -----------------------------------------------------------------------
 -(void)moveBackground:(CCTime)delta{
+    CGPoint bgPos_trans = curr_transition_img.position;
+    CGPoint bgPos2 = curr_loop_img_1.position;
+    CGPoint bgPos3 = curr_loop_img_2.position;
+    bgPos_trans.y = bgPos_trans.y + BACKGROUND_SCROLL_SPEED;
+    bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
+    bgPos3.y = bgPos3.y + BACKGROUND_SCROLL_SPEED;
+    
+    //NSLog(@"We are in moveBackground %i", _loopcounter);
+    
+    if (bgPos2.y  - curr_loop_img_1.contentSize.height/2 > 0.0) { // first loop image about to leave screen
+        if (imgLoop == false){
+            imgLoop = true;
+            _loopcounter++;
+        }
+        
+        //time to enter a transition if loop counter is whatever and the first image is above second image
+        //unschedule movebackground, the whole screen is filled by image one
+        if (_loopcounter == 3) {
+            //[self unschedule:@selector(moveBackground:)];
+            bgPos_trans = [self changeLevel];
+            NSLog(@"back from change level");
+        }
+        
+        bgPos3.y = bgPos2.y - curr_loop_img_1.contentSize.height/2 - curr_loop_img_2.contentSize.height/2 + 1;
+    }
+    if (bgPos3.y - curr_loop_img_2.contentSize.height/2 > 0.0) { // second loop image about to leave screen
+        imgLoop = false;
+        bgPos2.y = bgPos3.y - curr_loop_img_2.contentSize.height/2 - curr_loop_img_1.contentSize.height/2 + 1;
+    }
+    
+    bgPos_trans.y = (int)bgPos_trans.y;
+    bgPos2.y = (int)bgPos2.y;
+    bgPos3.y = (int)bgPos3.y;
+    //setting of curr_loop_img_1 to the x of curloopimg2 because the x was off, dont know why
+    bgPos2.x = (int)bgPos3.x;
+    curr_transition_img.position = bgPos_trans; //this is chagning it back to the old positoin
+    curr_loop_img_1.position = bgPos2;
+    curr_loop_img_2.position = bgPos3;
+    
+    
+}
+// -----------------------------------------------------------------------
+#pragma mark - Level transitions
+// -----------------------------------------------------------------------
+-(CGPoint)changeLevel {
+    CGPoint bgPos1 = curr_loop_img_1.position;
+    CGPoint bgPos2 = curr_loop_img_2.position;
+    //CGPoint bgPos3 = curr_transition_img.position;
+
+    //reschedule move background, up this to 2?
+    if (_currlevel < 1) {
+        _currlevel++; //we need to only do this once
+    } else {
+        _currlevel = 1;
+    }
+    _loopcounter = 0;
+    
+    NSLog(@"cur level new %d ", _currlevel);
+
+    //remove old images
+    [self removeChild:curr_loop_img_1];
+    [self removeChild:curr_loop_img_2];
+    [self removeChild:curr_transition_img];
+    
+    curr_loop_img_1 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
+    curr_loop_img_2 = [CCSprite spriteWithImageNamed:assets[@"backgrounds"][_currlevel]];
+    curr_transition_img = [CCSprite spriteWithImageNamed:assets[@"transitions"][_currlevel]];
+
+    
+    curr_transition_img.position = bgPos1;
+    curr_loop_img_1.position = bgPos1;
+    curr_loop_img_2.position = bgPos2;
+
+    //bgPos1.y = bgPos1.y + BACKGROUND_SCROLL_SPEED;
+    //bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
+    bgPos1.y = (int)bgPos1.y;
+    bgPos2.y = (int)bgPos2.y;
+    curr_transition_img.position = bgPos1;
+    curr_loop_img_1.position = bgPos1;
+    curr_loop_img_2.position = bgPos2;
+
+    [self addChild:curr_loop_img_1 z:-3];
+    [self addChild:curr_loop_img_2 z:-3];
+    [self addChild:curr_transition_img z:-2];
+    
+    return bgPos1;
+
+}
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+/*-(void)moveTransition:(CCTime)delta{
+
     CGPoint bgPos1 = curr_transition_img.position;
     CGPoint bgPos2 = curr_loop_img_1.position;
     CGPoint bgPos3 = curr_loop_img_2.position;
@@ -567,7 +662,7 @@ int yVel = 0;
     bgPos2.y = bgPos2.y + BACKGROUND_SCROLL_SPEED;
     bgPos3.y = bgPos3.y + BACKGROUND_SCROLL_SPEED;
     
-    NSLog(@"%i", _loopcounter);
+    //NSLog(@"%i", _loopcounter);
     
     if (bgPos2.y  - curr_loop_img_1.contentSize.height/2 > 0.0) { // first loop image about to leave screen
         if (imgLoop == false){
@@ -586,8 +681,24 @@ int yVel = 0;
     curr_transition_img.position = bgPos1;
     curr_loop_img_1.position = bgPos2;
     curr_loop_img_2.position = bgPos3;
-}
-
+    
+    CGPoint transitionPos = transitionPic.position;
+    transitionPos.y = (int)(curr_loop_img_1.position.y - curr_loop_img_1.contentSize.height);
+    transitionPic.position = transitionPos;
+    
+    //if top of transition pic is higher than screen height, change all the assets
+    if ((transitionPic.position.y + transitionPic.contentSize.height) > self.contentSize.height) {
+        _currlevel++; //we need to only do this once
+        [self unschedule:@selector(moveTransition:)];
+        [self schedule:@selector(moveBackground:) interval:.03];
+        _loopcounter = 5; //RESET LOOP COUNTER
+        NSLog(@"cur level is %d", _currlevel);
+        [self removeChild:transitionPic];
+    }
+}*/
+// -----------------------------------------------------------------------
+//JUNKKKKKK
+// -----------------------------------------------------------------------
 
 // -----------------------------------------------------------------------
 #pragma mark - Add Missile
@@ -789,7 +900,7 @@ int yVel = 0;
         float fontSize = [label fontSize];//[self fontSize];
         float fontAdjustmentStep = 0.5f;
         
-        while(self.contentSize.width < label.contentSize.width)
+        while((self.contentSize.width - 20) < label.contentSize.width)
         {
             fontSize -= fontAdjustmentStep;
             [label setFontSize:fontSize];

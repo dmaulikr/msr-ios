@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "msr-ios/Classes/GameScene.m"
-            timestampString = "420857109.539915"
+            timestampString = "420862645.861495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-initGame"
             landmarkType = "5">
          </BreakpointContent>
