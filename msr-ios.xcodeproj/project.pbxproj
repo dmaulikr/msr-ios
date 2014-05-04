@@ -269,6 +269,7 @@
 		53FADF1B19105CE100468B33 /* comet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1A19105CE100468B33 /* comet2.png */; };
 		53FADF1F19105E1500468B33 /* ufo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF1E19105E1500468B33 /* ufo.png */; };
 		53FADF2119105F0500468B33 /* comet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FADF2019105F0500468B33 /* comet3.png */; };
+		EFA6FBF81915D5E000BD7000 /* PauseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA6FBF71915D5E000BD7000 /* PauseScene.m */; };
 		EFE979881911841300502628 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EFE979891911841300502628 /* (null) in Resources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
@@ -778,6 +779,8 @@
 		53FADF2019105F0500468B33 /* comet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comet3.png; sourceTree = "<group>"; };
 		EF8BF14319104277002BFE24 /* transition1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition1.png; sourceTree = "<group>"; };
 		EF8BF14519104603002BFE24 /* backgroundloop1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundloop1.png; sourceTree = "<group>"; };
+		EFA6FBF61915D5E000BD7000 /* PauseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PauseScene.h; path = Classes/PauseScene.h; sourceTree = "<group>"; };
+		EFA6FBF71915D5E000BD7000 /* PauseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PauseScene.m; path = Classes/PauseScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1683,6 +1686,8 @@
 				43759E171902B46400717DF5 /* AppDelegate.h */,
 				43759E181902B46400717DF5 /* AppDelegate.m */,
 				43759E1A1902B46400717DF5 /* GameScene.h */,
+				EFA6FBF61915D5E000BD7000 /* PauseScene.h */,
+				EFA6FBF71915D5E000BD7000 /* PauseScene.m */,
 				43759E1B1902B46400717DF5 /* GameScene.m */,
 				537658B119076A9A00DA1EB4 /* Missile.h */,
 				537658B219076A9A00DA1EB4 /* Missile.m */,
@@ -1836,7 +1841,7 @@
 				ORGANIZATIONNAME = o2bt;
 				TargetAttributes = {
 					43759B6B1902B46100717DF5 = {
-						DevelopmentTeam = U6MKAK47DY;
+						DevelopmentTeam = WC8GK6LE4R;
 					};
 				};
 			};
@@ -1969,6 +1974,7 @@
 				43759C6D1902B46200717DF5 /* CCSpriteBatchNode.m in Sources */,
 				43759C911902B46300717DF5 /* CCTransition.m in Sources */,
 				43759C701902B46200717DF5 /* CCSpriteFrame.m in Sources */,
+				EFA6FBF81915D5E000BD7000 /* PauseScene.m in Sources */,
 				43759C041902B46200717DF5 /* CCNodeColor.m in Sources */,
 				43759CDD1902B46300717DF5 /* TransformUtils.m in Sources */,
 				43759C7E1902B46300717DF5 /* CCTextureCache.m in Sources */,

@@ -18,3 +18,4 @@
 "Score: %03d" = "分数: %03d";
 //NEED TO MAKE THESE
 "Tap to move up, turn to move left and right." = "Tap to move up, turn to move left and right.";
+"High Score: %d" = "High Score: %d";

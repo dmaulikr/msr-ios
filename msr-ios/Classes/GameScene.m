@@ -24,6 +24,7 @@ bool DEBUGbool = false;
 bool gameRunning = false;
 bool inIntroScene = true;
 bool inTransition = false;
+bool playerAlive = false;
 bool imgLoop = false;
 //how much to increase score for powerups
 const int POWERUP_INCREASE = 100;
@@ -127,17 +128,18 @@ int yVel = 0;
     
     // Intro title
     _introLabel = [CCLabelTTF labelWithString: NSLocalizedString(@"Martian Fall", nil) fontName:@"ArialRoundedMTBold" fontSize:36.0f];
+    [self fitLabeltoScreen:_introLabel];
     _introLabel.positionType = CCPositionTypeNormalized;
     _introLabel.color = [CCColor redColor];
     _introLabel.position = ccp(0.5f, 0.8f); // Middle of screen
     [self addChild: _introLabel];
     
     // Play button
-    _playGame = [CCButton buttonWithTitle: NSLocalizedString(@"Tap to begin", nil) fontName:@"ArialRoundedMTBold" fontSize:18.0f];
+    _playGame = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to begin", nil) fontName:@"ArialRoundedMTBold" fontSize:18.0f];
+    [self fitLabeltoScreen:_playGame];
     _playGame.positionType = CCPositionTypeNormalized;
     _playGame.position = ccp(0.5f, 0.35f);
     [self addChild:_playGame];
-    
     
 	return self;
 }
@@ -190,8 +192,9 @@ int yVel = 0;
      _physicsWorld.collisionDelegate = self;
      [self addChild:_physicsWorld z:-1];
     
-     // Player
-     _martian = [[Player alloc] initWorld:_physicsWorld withPosition: new_pos andScene:self];
+    // Player
+    _martian = [[Player alloc] initWorld:_physicsWorld withPosition: new_pos andScene:self];
+    playerAlive = true;
     
      // Init and alloc mutable missile array
      _missilesArray = [[NSMutableArray alloc] init];
@@ -249,7 +252,8 @@ int yVel = 0;
     endMenu = [[CCLayoutBox alloc] init];
     endMenu.direction = CCLayoutBoxDirectionVertical;
     endMenu.spacing = 10.f;
-    endMenu.position = CGPointMake((self.contentSize.width/2 - (playAgainButton.contentSize.width/2)),(self.contentSize.height/2 - (playAgainButton.contentSize.height * 2)));
+    [endMenu setAnchorPoint:CGPointMake(.5, .5)];
+    endMenu.position = CGPointMake(self.contentSize.width/2,self.contentSize.height/2);
 
     //only add weibo is language is chinese
     if ([[[NSLocale preferredLanguages] objectAtIndex:0]  isEqual: @"zh"]) {
@@ -364,18 +368,14 @@ int yVel = 0;
     }
     
     else if (!inTransition) {
-        //CGPoint touchLoc = [touch locationInNode:self];
-    
-        // Log touch location
-        //CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
-    
-        // Move our sprite to touch location
-        //CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:0.4f position:touchLoc];
-        //[_martian._sprite runAction:actionMove];
-        
         // A touch gives an acceleration in the y-direction
 
-        [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.25];
+        [self spriteUpdate:nil withDx:0 withDy:100.0 withDuration:0.22];
+        
+        //play jump sound
+        if (playerAlive) {
+            [[OALSimpleAudio sharedInstance] playBg:@"jump.wav" loop:NO];
+        }
     }
 }
 // -----------------------------------------------------------------------
@@ -383,7 +383,7 @@ int yVel = 0;
 // -----------------------------------------------------------------------
 -(void) spriteUpdate:(NSTimer *) timer withDx:(float) dx withDy:(float) dy withDuration:(float) dur{
     
-
+    
     /* NOTE: Issue: Still little collisions with invisbile wall. Not sure how to fix */
     
     //NSLog(@"%f", dur);
@@ -399,19 +399,19 @@ int yVel = 0;
     
     CGPoint moveLoc = CGPointMake (_martian._sprite.position.x + newVel.x,
                                    _martian._sprite.position.y + newVel.y);
-
+    
     moveLoc = [self playerBoundBox:moveLoc];
     
-    float duration = 0.01f;
+    /* If this task was scheduled... */
+    if (dur == 0) {
+        dur = 0.10f;
+    }
     
-    //if (newVel.y < 0)
-        duration = 0.10;
-    
-    
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:duration position:moveLoc];
+    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:dur position:moveLoc];
     
     [_martian._sprite runAction:actionMove];
 }
+
 // -----------------------------------------------------------------------
 #pragma mark - Bounding box for player function - make sure player stays on screen
 // -----------------------------------------------------------------------
@@ -523,7 +523,18 @@ int yVel = 0;
         [_socialMediaMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
     }
 }
+
+// -----------------------------------------------------------------------
+#pragma mark - Tutorial button
+// -----------------------------------------------------------------------
+
 -(void)onInfoButtonClick:(id)sender {
+    
+    [[CCDirector sharedDirector] pause];
+    
+    //CCSprite *tutorialPic =
+    
+    /*
     CCLabelTTF *infoMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to move up, turn to move left and right.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
     [self fitLabeltoScreen:infoMessage];
     infoMessage.positionType = CCPositionTypeNormalized;
@@ -531,7 +542,7 @@ int yVel = 0;
     [self addChild: infoMessage];
     CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.8];
     CCAction *actionRemove = [CCActionRemove action];
-    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];*/
 
 }
 // -----------------------------------------------------------------------
@@ -648,6 +659,12 @@ int yVel = 0;
     [self createHighScoreLabel];
     [self addChild:endMenu];
     
+    //play sound
+    [[OALSimpleAudio sharedInstance] playBg:@"explosion2.wav" loop:NO];
+    
+    //player is dead
+    playerAlive = false;
+    
     return YES;
 }
 
@@ -700,7 +717,8 @@ int yVel = 0;
     //increment score on powerup collision
     _score = _score + POWERUP_INCREASE;
     
-    CCSprite *pUp = [CCSprite spriteWithImageNamed:(@"fireworks.png")];
+    CCLabelTTF *pUp = [CCLabelTTF labelWithString:@"+100" fontName:@"ArialRoundedMTBold" fontSize:13.0f];
+    pUp.color = [CCColor whiteColor];
     CGPoint new_pos = powerup.position;
     new_pos.y = new_pos.y + 10;
     pUp.position  = new_pos;
@@ -712,6 +730,9 @@ int yVel = 0;
     CCAction *actionRemove = [CCActionRemove action];
    
     [pUp runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
+    
+    //play sound
+    [[OALSimpleAudio sharedInstance] playBg:@"powerup1.wav" loop:NO];
     return YES;
 }
 // -----------------------------------------------------------------------
