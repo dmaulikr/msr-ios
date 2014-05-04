@@ -249,6 +249,7 @@
 		53D0158B19115711001AA9E2 /* missile_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158A19115711001AA9E2 /* missile_4.png */; };
 		53D0158D1911582E001AA9E2 /* plane_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D0158C1911582E001AA9E2 /* plane_2.png */; };
 		53E068CE1915A72300992154 /* HorizObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E068CD1915A72300992154 /* HorizObject.m */; };
+		53E8F8471916CCC100FCFCC8 /* bigboomer.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F8461916CCC100FCFCC8 /* bigboomer.png */; };
 		53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EE4CFE19101D5E00934154 /* diamondworld.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
@@ -753,6 +754,7 @@
 		53D0158C1911582E001AA9E2 /* plane_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane_2.png; sourceTree = "<group>"; };
 		53E068CC1915A72300992154 /* HorizObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizObject.h; sourceTree = "<group>"; };
 		53E068CD1915A72300992154 /* HorizObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizObject.m; sourceTree = "<group>"; };
+		53E8F8461916CCC100FCFCC8 /* bigboomer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigboomer.png; sourceTree = "<group>"; };
 		53EE4CFE19101D5E00934154 /* diamondworld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondworld.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
@@ -1716,6 +1718,7 @@
 			isa = PBXGroup;
 			children = (
 				539FF7FA1909D0A100549B3B /* boomer.png */,
+				53E8F8461916CCC100FCFCC8 /* bigboomer.png */,
 				53FADF0E19103C4100468B33 /* info.png */,
 				53EE4CFE19101D5E00934154 /* diamondworld.png */,
 				53F89DE8190E022500E7BA7E /* weibo2.png */,
@@ -1933,6 +1936,7 @@
 				53FADF151910561D00468B33 /* asteroid_1.png in Resources */,
 				53CE05381909A6EE003454B2 /* skybackground.png in Resources */,
 				53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */,
+				53E8F8471916CCC100FCFCC8 /* bigboomer.png in Resources */,
 				53F89DE9190E022500E7BA7E /* weibo2.png in Resources */,
 				43759D711902B46300717DF5 /* ChangeLog in Resources */,
 				43759BB01902B46200717DF5 /* iTunesArtwork@2x in Resources */,
