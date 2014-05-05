@@ -2384,7 +2384,7 @@
 				43759E211902B46400717DF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		43759E221902B46400717DF5 /* Build configuration list for PBXNativeTarget "ObjectiveChipmunk" */ = {
 			isa = XCConfigurationList;
@@ -2393,7 +2393,7 @@
 				43759E241902B46400717DF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		43759E251902B46400717DF5 /* Build configuration list for PBXNativeTarget "msr-ios" */ = {
 			isa = XCConfigurationList;
@@ -2402,7 +2402,7 @@
 				43759E271902B46400717DF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

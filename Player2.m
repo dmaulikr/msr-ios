@@ -23,7 +23,7 @@
     _sprite.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _sprite.contentSize} cornerRadius:0]; // 1
     _sprite.physicsBody.collisionGroup = @"playerGroup";
     _sprite.physicsBody.collisionType  = @"playerCollision";
-    [_physicsWorld addChild:_sprite];
+    [_physicsWorld addChild:_sprite z:4];
     
     // Animate sprite with action
     CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:2.5f angle:360];
