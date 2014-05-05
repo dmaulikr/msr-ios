@@ -37,10 +37,11 @@
         
         _objectSprite.position = CGPointMake(0, randomY);
         //NOTE: make body bigger than the wind itself
-        _objectSprite.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _objectSprite.contentSize} cornerRadius:0];
-        _objectSprite.physicsBody.collisionGroup = @"aerialGroup";
-        _objectSprite.physicsBody.collisionType  = @"windCollision";
-        [_physicsWorld addChild:_objectSprite z:-1];
+        //_objectSprite.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _objectSprite.contentSize} cornerRadius:0];
+        //_objectSprite.physicsBody.collisionGroup = @"aerialGroup";
+        //_objectSprite.physicsBody.collisionType  = @"windCollision";
+        //[_physicsWorld addChild:_objectSprite z:-1];
+        [_scene addChild:_objectSprite z:-1];
         
         CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(_scene.contentSize.width + _objectSprite.contentSize.width, randomY)];
         CCAction *actionRemove = [CCActionRemove action];
