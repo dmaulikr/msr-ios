@@ -92,15 +92,15 @@ int yVel = 0;
     // Dictionary containing assets
     assets = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSArray arrayWithObjects:
-                        @"3transition1.png", @"3transition2.png", nil], @"transitions",
+                        @"3transition1.png", @"3transition2_two.png", @"3backgroundloop2_two.png", @"3backgroundloop2_two.png", nil], @"transitions",
                     [NSArray arrayWithObjects:
-                        @"3backgroundloop1.png", @"3backgroundloop2.png", nil], @"backgrounds",
+                        @"3backgroundloop1_two.png", @"3backgroundloop2_two.png", @"3backgroundloop2_two.png", @"3backgroundloop2_two.png", nil], @"backgrounds",
                     [NSArray arrayWithObjects:
-                        @"comet3.png", @"rocket.png", nil], @"missiles",
+                        @"comet3.png", @"rocket.png", @"rocket.png", @"rocket.png", nil], @"missiles",
                     [NSArray arrayWithObjects:
-                        [NSArray arrayWithObjects:@"meteor1.png", @"meteor2.png", @"meteor3.png", @"meteor4.png", @"meteor5.png", nil], @"cloud_1.png", nil], @"clouds",
+                        [NSArray arrayWithObjects:@"meteor1.png", @"meteor2.png", @"meteor3.png", @"meteor4.png", @"meteor5.png", nil], @"cloud_1.png",@"cloud_1.png", @"cloud_1.png", nil], @"clouds",
                     [NSArray arrayWithObjects:
-                        @"satellite.png", @"plane_2.png", nil], @"horiz",
+                        @"satellite.png", @"plane_2.png", @"plane_2.png", @"plane_2.png", nil], @"horiz",
                     @"ArialRoundedMTBold", @"font",
               nil];
     _currlevel = 0;
@@ -546,11 +546,11 @@ int yVel = 0;
 
 -(void)onInfoButtonClick:(id)sender {
     
-    [[CCDirector sharedDirector] pause];
+    //[[CCDirector sharedDirector] pause];
     
     //CCSprite *tutorialPic =
     
-    /*
+    
     CCLabelTTF *infoMessage = [CCLabelTTF labelWithString:NSLocalizedString(@"Tap to move up, turn to move left and right.", nil) fontName:@"Verdana-Bold" fontSize:18.0f];
     [self fitLabeltoScreen:infoMessage];
     infoMessage.positionType = CCPositionTypeNormalized;
@@ -558,7 +558,7 @@ int yVel = 0;
     [self addChild: infoMessage];
     CCActionFadeOut *fadeOut = [CCActionFadeOut actionWithDuration:2.8];
     CCAction *actionRemove = [CCActionRemove action];
-    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];*/
+    [infoMessage runAction:[CCActionSequence actionWithArray:@[fadeOut,actionRemove]]];
 
 }
 // -----------------------------------------------------------------------
@@ -574,6 +574,7 @@ int yVel = 0;
     
     //NSLog(@"We are in moveBackground %i", _loopcounter);
     
+    
     if (bgPos2.y  - curr_loop_img_1.contentSize.height/2 > 0.0) { // first loop image about to leave screen
         if (imgLoop == false){
             imgLoop = true;
@@ -582,7 +583,7 @@ int yVel = 0;
         
         //time to enter a transition if loop counter is whatever and the first image is above second image
         //unschedule movebackground, the whole screen is filled by image one
-        if (_loopcounter == 2) {
+        if (_loopcounter == 1) {
             //[self unschedule:@selector(moveBackground:)];
             bgPos_trans = [self changeLevel];
             NSLog(@"back from change level");
@@ -618,10 +619,10 @@ int yVel = 0;
     //CGPoint bgPos3 = curr_transition_img.position;
 
     //reschedule move background, up this to 2?
-    if (_currlevel < 1) {
+    if (_currlevel < 3) {
         _currlevel++; //we need to only do this once
     } else {
-        _currlevel = 0;
+        _currlevel = 2;
     }
     _loopcounter = 0;
     
@@ -653,7 +654,7 @@ int yVel = 0;
 
     [self addChild:curr_loop_img_1 z:-3];
     [self addChild:curr_loop_img_2 z:-3];
-    [self addChild:curr_transition_img z:-2];
+    [self addChild:curr_transition_img z:-3];
     
     return bgPos_trans;
 

@@ -252,6 +252,9 @@
 		53E068CE1915A72300992154 /* HorizObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E068CD1915A72300992154 /* HorizObject.m */; };
 		53E8F8471916CCC100FCFCC8 /* bigboomer.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F8461916CCC100FCFCC8 /* bigboomer.png */; };
 		53E8F8491916FA6300FCFCC8 /* bigComet.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F8481916FA6300FCFCC8 /* bigComet.png */; };
+		53E8F8501917111000FCFCC8 /* 3backgroundloop2_two.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F84E1917111000FCFCC8 /* 3backgroundloop2_two.png */; };
+		53E8F8511917111000FCFCC8 /* 3backgroundloop1_two.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F84F1917111000FCFCC8 /* 3backgroundloop1_two.png */; };
+		53E8F8531917128600FCFCC8 /* 3transition2_two.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E8F8521917128600FCFCC8 /* 3transition2_two.png */; };
 		53EE4CFF19101D5E00934154 /* diamondworld.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EE4CFE19101D5E00934154 /* diamondworld.png */; };
 		53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DCE190D82B200E7BA7E /* martianSmall.png */; };
 		53F89DD1190D82D300E7BA7E /* parachute2.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F89DD0190D82D200E7BA7E /* parachute2.png */; };
@@ -768,6 +771,9 @@
 		53E068CD1915A72300992154 /* HorizObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizObject.m; sourceTree = "<group>"; };
 		53E8F8461916CCC100FCFCC8 /* bigboomer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigboomer.png; sourceTree = "<group>"; };
 		53E8F8481916FA6300FCFCC8 /* bigComet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigComet.png; sourceTree = "<group>"; };
+		53E8F84E1917111000FCFCC8 /* 3backgroundloop2_two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3backgroundloop2_two.png; sourceTree = "<group>"; };
+		53E8F84F1917111000FCFCC8 /* 3backgroundloop1_two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3backgroundloop1_two.png; sourceTree = "<group>"; };
+		53E8F8521917128600FCFCC8 /* 3transition2_two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3transition2_two.png; sourceTree = "<group>"; };
 		53EE4CFE19101D5E00934154 /* diamondworld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondworld.png; sourceTree = "<group>"; };
 		53F89DCE190D82B200E7BA7E /* martianSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martianSmall.png; sourceTree = "<group>"; };
 		53F89DD0190D82D200E7BA7E /* parachute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachute2.png; sourceTree = "<group>"; };
@@ -879,6 +885,9 @@
 		43759B881902B46100717DF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53E8F8521917128600FCFCC8 /* 3transition2_two.png */,
+				53E8F84E1917111000FCFCC8 /* 3backgroundloop2_two.png */,
+				53E8F84F1917111000FCFCC8 /* 3backgroundloop1_two.png */,
 				EF8B20841916FCA700076822 /* 3backgroundloop2.png */,
 				EF8B20851916FCA700076822 /* 3transition2.png */,
 				EF8B20781916EDC600076822 /* meteor1.png */,
@@ -1902,6 +1911,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B845FA1915BD5B00603EDB /* blip4.wav in Resources */,
+				53E8F8531917128600FCFCC8 /* 3transition2_two.png in Resources */,
 				53D015851911556E001AA9E2 /* missile_1.png in Resources */,
 				53CE053A1909A945003454B2 /* skybackground2.png in Resources */,
 				EF8B20871916FCA700076822 /* 3transition2.png in Resources */,
@@ -1911,6 +1921,7 @@
 				530A1087190EFC760072FEE0 /* windVertical.png in Resources */,
 				43B845FC1915BD5B00603EDB /* explosion2.wav in Resources */,
 				43759B9F1902B46200717DF5 /* Icon-120.png in Resources */,
+				53E8F8511917111000FCFCC8 /* 3backgroundloop1_two.png in Resources */,
 				53F89DCF190D82B200E7BA7E /* martianSmall.png in Resources */,
 				43B845E8191594D300603EDB /* 3backgroundloop1.png in Resources */,
 				EFE979881911841300502628 /* (null) in Resources */,
@@ -1918,6 +1929,7 @@
 				43D933541902C51D006704B8 /* fire.png in Resources */,
 				43B845F81915BD5B00603EDB /* blip2.wav in Resources */,
 				EF8B20801916EDC600076822 /* meteor4.png in Resources */,
+				53E8F8501917111000FCFCC8 /* 3backgroundloop2_two.png in Resources */,
 				53FADF17191056F600468B33 /* comet1.png in Resources */,
 				43759DA31902B46400717DF5 /* LICENSE_CCBReader.txt in Resources */,
 				53FADF1B19105CE100468B33 /* comet2.png in Resources */,
@@ -2372,7 +2384,7 @@
 				43759E211902B46400717DF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		43759E221902B46400717DF5 /* Build configuration list for PBXNativeTarget "ObjectiveChipmunk" */ = {
 			isa = XCConfigurationList;
@@ -2381,7 +2393,7 @@
 				43759E241902B46400717DF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		43759E251902B46400717DF5 /* Build configuration list for PBXNativeTarget "msr-ios" */ = {
 			isa = XCConfigurationList;
@@ -2390,7 +2402,7 @@
 				43759E271902B46400717DF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

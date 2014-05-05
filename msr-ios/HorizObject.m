@@ -48,6 +48,8 @@
     } else {
         _objectSprite = [CCSprite spriteWithImageNamed:png];
         
+        _objectSprite.scaleX *= -1;
+        
         // Make appear at a random Y coordinate
         int minY = _objectSprite.contentSize.height / 2;
         int maxY = _scene.contentSize.height - _objectSprite.contentSize.height / 2;
@@ -64,7 +66,8 @@
         //_objectSprite.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _objectSprite.contentSize} cornerRadius:0];
         //_objectSprite.physicsBody.collisionGroup = @"aerialGroup";
         //_objectSprite.physicsBody.collisionType  = @"windCollision";
-        [_physicsWorld addChild:_objectSprite z:-1];
+        //[_physicsWorld addChild:_objectSprite z:-1];
+        [_scene addChild:_objectSprite z:-1];
         
         CCAction *actionMove = [CCActionMoveTo actionWithDuration:randomDuration position:CGPointMake(-(_objectSprite.contentSize.width), randomY)];
         CCAction *actionRemove = [CCActionRemove action];
